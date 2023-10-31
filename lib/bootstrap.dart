@@ -21,17 +21,16 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
       WidgetsFlutterBinding.ensureInitialized();
 
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-
       await dotenv.load();
 
-       Bloc.observer = AppBlocObserver();
+      Bloc.observer = AppBlocObserver();
 
       configureDependencies(Environment.prod);
 
       await Future.wait([
+        Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      ),
         SystemChrome.setPreferredOrientations([
           DeviceOrientation.portraitUp,
           DeviceOrientation.portraitDown,
