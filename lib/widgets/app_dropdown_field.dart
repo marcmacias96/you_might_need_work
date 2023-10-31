@@ -23,32 +23,56 @@ class AppDropDownField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppShadow(
-      child: ReactiveDropdownField<String>(
-        formControl: formControl,
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.small,
-          vertical: AppPadding.small,
-        ),
-        elevation: 4,
-        hint: Text(hintText),
-        style: Theme.of(context).textTheme.bodyMedium,
-        decoration: const InputDecoration(
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 12,
+    final hasErrors = formControl.hasErrors;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (labelText != null)
+          Column(
+            children: [
+              Text(
+                labelText!,
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  color: AppColors.grayGray2,
+                ),
+              ),
+              const SizedBox(height: AppPadding.big),
+            ],
+          ),
+        AppShadow(
+          child: Column(
+            children: [
+              ReactiveDropdownField<String>(
+                formControl: formControl,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppPadding.small,
+                  vertical: AppPadding.small,
+                ),
+                elevation: 4,
+                hint: Text(hintText),
+                style: Theme.of(context).textTheme.bodyMedium,
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 12,
+                  ),
+                ),
+                borderRadius: BorderRadius.circular(12),
+                items: items
+                    .map(
+                      (e) => DropdownMenuItem<String>(
+                        value: e,
+                        child: Text(e),
+                      ),
+                    )
+                    .toList(),
+                onChanged: onChange,
+              ),
+               if(hasErrors) const SizedBox(height: AppPadding.small),
+            ],
           ),
         ),
-        borderRadius: BorderRadius.circular(12),
-        items: items
-            .map(
-              (e) => DropdownMenuItem<String>(
-                child: Text(e),
-              ),
-            )
-            .toList(),
-        onChanged: onChange,
-      ),
+      ],
     );
   }
 }
