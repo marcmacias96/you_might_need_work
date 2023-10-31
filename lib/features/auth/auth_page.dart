@@ -119,10 +119,6 @@ class AuthPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.secondary,
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                ),
                 onPressed: () {
                   showAdaptiveDialog<void>(
                     context: context,
@@ -146,6 +142,10 @@ class AuthPage extends StatelessWidget {
                   'ElevatedButton.icon',
                 ),
               ),
+               SignInWithButton(
+                iconPath: 'assets/images/google.png',
+                onPressed: () {},
+              ),
               IconButton.filled(
                 onPressed: () {},
                 icon: const Icon(
@@ -160,6 +160,7 @@ class AuthPage extends StatelessWidget {
               ),
 
               FilledButton(
+                style: ElevatedButton.styleFrom(),
                 onPressed: () {},
                 child: const Text(
                   'FilledButton',
