@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:you_might_need_work/theme/app_padding.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
 class AuthPage extends StatelessWidget {
@@ -23,42 +23,32 @@ class AuthPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppShadow(
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: 'hintText',
-                  ),
+              AppFormInput(
+                formControl: FormControl<String>(
+                  validators: [
+                    Validators.required,
+                  ],
                 ),
+                validationMessages: {
+                  ValidationMessage.required: (_) =>
+                      'The password must not be empty',
+                },
+                keyboardType: TextInputType.emailAddress,
+                obscureText: false,
+                labelText: 'labelText',
+                hintText: 'hintText',
+                textInputAction: TextInputAction.next,
               ),
               const SizedBox(height: 12),
-              AppShadow(
-                child: DropdownButtonFormField<String>(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppPadding.small,
-                    vertical: AppPadding.small,
-                  ),
-                  elevation: 4,
-                  hint: const Text('hintText'),
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 12,
-                    ),
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                  items: const [
-                    DropdownMenuItem(
-                      value: 'item1',
-                      child: Text('item1'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'item2',
-                      child: Text('item2'),
-                    ),
+              AppDropDownField(
+                formControl: FormControl<String>(
+                  validators: [
+                    Validators.required,
                   ],
-                  onChanged: (_) {},
                 ),
+                labelText: 'labelText',
+                hintText: 'hintText',
+                items: const ['item1', 'item2'],
               ),
               Checkbox(value: false, onChanged: (_) {}),
               const Chip(label: Text('Chip')),
@@ -119,10 +109,6 @@ class AuthPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.secondary,
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                ),
                 onPressed: () {
                   showAdaptiveDialog<void>(
                     context: context,
@@ -146,6 +132,10 @@ class AuthPage extends StatelessWidget {
                   'ElevatedButton.icon',
                 ),
               ),
+              SignInWithButton(
+                iconPath: 'assets/images/google.png',
+                onPressed: () {},
+              ),
               IconButton.filled(
                 onPressed: () {},
                 icon: const Icon(
@@ -160,6 +150,7 @@ class AuthPage extends StatelessWidget {
               ),
 
               FilledButton(
+                style: ElevatedButton.styleFrom(),
                 onPressed: () {},
                 child: const Text(
                   'FilledButton',

@@ -17,6 +17,7 @@ mixin AppTheme {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
+            textStyle: AppTextStyle.heading5,
           ),
         ),
         filledButtonTheme: FilledButtonThemeData(
