@@ -11,7 +11,7 @@ import 'package:you_might_need_work/data/auth/models/models.dart';
 /// Example:
 ///
 /// ```dart
-/// final authRepository = AuthRepository();
+/// final authRepository = getIt<IAuthRepository>();
 /// final result = await authRepository.signInWithEmailPassword(
 ///   emailAddress: 'user@example.com',
 ///   password: 'password123',

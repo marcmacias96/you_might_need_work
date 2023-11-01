@@ -6,9 +6,9 @@ import 'package:you_might_need_work/widgets/widgets.dart';
 
 class AppFormInput extends StatelessWidget {
   const AppFormInput({
-    required this.keyboardType,
     required this.formControl,
-    required this.obscureText,
+    this.keyboardType = TextInputType.text,
+    this.obscureText = false,
     super.key,
     this.hintText,
     this.labelText,
@@ -64,7 +64,7 @@ class AppFormInput extends StatelessWidget {
                   FocusScope.of(context).nextFocus();
                 },
               ),
-              if(hasErrors) const SizedBox(height: AppPadding.small),
+              if (hasErrors) const SizedBox(height: AppPadding.small),
             ],
           ),
         ),
