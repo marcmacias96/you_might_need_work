@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/features/auth_form/cubit/cubit.dart';
-import 'package:you_might_need_work/features/auth_form/models/credentials.dart';
+import 'package:you_might_need_work/features/auth_form/models/models.dart';
 import 'package:you_might_need_work/injection.dart';
 import 'package:you_might_need_work/theme/app_padding.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
