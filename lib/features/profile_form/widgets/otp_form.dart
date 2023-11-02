@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/assets/assets.dart';
-import 'package:you_might_need_work/features/auth_form/models/models.dart';
+import 'package:you_might_need_work/features/profile_form/models/models.dart';
 import 'package:you_might_need_work/features/profile_form/widgets/widgets.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
@@ -69,7 +69,7 @@ class _OtpFormPageState extends State<OtpForm> {
           bottom: false,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.xxl),
-            child: CredentialsFormBuilder(
+            child: OtpFormBuilder(
               //     model: credentials,
               builder: (context, formModel, _) {
                 return Column(
@@ -100,7 +100,8 @@ class _OtpFormPageState extends State<OtpForm> {
                     if (widget.args.type == OtpFormType.enterOtp)
                       AppFormInput(
                         prefixIcon: Images.unitedStatesFlag,
-                        formControl: formModel.emailControl,
+                        //OJO
+                        formControl: formModel.otpControl,
                         labelText: 'Write your phone number',
                         hintText: 'Enter your phone',
                         validationMessages: {

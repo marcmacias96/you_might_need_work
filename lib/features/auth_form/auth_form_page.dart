@@ -36,7 +36,7 @@ class AuthFormPage extends StatefulWidget {
 }
 
 class _AuthFormPageState extends State<AuthFormPage> {
-  final Credentials credentials = Credentials.empty();
+  final credentials = Credentials.empty();
 
   @override
   Widget build(BuildContext context) {

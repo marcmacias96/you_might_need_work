@@ -68,6 +68,41 @@ GoRouter getGoRouter(AuthCubit authCubit) {
         name: RegisterDone.routeName,
         builder: (context, state) => const RegisterDone(),
       ),
+      GoRoute(
+        path: '/${IdentityDataForm.routeName}',
+        name: IdentityDataForm.routeName,
+        builder: (context, state) => const IdentityDataForm(),
+      ),
+      GoRoute(
+        path: '/${ProfileDataForm.routeName}',
+        name: ProfileDataForm.routeName,
+        builder: (context, state) => const ProfileDataForm(),
+      ),
+      GoRoute(
+        path: '/${WorkDayDataForm.routeName}',
+        name: WorkDayDataForm.routeName,
+        builder: (context, state) => const WorkDayDataForm(),
+      ),
+      GoRoute(
+        path: '/${AddressDataForm.routeName}',
+        name: AddressDataForm.routeName,
+        builder: (context, state) => const AddressDataForm(),
+      ),
+      GoRoute(
+        path: '/${PaymentMethodDataForm.routeName}',
+        name: PaymentMethodDataForm.routeName,
+        builder: (context, state) => const PaymentMethodDataForm(),
+      ),
+      GoRoute(
+        path: '/${CompanyDataForm.routeName}',
+        name: CompanyDataForm.routeName,
+        builder: (context, state) => const CompanyDataForm(),
+      ),
+      GoRoute(
+        path: '/${CompanyDetailForm.routeName}',
+        name: CompanyDetailForm.routeName,
+        builder: (context, state) => const CompanyDetailForm(),
+      ),
     ],
     redirect: (context, state) {
      
