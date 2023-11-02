@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 
-class SelectUserFormPage extends StatelessWidget {
-  const SelectUserFormPage({super.key});
+class SelectUserForm extends StatelessWidget {
+  const SelectUserForm({super.key});
 
   static const String routeName = 'select-user-form';
 

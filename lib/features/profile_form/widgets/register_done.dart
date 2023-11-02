@@ -7,10 +7,10 @@ import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/home/home.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 
-class RegistrationDonePage extends StatelessWidget {
-  const RegistrationDonePage({super.key});
+class RegisterDone extends StatelessWidget {
+  const RegisterDone({super.key});
 
-  static const String routeName = 'registration-done-page';
+  static const String routeName = 'register-done';
 
   @override
   Widget build(BuildContext context) {

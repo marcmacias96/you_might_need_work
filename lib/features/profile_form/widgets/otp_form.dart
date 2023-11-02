@@ -8,7 +8,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/auth_form/models/models.dart';
-import 'package:you_might_need_work/features/select_user_form/select_user_form_page.dart';
+import 'package:you_might_need_work/features/profile_form/widgets/widgets.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
@@ -23,18 +23,18 @@ class OtpFormArgs extends Equatable {
   List<Object?> get props => [type];
 }
 
-class OtpFormPage extends StatefulWidget {
-  const OtpFormPage({this.args = const OtpFormArgs(), super.key});
+class OtpForm extends StatefulWidget {
+  const OtpForm({this.args = const OtpFormArgs(), super.key});
 
   final OtpFormArgs args;
 
   static const String routeName = 'otp-form';
 
   @override
-  State<OtpFormPage> createState() => _OtpFormPageState();
+  State<OtpForm> createState() => _OtpFormPageState();
 }
 
-class _OtpFormPageState extends State<OtpFormPage> {
+class _OtpFormPageState extends State<OtpForm> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -51,7 +51,7 @@ class _OtpFormPageState extends State<OtpFormPage> {
             onPressed: widget.args.type == OtpFormType.enterOtp
                 ? () {
                     context.pushNamed(
-                      OtpFormPage.routeName,
+                      OtpForm.routeName,
                       extra: const OtpFormArgs(
                         type: OtpFormType.validateOtp,
                       ),
@@ -59,7 +59,7 @@ class _OtpFormPageState extends State<OtpFormPage> {
                   }
                 : () {
                     context.pushReplacementNamed(
-                      SelectUserFormPage.routeName,
+                      SelectUserForm.routeName,
                     );
                   },
             text: 'Continue',

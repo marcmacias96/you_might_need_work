@@ -4,10 +4,8 @@ import 'package:you_might_need_work/features/auth/auth.dart';
 import 'package:you_might_need_work/features/auth_form/auth_form.dart';
 import 'package:you_might_need_work/features/home/home.dart';
 import 'package:you_might_need_work/features/onboarding/onboarding.dart';
-import 'package:you_might_need_work/features/otp_form/otp_form.dart';
 import 'package:you_might_need_work/features/profile_form/profile_form.dart';
-import 'package:you_might_need_work/features/registration_done/registration_done_page.dart';
-import 'package:you_might_need_work/features/select_user_form/select_user_form.dart';
+import 'package:you_might_need_work/features/profile_form/widgets/widgets.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 
 GoRouter getGoRouter(AuthCubit authCubit) {
@@ -50,25 +48,25 @@ GoRouter getGoRouter(AuthCubit authCubit) {
         builder: (context, state) => const HomePage(),
       ),
       GoRoute(
-        path: '/${OtpFormPage.routeName}',
-        name: OtpFormPage.routeName,
+        path: '/${OtpForm.routeName}',
+        name: OtpForm.routeName,
         builder: (context, state) {
           var args = const OtpFormArgs();
           if (state.extra != null) args = state.extra! as OtpFormArgs;
-          return OtpFormPage(
+          return OtpForm(
             args: args,
           );
         },
       ),
       GoRoute(
-        path: '/${SelectUserFormPage.routeName}',
-        name: SelectUserFormPage.routeName,
-        builder: (context, state) => const SelectUserFormPage(),
+        path: '/${SelectUserForm.routeName}',
+        name: SelectUserForm.routeName,
+        builder: (context, state) => const SelectUserForm(),
       ),
       GoRoute(
-        path: '/${RegistrationDonePage.routeName}',
-        name: RegistrationDonePage.routeName,
-        builder: (context, state) => const RegistrationDonePage(),
+        path: '/${RegisterDone.routeName}',
+        name: RegisterDone.routeName,
+        builder: (context, state) => const RegisterDone(),
       ),
     ],
     redirect: (context, state) {
