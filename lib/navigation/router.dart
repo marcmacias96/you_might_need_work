@@ -6,6 +6,7 @@ import 'package:you_might_need_work/features/home/home.dart';
 import 'package:you_might_need_work/features/onboarding/onboarding.dart';
 import 'package:you_might_need_work/features/otp_form/otp_form.dart';
 import 'package:you_might_need_work/features/profile_form/profile_form.dart';
+import 'package:you_might_need_work/features/select_user_form/select_user_form.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 
 GoRouter getGoRouter(AuthCubit authCubit) {
@@ -57,6 +58,11 @@ GoRouter getGoRouter(AuthCubit authCubit) {
             args: args,
           );
         },
+      ),
+      GoRoute(
+        path: '/${SelectUserFormPage.routeName}',
+        name: SelectUserFormPage.routeName,
+        builder: (context, state) => const SelectUserFormPage(),
       ),
     ],
     redirect: (context, state) {
