@@ -18,7 +18,13 @@ GoRouter getGoRouter(AuthCubit authCubit) {
       GoRoute(
         path: '/${OnboardingPage.routeName}',
         name: OnboardingPage.routeName,
-        builder: (context, state) => const OnboardingPage(),
+        builder: (context, state) {
+          var args = const OnboardingTypeArgs();
+          if (state.extra != null) args = state.extra! as OnboardingTypeArgs;
+          return OnboardingPage(
+            args: args,
+          );
+        },
       ),
       GoRoute(
         path: '/${ProfileFormPage.routeName}',
