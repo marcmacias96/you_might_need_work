@@ -16,18 +16,22 @@ class RegisterDone extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: AppColors.primary1,
+        title: Text(
+          'You Might Need Work',
+          style: theme.textTheme.bodyMedium!.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       backgroundColor: AppColors.primary1,
       body: SafeArea(
         bottom: false,
         child: Column(
           children: [
-            Text(
-              'You Might Need Work',
-              style: theme.textTheme.bodyMedium!.copyWith(
-                color: AppColors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             const SizedBox(
               height: AppPadding.xxl,
             ),

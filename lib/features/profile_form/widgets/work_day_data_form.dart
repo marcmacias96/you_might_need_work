@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:you_might_need_work/features/profile_form/models/capacity.dart';
 import 'package:you_might_need_work/theme/theme.dart';
+import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
 class WorkDayDataForm extends StatelessWidget {
@@ -21,15 +22,6 @@ class WorkDayDataForm extends StatelessWidget {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            SliverAppBar.medium(
-              elevation: 0,
-              centerTitle: true,
-              title: Text(
-                'Your work day',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleLarge,
-              ),
-            ),
             SliverToBoxAdapter(
               child: CapacityFormBuilder(
                 model: capacity,
@@ -44,6 +36,11 @@ class WorkDayDataForm extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(
+                            'Your work day',
+                            textAlign: TextAlign.start,
+                            style: theme.textTheme.titleLarge,
+                          ),
                           Text(
                             'Enter the details of your work day',
                             style: theme.textTheme.bodyMedium!
@@ -106,7 +103,10 @@ class WorkDayDataForm extends StatelessWidget {
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form.form.valid ? () => () {} : null,
+                                onPressed: form.form.valid
+                                    ? () =>
+                                        InheritedPageViewForm.of(context).next()
+                                    : null,
                                 text: 'Continue',
                               );
                             },

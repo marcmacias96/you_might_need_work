@@ -3,6 +3,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/profile_form/models/identity_data.dart';
 import 'package:you_might_need_work/theme/theme.dart';
+import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
 class IdentityDataForm extends StatelessWidget {
@@ -23,15 +24,6 @@ class IdentityDataForm extends StatelessWidget {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            SliverAppBar.medium(
-              elevation: 0,
-              centerTitle: true,
-              title: Text(
-                'Identity data',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleLarge,
-              ),
-            ),
             SliverToBoxAdapter(
               child: IdentityDataFormBuilder(
                 model: identityData,
@@ -46,6 +38,11 @@ class IdentityDataForm extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(
+                            'Identity data',
+                            textAlign: TextAlign.start,
+                            style: theme.textTheme.titleLarge,
+                          ),
                           Text(
                             'Enter your details below',
                             style: theme.textTheme.bodyMedium!
@@ -76,6 +73,7 @@ class IdentityDataForm extends StatelessWidget {
                           const SizedBox(height: AppPadding.big),
                           AppDropDownField(
                             labelText: 'Document type',
+                            hintText: 'Select one',
                             formControl: formModel.documentTypeControl,
                             items: const [
                               'PASSPORT',
@@ -111,7 +109,10 @@ class IdentityDataForm extends StatelessWidget {
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form.form.valid ? () => () {} : null,
+                                onPressed: form.form.valid
+                                    ? () =>
+                                        InheritedPageViewForm.of(context).next()
+                                    : null,
                                 text: 'Continue',
                               );
                             },

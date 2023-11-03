@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:you_might_need_work/features/profile_form/models/payment_method.dart';
 import 'package:you_might_need_work/theme/theme.dart';
+import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
 class PaymentMethodDataForm extends StatelessWidget {
@@ -20,15 +21,6 @@ class PaymentMethodDataForm extends StatelessWidget {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            SliverAppBar.medium(
-              elevation: 0,
-              centerTitle: true,
-              title: Text(
-                'Payment method',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleLarge,
-              ),
-            ),
             SliverToBoxAdapter(
               child: PaymentMethodFormBuilder(
                 model: paymentMethod,
@@ -44,6 +36,11 @@ class PaymentMethodDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
+                            'Payment method',
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.titleLarge,
+                          ),
+                          Text(
                             'Enter your bank details for your future payments',
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
@@ -51,6 +48,7 @@ class PaymentMethodDataForm extends StatelessWidget {
                           const SizedBox(height: AppPadding.big),
                           AppDropDownField(
                             labelText: 'Select the bank',
+                            hintText: 'Select one',
                             formControl: formModel.bankControl,
                             items: const [
                               'BANK_OF_AMERICA',
@@ -63,10 +61,13 @@ class PaymentMethodDataForm extends StatelessWidget {
                             labelText: 'Account number',
                             hintText: 'Enter your account number',
                             formControl: formModel.accountNumberControl,
+                            
+                            keyboardType: TextInputType.number,
                           ),
                           const SizedBox(height: AppPadding.big),
                           AppDropDownField(
                             labelText: 'Account type',
+                            hintText: 'Select one',
                             formControl: formModel.accountTypeControl,
                             items: const [
                               'SAVINGS_ACCOUNT',
@@ -78,7 +79,10 @@ class PaymentMethodDataForm extends StatelessWidget {
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form.form.valid ? () => () {} : null,
+                                onPressed: form.form.valid
+                                    ? () =>
+                                        InheritedPageViewForm.of(context).next()
+                                    : null,
                                 text: 'Continue',
                               );
                             },

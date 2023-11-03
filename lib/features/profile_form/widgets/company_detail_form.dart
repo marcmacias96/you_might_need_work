@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/profile_form/models/company_detail.dart';
 import 'package:you_might_need_work/theme/theme.dart';
+import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
 class CompanyDetailForm extends StatelessWidget {
@@ -21,15 +22,6 @@ class CompanyDetailForm extends StatelessWidget {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            SliverAppBar.medium(
-              elevation: 0,
-              centerTitle: true,
-              title: Text(
-                'Company details',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleLarge,
-              ),
-            ),
             SliverToBoxAdapter(
               child: CompanyDetailFormBuilder(
                 model: companyDetail,
@@ -44,6 +36,11 @@ class CompanyDetailForm extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(
+                            'Company details',
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.titleLarge,
+                          ),
                           Text(
                             'Finally, please enter the following information',
                             style: theme.textTheme.bodyMedium!
@@ -123,8 +120,9 @@ class CompanyDetailForm extends StatelessWidget {
                               Expanded(
                                 child: AppFormInput(
                                   labelText: 'Payment for hour',
-                                  hintText: '',
+                                  hintText: '0',
                                   formControl: formModel.paymentForHourControl,
+                                  keyboardType: TextInputType.number,
                                 ),
                               ),
                               const SizedBox(
@@ -133,8 +131,9 @@ class CompanyDetailForm extends StatelessWidget {
                               Expanded(
                                 child: AppFormInput(
                                   labelText: 'hours required',
-                                  hintText: '',
+                                  hintText: '0',
                                   formControl: formModel.hoursRequiredControl,
+                                  keyboardType: TextInputType.number,
                                 ),
                               ),
                             ],
@@ -144,7 +143,9 @@ class CompanyDetailForm extends StatelessWidget {
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form.form.valid ? () => () {} : null,
+                                onPressed: form.form.valid
+                                    ? InheritedPageViewForm.of(context).next
+                                    : null,
                                 text: 'Continue',
                               );
                             },

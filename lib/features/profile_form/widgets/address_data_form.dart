@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/profile_form/models/address.dart';
 import 'package:you_might_need_work/theme/theme.dart';
+import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
 class AddressDataForm extends StatelessWidget {
@@ -21,15 +22,6 @@ class AddressDataForm extends StatelessWidget {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            SliverAppBar.medium(
-              elevation: 0,
-              centerTitle: true,
-              title: Text(
-                'Address',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleLarge,
-              ),
-            ),
             SliverToBoxAdapter(
               child: AddressFormBuilder(
                 model: address,
@@ -44,6 +36,11 @@ class AddressDataForm extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(
+                            'Address',
+                            textAlign: TextAlign.start,
+                            style: theme.textTheme.titleLarge,
+                          ),
                           Text(
                             'Enter your address',
                             style: theme.textTheme.bodyMedium!
@@ -63,7 +60,9 @@ class AddressDataForm extends StatelessWidget {
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form.form.valid ? () => () {} : null,
+                                onPressed: form.form.valid
+                                    ? InheritedPageViewForm.of(context).next
+                                    : null,
                                 text: 'Continue',
                               );
                             },
