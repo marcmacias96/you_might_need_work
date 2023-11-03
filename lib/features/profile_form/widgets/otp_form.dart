@@ -59,7 +59,7 @@ class _OtpFormPageState extends State<OtpForm> {
                   }
                 : () {
                     context.pushReplacementNamed(
-                      SelectUserForm.routeName,
+                      UserTypeForm.routeName,
                     );
                   },
             text: 'Continue',

@@ -30,7 +30,17 @@ GoRouter getGoRouter(AuthCubit authCubit) {
       GoRoute(
         path: '/${ProfileFormPage.routeName}',
         name: ProfileFormPage.routeName,
-        builder: (context, state) => const ProfileFormPage(),
+        builder: (context, state) {
+          final args = state.extra! as ProfileFormArgs;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => PageViewPositionCubit()),
+            ],
+            child: ProfileFormPage(
+              args: args,
+            ),
+          );
+        },
       ),
       GoRoute(
         path: '/${AuthFormPage.routeName}',
@@ -57,11 +67,6 @@ GoRouter getGoRouter(AuthCubit authCubit) {
             args: args,
           );
         },
-      ),
-      GoRoute(
-        path: '/${SelectUserForm.routeName}',
-        name: SelectUserForm.routeName,
-        builder: (context, state) => const SelectUserForm(),
       ),
       GoRoute(
         path: '/${RegisterDone.routeName}',

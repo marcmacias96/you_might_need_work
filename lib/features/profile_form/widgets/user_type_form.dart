@@ -1,12 +1,11 @@
-// ignore_for_file: lines_longer_than_80_chars
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 
-class SelectUserForm extends StatelessWidget {
-  const SelectUserForm({super.key});
+class UserTypeForm extends StatelessWidget {
+  const UserTypeForm({super.key});
 
   static const String routeName = 'select-user-form';
 
@@ -69,7 +68,8 @@ class SelectUserForm extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'You are looking to hire workers for your project?',
+                                  'You are looking to hire '
+                                  'workers for your project?',
                                   style: theme.textTheme.labelSmall,
                                 ),
                               ),
