@@ -42,24 +42,12 @@ GoRouter getGoRouter(AuthCubit authCubit) {
       ),
     ],
     redirect: (context, state) {
-      if (state.fullPath?.contains(AuthFormPage.routeName) ?? false) {
-        return null;
-      }
+     
       return context.read<AuthCubit>().state.maybeMap(
         orElse: () {
           return null;
         },
-        authenticated: (authenticated) async {
-          await Future.delayed(
-            const Duration(milliseconds: 500),
-            () {},
-          );
-          // final args = state.extra! as AuthFormArgs;
-          // if (args.type == AuthFormType.signUp) {
-          //   return '/${ProfileFormPage.routeName}';
-          // }
-          return '/${HomePage.routeName}';
-        },
+        
         unauthenticated: (_) {
           return '/${OnboardingPage.routeName}';
         },
