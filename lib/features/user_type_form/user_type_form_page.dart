@@ -18,19 +18,23 @@ class UserTypeFormPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: false,
-        title:  Text('You Might Need Work',
-        style: Theme.of(context).textTheme.headlineMedium,
+        titleSpacing: AppPadding.xl,
+        title: Text(
+          'You Might Need Work',
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
       body: SafeArea(
         bottom: false,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppPadding.xxl),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppPadding.xl,
+          ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'What type of user are you?',
-                textAlign: TextAlign.center,
                 style: theme.textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -40,7 +44,7 @@ class UserTypeFormPage extends StatelessWidget {
               ),
               Text(
                 'Enter your details below',
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
                 style: theme.textTheme.bodyMedium!
                     .copyWith(color: AppColors.grayGray2),
               ),

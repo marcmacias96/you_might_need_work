@@ -29,7 +29,7 @@ class CompanyDataForm extends StatelessWidget {
                 builder: (context, formModel, _) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: AppPadding.large,
+                      horizontal: AppPadding.xl,
                       vertical: AppPadding.big,
                     ),
                     child: Form(

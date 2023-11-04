@@ -17,7 +17,10 @@ class StepperIndicator extends StatelessWidget {
     return Visibility(
       visible: actualStep != totalSteps,
       child: Container(
-        padding: AppPadding.insetAllLarge,
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppPadding.xl,
+          vertical: AppPadding.medium,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

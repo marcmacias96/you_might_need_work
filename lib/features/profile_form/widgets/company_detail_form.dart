@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/profile_form/models/company_detail.dart';
 import 'package:you_might_need_work/theme/theme.dart';
@@ -28,7 +29,7 @@ class CompanyDetailForm extends StatelessWidget {
                 builder: (context, formModel, _) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: AppPadding.large,
+                      horizontal: AppPadding.xl,
                       vertical: AppPadding.big,
                     ),
                     child: Form(
@@ -41,54 +42,43 @@ class CompanyDetailForm extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: theme.textTheme.titleLarge,
                           ),
+                          const Gap(AppPadding.medium),
                           Text(
                             'Finally, please enter the following information',
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.xl),
                           AppFormInput(
                             labelText: 'Select your industry',
                             hintText: 'Select your industry',
                             formControl: formModel.industryControl,
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.large),
                           AppFormInput(
                             labelText: 'Title',
                             hintText: 'Enter your title',
                             formControl: formModel.titleControl,
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.large),
                           AppFormInput(
                             labelText: 'Description',
                             hintText: 'Enter your description',
                             formControl: formModel.descriptionControl,
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.large),
                           AppFormInput(
                             labelText: 'Ocupation',
                             hintText: 'Select the occupation you need',
                             formControl: formModel.ocupationControl,
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.large),
                           AppFormInput(
                             labelText: 'Specialization',
                             hintText: 'Enter your specialization',
                             formControl: formModel.specializationControl,
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.large),
                           Row(
                             children: [
                               Expanded(
@@ -99,9 +89,7 @@ class CompanyDetailForm extends StatelessWidget {
                                   formControl: formModel.statingAtControl,
                                 ),
                               ),
-                              const SizedBox(
-                                width: AppPadding.big,
-                              ),
+                              const Gap(AppPadding.large),
                               Expanded(
                                 child: AppFormInput(
                                   labelText: 'Ending at',
@@ -112,9 +100,7 @@ class CompanyDetailForm extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.large),
                           Row(
                             children: [
                               Expanded(
@@ -125,9 +111,7 @@ class CompanyDetailForm extends StatelessWidget {
                                   keyboardType: TextInputType.number,
                                 ),
                               ),
-                              const SizedBox(
-                                width: AppPadding.big,
-                              ),
+                              const Gap(AppPadding.large),
                               Expanded(
                                 child: AppFormInput(
                                   labelText: 'hours required',
@@ -138,7 +122,7 @@ class CompanyDetailForm extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(height: AppPadding.xxl),
+                          const Gap(AppPadding.xxl),
                           ReactiveCompanyDetailFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
