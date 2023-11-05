@@ -63,7 +63,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '109523644824',
     projectId: 'mightneedwork',
     storageBucket: 'mightneedwork.appspot.com',
-    iosClientId: '109523644824-ndhji8f388248qke0qjgim2ps28otc59.apps.googleusercontent.com',
+    androidClientId:
+        '109523644824-03jma94jros1k6efk4mdf6btmlbkl7k3.apps.googleusercontent.com',
+    iosClientId:
+        '109523644824-ndhji8f388248qke0qjgim2ps28otc59.apps.googleusercontent.com',
     iosBundleId: 'com.queryblocks.youMightNeedWork',
   );
 }
