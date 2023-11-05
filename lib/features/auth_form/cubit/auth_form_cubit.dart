@@ -15,7 +15,6 @@ class AuthFormCubit extends Cubit<AuthFormState> {
 
   final IAuthRepository _authRepository;
 
-
   void registerWithEmailAndPasswordPressed(Credentials credentials) {
     _performActionOnAuthRepositoryWithEmailAndPassword(
       _authRepository.registerWithEmailAndPassword,
@@ -41,7 +40,6 @@ class AuthFormCubit extends Cubit<AuthFormState> {
       _authRepository.signInWithApple,
     );
   }
-
 
   Future<void> _performActionOnAuthRepositoryWithEmailAndPassword(
     Future<Either<AuthFailure, Unit>> Function({

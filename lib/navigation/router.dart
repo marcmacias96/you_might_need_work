@@ -70,13 +70,12 @@ GoRouter getGoRouter(AuthCubit authCubit) {
       ),
     ],
     redirect: (context, state) {
-     
       return context.read<AuthCubit>().state.maybeMap(
         orElse: () {
           return null;
         },
-        
         unauthenticated: (_) {
+          if (state.fullPath!.contains('auth')) return null;
           return '/${OnboardingPage.routeName}';
         },
       );
