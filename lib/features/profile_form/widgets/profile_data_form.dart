@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:you_might_need_work/assets/assets.dart';
-import 'package:you_might_need_work/features/profile_form/models/profile_data.dart';
+import 'package:you_might_need_work/data/profile/enums/enums.dart';
+import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
+import 'package:you_might_need_work/features/profile_form/models/models.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
@@ -9,12 +13,8 @@ import 'package:you_might_need_work/widgets/widgets.dart';
 class ProfileDataForm extends StatelessWidget {
   const ProfileDataForm({super.key});
 
-  static const String routeName = 'profile-data-form';
-
   @override
   Widget build(BuildContext context) {
-    final profileData = ProfileData.empty();
-
     final theme = Theme.of(context);
 
     return GestureDetector(
@@ -25,9 +25,10 @@ class ProfileDataForm extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: ProfileDataFormBuilder(
-                model: profileData,
-                builder: (context, formModel, _) {
+              child: BlocBuilder<ProfileFormCubit, ProfileFormState>(
+                builder: (context, state) {
+                  final profileDataForm = state.profileForm!.profileDataForm;
+
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppPadding.large,
@@ -48,9 +49,7 @@ class ProfileDataForm extends StatelessWidget {
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.xl),
                           Row(
                             children: [
                               Container(
@@ -71,36 +70,28 @@ class ProfileDataForm extends StatelessWidget {
                               const Text('Upload your profile photo'),
                             ],
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.xl),
                           AppDropDownField(
                             labelText: 'Level of study',
                             hintText: 'Select one',
-                            formControl: formModel.levelOfStudyControl,
-                            items: const [
-                              'ELEMENTARY_GRADUATE',
-                              'TECHNICAL_GRADUATE',
-                              'UNDERGRADUATE',
-                              'GRADUATE',
-                              'DOCTORATE',
-                              'CONTINUING_EDUCATION',
-                            ],
+                            formControl: profileDataForm.levelOfStudyControl,
+                            items: EducationLevel.values
+                                .map((e) => e.value)
+                                .toList(),
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.xl),
                           AppFormInput(
                             labelText: 'Ocupation',
                             hintText: 'Enter your ocupation',
-                            formControl: formModel.ocupationControl,
+                            formControl: profileDataForm.occupationControl,
                           ),
-                          const SizedBox(height: AppPadding.xxl),
-                          ReactiveProfileDataFormConsumer(
+                          const Gap(AppPadding.xxl),
+                          ReactiveProfileFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form.form.valid
+                                onPressed: form
+                                        .profileDataForm.currentForm.valid
                                     ? () =>
                                         InheritedPageViewForm.of(context).next()
                                     : null,

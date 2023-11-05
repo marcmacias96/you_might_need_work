@@ -1,20 +1,22 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:reactive_forms/reactive_forms.dart';
-import 'package:you_might_need_work/assets/assets.dart';
+import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
+import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/profile_form/models/models.dart';
+import 'package:you_might_need_work/features/profile_form/register_done/register_done.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
-enum OtpFormType { enterOtp, validateOtp }
+enum OtpFormType { phoneNumber, validateOtp }
 
 class OtpFormArgs extends Equatable {
-  const OtpFormArgs({this.type = OtpFormType.enterOtp});
+  const OtpFormArgs({this.type = OtpFormType.phoneNumber});
 
   final OtpFormType type;
 
@@ -27,8 +29,6 @@ class OtpForm extends StatefulWidget {
 
   final OtpFormArgs args;
 
-  static const String routeName = 'otp-form';
-
   @override
   State<OtpForm> createState() => _OtpFormPageState();
 }
@@ -37,18 +37,28 @@ class _OtpFormPageState extends State<OtpForm> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return OtpFormBuilder(
-      builder: (context, formModel, _) {
+    return BlocBuilder<ProfileFormCubit, ProfileFormState>(
+      builder: (context, state) {
+        final phoneNumberForm = state.profileForm!.phoneNumberForm;
+
         return Scaffold(
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppPadding.xl),
-            child: AppElevatedButton(
-              loading: false,
-              onPressed: () => InheritedPageViewForm.of(context).next(),
-              text: 'Continue',
-            ),
+          floatingActionButton: ReactiveProfileFormConsumer(
+            builder: (context, form, _) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppPadding.xl),
+                child: AppElevatedButton(
+                  loading: false,
+                  onPressed: widget.args.type == OtpFormType.phoneNumber
+                      ? form.phoneNumberForm.currentForm.valid
+                          ? InheritedPageViewForm.of(context).next
+                          : null
+                      : () => context.pushNamed(RegisterDonePage.routeName),
+                  text: 'Continue',
+                ),
+              );
+            },
           ),
           body: SafeArea(
             bottom: false,
@@ -57,7 +67,7 @@ class _OtpFormPageState extends State<OtpForm> {
               child: Column(
                 children: [
                   Text(
-                    widget.args.type == OtpFormType.enterOtp
+                    widget.args.type == OtpFormType.phoneNumber
                         ? 'Enter your phone number'
                         : 'Confirm your phone number',
                     textAlign: TextAlign.center,
@@ -65,31 +75,34 @@ class _OtpFormPageState extends State<OtpForm> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(
-                    height: AppPadding.big,
-                  ),
+                  const Gap(AppPadding.xl),
                   Text(
-                    widget.args.type == OtpFormType.enterOtp
-                        ? 'Enter your phone number, we will send you an authentication code'
-                        : 'Please enter the code we sent to your phone (406) 555-0120',
+                    widget.args.type == OtpFormType.phoneNumber
+                        ? 'Enter your phone number, we will send you an '
+                            'authentication code'
+                        : 'Please enter the code we sent to your phone '
+                            '(406) 555-0120',
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium!
                         .copyWith(color: AppColors.grayGray2),
                   ),
-                  const SizedBox(
-                    height: AppPadding.xxxl,
-                  ),
-                  if (widget.args.type == OtpFormType.enterOtp)
-                    AppFormInput(
-                      prefixIcon: Images.unitedStatesFlag,
-                      keyboardType: TextInputType.number,
-                      formControl: formModel.otpControl,
-                      labelText: 'Write your phone number',
-                      hintText: 'Enter your phone',
-                      validationMessages: {
-                        ValidationMessage.required: (_) =>
-                            'The phone number must not be empty',
-                      },
+                  const Gap(AppPadding.xxl),
+                  if (widget.args.type == OtpFormType.phoneNumber)
+                    Form(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      child: AppShadow(
+                        child: ReactivePhoneFormField<PhoneNumber>(
+                          formControl: phoneNumberForm.phoneNumberControl,
+                          decoration: const InputDecoration(
+                            hintText: 'Enter your phone number ',
+                          ),
+                          countrySelectorNavigator:
+                              CountrySelectorNavigator.searchDelegate(
+                            titleStyle:
+                                Theme.of(context).textTheme.headlineMedium,
+                          ),
+                        ),
+                      ),
                     )
                   else
                     Column(
@@ -125,14 +138,15 @@ class _OtpFormPageState extends State<OtpForm> {
                           onCompleted: (v) {},
                           onChanged: (value) {},
                           beforeTextPaste: (text) {
-                            //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                            //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                            //if you return true then it will show the paste
+                            //confirmation dialog. Otherwise if false, then
+                            //nothing will happen.
+                            //but you can show anything you want here, like
+                            // your pop up saying wrong paste format or etc
                             return true;
                           },
                         ),
-                        const SizedBox(
-                          height: AppPadding.big,
-                        ),
+                        const Gap(AppPadding.xl),
                         Text.rich(
                           TextSpan(
                             children: [

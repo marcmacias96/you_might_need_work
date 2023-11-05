@@ -5,7 +5,8 @@ import 'package:you_might_need_work/features/auth_form/auth_form.dart';
 import 'package:you_might_need_work/features/home/home.dart';
 import 'package:you_might_need_work/features/onboarding/onboarding.dart';
 import 'package:you_might_need_work/features/profile_form/profile_form.dart';
-import 'package:you_might_need_work/features/user_type_form/user_type_form.dart';
+import 'package:you_might_need_work/features/profile_form/register_done/register_done.dart';
+import 'package:you_might_need_work/features/profile_form/user_type_form/user_type_form.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 
 GoRouter getGoRouter(AuthCubit authCubit) {
@@ -61,6 +62,11 @@ GoRouter getGoRouter(AuthCubit authCubit) {
         path: '/${UserTypeFormPage.routeName}',
         name: UserTypeFormPage.routeName,
         builder: (context, state) => const UserTypeFormPage(),
+      ),
+      GoRoute(
+        path: '/${RegisterDonePage.routeName}',
+        name: RegisterDonePage.routeName,
+        builder: (context, state) => const RegisterDonePage(),
       ),
     ],
     redirect: (context, state) {

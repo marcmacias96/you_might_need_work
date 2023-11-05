@@ -21,8 +21,7 @@ enum WorkerForm implements ProfileFormSections {
         type: OtpFormType.validateOtp,
       ),
     ),
-  ),
-  registerDone(RegisterDone());
+  );
 
   const WorkerForm(this.widget);
 
@@ -41,8 +40,7 @@ enum CompanyForm implements ProfileFormSections {
         type: OtpFormType.validateOtp,
       ),
     ),
-  ),
-  registerDone(RegisterDone());
+  );
 
   const CompanyForm(this.widget);
 

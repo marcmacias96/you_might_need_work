@@ -5,6 +5,5 @@ export 'indentity_data_form.dart';
 export 'otp_form.dart';
 export 'payment_method_data_form.dart';
 export 'profile_data_form.dart';
-export 'register_done.dart';
 export 'stepper_indicator.dart';
 export 'work_day_data_form.dart';

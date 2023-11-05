@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:you_might_need_work/assets/assets.dart';
-import 'package:you_might_need_work/features/profile_form/models/address.dart';
+import 'package:you_might_need_work/features/profile_form/cubit/profile_form_cubit.dart';
+import 'package:you_might_need_work/features/profile_form/models/models.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
@@ -8,11 +11,8 @@ import 'package:you_might_need_work/widgets/widgets.dart';
 class AddressDataForm extends StatelessWidget {
   const AddressDataForm({super.key});
 
-  static const String routeName = 'address-data-form';
-
   @override
   Widget build(BuildContext context) {
-    final address = Address.empty();
     final theme = Theme.of(context);
 
     return GestureDetector(
@@ -23,16 +23,15 @@ class AddressDataForm extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: AddressFormBuilder(
-                model: address,
-                builder: (context, formModel, _) {
+              child: BlocBuilder<ProfileFormCubit, ProfileFormState>(
+                builder: (context, state) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppPadding.large,
                       vertical: AppPadding.big,
                     ),
                     child: Form(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      autovalidateMode: AutovalidateMode.always,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -46,21 +45,20 @@ class AddressDataForm extends StatelessWidget {
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.big),
                           AppFormInput(
                             labelText: 'Address',
                             prefixIcon: Images.locationPin,
                             hintText: 'Enter your address',
-                            formControl: formModel.addressControl,
+                            formControl:
+                                state.profileForm!.addressForm.addressControl,
                           ),
-                          const SizedBox(height: AppPadding.xxl),
-                          ReactiveAddressFormConsumer(
+                          const Gap(AppPadding.xl),
+                          ReactiveProfileFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form.form.valid
+                                onPressed: form.addressForm.currentForm.valid
                                     ? InheritedPageViewForm.of(context).next
                                     : null,
                                 text: 'Continue',

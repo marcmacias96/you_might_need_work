@@ -2,15 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/home/home.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 
-class RegisterDone extends StatelessWidget {
-  const RegisterDone({super.key});
+class RegisterDonePage extends StatelessWidget {
+  const RegisterDonePage({super.key});
 
-  static const String routeName = 'register-done';
+  static const String routeName = 'register_done';
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +33,7 @@ class RegisterDone extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            const SizedBox(
-              height: AppPadding.xxl,
-            ),
+            const Gap(AppPadding.xxl),
             Expanded(
               child: Container(
                 alignment: Alignment.center,
@@ -51,16 +50,12 @@ class RegisterDone extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SvgPicture.asset(Images.womanWithBoard),
-                    const SizedBox(
-                      height: AppPadding.xxl,
-                    ),
+                    const Gap(AppPadding.xxl),
                     Text(
                       'Complete registration',
                       style: theme.textTheme.titleLarge,
                     ),
-                    const SizedBox(
-                      height: AppPadding.big,
-                    ),
+                    const Gap(AppPadding.xl),
                     Text.rich(
                       TextSpan(
                         children: [
@@ -79,9 +74,7 @@ class RegisterDone extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: AppPadding.xxl,
-                    ),
+                    const Gap(AppPadding.xxl),
                     GestureDetector(
                       onTap: () {
                         context.pushNamed(

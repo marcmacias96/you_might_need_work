@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:you_might_need_work/assets/assets.dart';
-import 'package:you_might_need_work/features/profile_form/models/company_detail.dart';
+import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
+import 'package:you_might_need_work/features/profile_form/models/models.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
@@ -9,11 +10,8 @@ import 'package:you_might_need_work/widgets/widgets.dart';
 class CompanyDetailForm extends StatelessWidget {
   const CompanyDetailForm({super.key});
 
-  static const String routeName = 'company-details-form';
-
   @override
   Widget build(BuildContext context) {
-    final companyDetail = CompanyDetail.empty();
     final theme = Theme.of(context);
 
     return GestureDetector(
@@ -24,9 +22,8 @@ class CompanyDetailForm extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: CompanyDetailFormBuilder(
-                model: companyDetail,
-                builder: (context, formModel, _) {
+              child: BlocBuilder<ProfileFormCubit, ProfileFormState>(
+                builder: (context, state) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppPadding.xl,
@@ -52,50 +49,55 @@ class CompanyDetailForm extends StatelessWidget {
                           AppFormInput(
                             labelText: 'Select your industry',
                             hintText: 'Select your industry',
-                            formControl: formModel.industryControl,
+                            formControl: state
+                                .profileForm!.companyDetailForm.industryControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
                             labelText: 'Title',
                             hintText: 'Enter your title',
-                            formControl: formModel.titleControl,
+                            formControl: state
+                                .profileForm!.companyDetailForm.titleControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
                             labelText: 'Description',
                             hintText: 'Enter your description',
-                            formControl: formModel.descriptionControl,
+                            formControl: state.profileForm!.companyDetailForm
+                                .descriptionControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
                             labelText: 'Ocupation',
                             hintText: 'Select the occupation you need',
-                            formControl: formModel.ocupationControl,
+                            formControl: state.profileForm!.companyDetailForm
+                                .occupationControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
                             labelText: 'Specialization',
                             hintText: 'Enter your specialization',
-                            formControl: formModel.specializationControl,
+                            formControl: state.profileForm!.companyDetailForm
+                                .specializationControl,
                           ),
                           const Gap(AppPadding.large),
                           Row(
                             children: [
                               Expanded(
-                                child: AppFormInput(
+                                child: AppDateInput(
                                   labelText: 'Starting at',
-                                  prefixIcon: Images.calendar,
-                                  hintText: 'Select date',
-                                  formControl: formModel.statingAtControl,
+                                  hintText: 'Select a date',
+                                  formControl: state.profileForm!
+                                        .companyDetailForm.statingAtControl,
                                 ),
                               ),
                               const Gap(AppPadding.large),
-                              Expanded(
-                                child: AppFormInput(
+                               Expanded(
+                                child: AppDateInput(
                                   labelText: 'Ending at',
-                                  prefixIcon: Images.calendar,
-                                  hintText: 'Select date',
-                                  formControl: formModel.endingAtControl,
+                                  hintText: 'Select a date',
+                                 formControl: state.profileForm!
+                                        .companyDetailForm.endingAtControl,
                                 ),
                               ),
                             ],
@@ -107,7 +109,8 @@ class CompanyDetailForm extends StatelessWidget {
                                 child: AppFormInput(
                                   labelText: 'Payment for hour',
                                   hintText: '0',
-                                  formControl: formModel.paymentForHourControl,
+                                  formControl: state.profileForm!
+                                      .companyDetailForm.paymentForHourControl,
                                   keyboardType: TextInputType.number,
                                 ),
                               ),
@@ -116,20 +119,22 @@ class CompanyDetailForm extends StatelessWidget {
                                 child: AppFormInput(
                                   labelText: 'hours required',
                                   hintText: '0',
-                                  formControl: formModel.hoursRequiredControl,
+                                  formControl: state.profileForm!
+                                      .companyDetailForm.hoursRequiredControl,
                                   keyboardType: TextInputType.number,
                                 ),
                               ),
                             ],
                           ),
                           const Gap(AppPadding.xxl),
-                          ReactiveCompanyDetailFormConsumer(
+                          ReactiveProfileFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form.form.valid
-                                    ? InheritedPageViewForm.of(context).next
-                                    : null,
+                                onPressed:
+                                    form.companyDetailForm.currentForm.valid
+                                        ? InheritedPageViewForm.of(context).next
+                                        : null,
                                 text: 'Continue',
                               );
                             },

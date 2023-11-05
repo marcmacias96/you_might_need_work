@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:you_might_need_work/assets/assets.dart';
-import 'package:you_might_need_work/data/profile/enums/profile_type.dart';
+import 'package:you_might_need_work/data/profile/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/profile_form.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 
@@ -64,7 +64,7 @@ class UserTypeFormPage extends StatelessWidget {
                         context.pushNamed(
                           ProfileFormPage.routeName,
                           extra: const ProfileFormArgs(
-                            profileType: ProfileType.company,
+                            profileType: UserType.company,
                           ),
                         );
                       },
@@ -116,7 +116,7 @@ class UserTypeFormPage extends StatelessWidget {
                         context.pushNamed(
                           ProfileFormPage.routeName,
                           extra: const ProfileFormArgs(
-                            profileType: ProfileType.worker,
+                            profileType: UserType.employee,
                           ),
                         );
                       },

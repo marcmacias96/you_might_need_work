@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:you_might_need_work/assets/assets.dart';
-import 'package:you_might_need_work/features/profile_form/models/company.dart';
+import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
+import 'package:you_might_need_work/features/profile_form/models/models.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
@@ -9,11 +12,8 @@ import 'package:you_might_need_work/widgets/widgets.dart';
 class CompanyDataForm extends StatelessWidget {
   const CompanyDataForm({super.key});
 
-  static const String routeName = 'company-data-form';
-
   @override
   Widget build(BuildContext context) {
-    final company = Company.empty();
     final theme = Theme.of(context);
 
     return GestureDetector(
@@ -24,9 +24,8 @@ class CompanyDataForm extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: CompanyFormBuilder(
-                model: company,
-                builder: (context, formModel, _) {
+              child: BlocBuilder<ProfileFormCubit, ProfileFormState>(
+                builder: (context, state) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppPadding.xl,
@@ -42,9 +41,7 @@ class CompanyDataForm extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: theme.textTheme.titleLarge,
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.xl),
                           Row(
                             children: [
                               Container(
@@ -59,28 +56,26 @@ class CompanyDataForm extends StatelessWidget {
                                   Images.camera,
                                 ),
                               ),
-                              const SizedBox(
-                                width: AppPadding.big,
-                              ),
+                              const Gap(AppPadding.xl),
                               const Text('Upload your profile photo'),
                             ],
                           ),
-                          const SizedBox(
-                            height: AppPadding.big,
-                          ),
+                          const Gap(AppPadding.xl),
                           AppFormInput(
                             labelText: 'Name of the company',
                             hintText: 'Enter your name',
-                            formControl: formModel.companyControl,
+                            formControl: state
+                                .profileForm!.companyDataForm.companyControl,
                           ),
                           const SizedBox(height: AppPadding.xxl),
-                          ReactiveCompanyFormConsumer(
+                          ReactiveProfileFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form.form.valid
-                                    ? InheritedPageViewForm.of(context).next
-                                    : null,
+                                onPressed:
+                                    form.companyDataForm.currentForm.valid
+                                        ? InheritedPageViewForm.of(context).next
+                                        : null,
                                 text: 'Continue',
                               );
                             },
