@@ -4,14 +4,14 @@ import 'package:you_might_need_work/features/auth/auth.dart';
 import 'package:you_might_need_work/features/auth_form/auth_form.dart';
 import 'package:you_might_need_work/features/home/home.dart';
 import 'package:you_might_need_work/features/onboarding/onboarding.dart';
+import 'package:you_might_need_work/features/profile_form/otp_form/otp_form.dart';
 import 'package:you_might_need_work/features/profile_form/profile_form.dart';
 import 'package:you_might_need_work/features/profile_form/register_done/register_done.dart';
 import 'package:you_might_need_work/features/profile_form/user_type_form/user_type_form.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 
-GoRouter getGoRouter(AuthCubit authCubit) {
+GoRouter getGoRouter() {
   return GoRouter(
-    refreshListenable: GoRouterRefreshStream(authCubit.stream),
     routes: [
       GoRoute(
         path: AuthPage.routePath,
@@ -46,7 +46,8 @@ GoRouter getGoRouter(AuthCubit authCubit) {
         path: '/${AuthFormPage.routeName}',
         name: AuthFormPage.routeName,
         builder: (context, state) {
-          final args = state.extra! as AuthFormArgs;
+          final args = state.extra as AuthFormArgs? ??
+              const AuthFormArgs(type: AuthFormType.login);
           return AuthFormPage(
             args: args,
           );
@@ -67,17 +68,16 @@ GoRouter getGoRouter(AuthCubit authCubit) {
         name: RegisterDonePage.routeName,
         builder: (context, state) => const RegisterDonePage(),
       ),
+      GoRoute(
+        path: '/${OtpFormPage.routeName}',
+        name: OtpFormPage.routeName,
+        builder: (context, state) {
+          final args = state.extra! as  OtpFormArgs;
+          return  OtpFormPage(
+            args: args,
+          );
+        },
+      ),
     ],
-    redirect: (context, state) {
-      return context.read<AuthCubit>().state.maybeMap(
-        orElse: () {
-          return null;
-        },
-        unauthenticated: (_) {
-          if (state.fullPath!.contains('auth')) return null;
-          return '/${OnboardingPage.routeName}';
-        },
-      );
-    },
   );
 }

@@ -2,10 +2,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:you_might_need_work/data/profile/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/profile_form_cubit.dart';
 import 'package:you_might_need_work/features/profile_form/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/models/models.dart';
+import 'package:you_might_need_work/features/profile_form/register_done/register_done.dart';
 import 'package:you_might_need_work/features/profile_form/widgets/widgets.dart';
 import 'package:you_might_need_work/injection.dart';
 import 'package:you_might_need_work/utils/utils.dart';
@@ -34,19 +36,24 @@ class ProfileFormPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pageController = usePageController();
+    final actualStep = context.watch<PageViewPositionCubit>().state;
+    final actualForm = args.profileType == UserType.company
+        ? CompanyForm.values as List<ProfileFormSections>
+        : WorkerForm.values;
+
     return BlocProvider(
       create: (context) => getIt<ProfileFormCubit>(),
       child: InheritedPageViewForm(
-        next: () => _nextPage(pageController),
+        next: () => _nextPage(
+          context,
+          controller: pageController,
+          actualStep: actualStep,
+          totalSteps: actualForm.length,
+        ),
         back: () => _previousPage(pageController),
         child: ProfileFormBuilder(
           builder: (context, formModel, _) {
-            
             context.read<ProfileFormCubit>().updateModel(formModel);
-            final actualStep = context.watch<PageViewPositionCubit>().state;
-            final actualForm = args.profileType == UserType.company
-                ? CompanyForm.values as List<ProfileFormSections>
-                : WorkerForm.values;
 
             return Scaffold(
               body: SafeArea(
@@ -78,8 +85,16 @@ class ProfileFormPage extends HookWidget {
     );
   }
 
-  void _nextPage(PageController controller) {
+  void _nextPage(
+    BuildContext context, {
+    required int actualStep,
+    required int totalSteps,
+    required PageController controller,
+  }) {
     FocusManager.instance.primaryFocus?.unfocus();
+    if (actualStep == totalSteps) {
+      context.pushReplacementNamed(RegisterDonePage.routeName);
+    }
     controller.nextPage(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeIn,

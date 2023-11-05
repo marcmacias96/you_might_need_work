@@ -1,16 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
-import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
-import 'package:you_might_need_work/features/profile_form/models/models.dart';
-import 'package:you_might_need_work/features/profile_form/register_done/register_done.dart';
+import 'package:you_might_need_work/features/profile_form/user_type_form/user_type_form.dart';
 import 'package:you_might_need_work/theme/theme.dart';
-import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
 enum OtpFormType { phoneNumber, validateOtp }
@@ -24,41 +21,65 @@ class OtpFormArgs extends Equatable {
   List<Object?> get props => [type];
 }
 
-class OtpForm extends StatefulWidget {
-  const OtpForm({this.args = const OtpFormArgs(), super.key});
+class OtpFormPage extends StatefulWidget {
+  const OtpFormPage({required this.args, super.key});
 
   final OtpFormArgs args;
+  static const String routeName = 'otp_form';
 
   @override
-  State<OtpForm> createState() => _OtpFormPageState();
+  State<OtpFormPage> createState() => _OtpFormPageState();
 }
 
-class _OtpFormPageState extends State<OtpForm> {
+class _OtpFormPageState extends State<OtpFormPage> {
+  final form = fb.group({
+    'phoneNumber': FormControl<PhoneNumber>(
+      validators: const [
+        RequiredPhoneValidator(),
+        ValidPhoneValidator(),
+      ],
+    ),
+  });
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return BlocBuilder<ProfileFormCubit, ProfileFormState>(
-      builder: (context, state) {
-        final phoneNumberForm = state.profileForm!.phoneNumberForm;
-
+    return ReactiveFormBuilder(
+      form: () => form,
+      builder: (context, form, _) {
         return Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            centerTitle: false,
+            titleSpacing: AppPadding.xl,
+            title: Text(
+              'You Might Need Work',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: ReactiveProfileFormConsumer(
-            builder: (context, form, _) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.xl),
-                child: AppElevatedButton(
-                  loading: false,
-                  onPressed: widget.args.type == OtpFormType.phoneNumber
-                      ? form.phoneNumberForm.currentForm.valid
-                          ? InheritedPageViewForm.of(context).next
-                          : null
-                      : () => context.pushNamed(RegisterDonePage.routeName),
-                  text: 'Continue',
-                ),
-              );
-            },
+          floatingActionButton: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.xxl),
+              child: ReactiveFormConsumer(
+                builder: (context, form, _) {
+                  return AppElevatedButton(
+                    loading: false,
+                    onPressed: widget.args.type == OtpFormType.phoneNumber
+                        ? form.valid
+                            ? () => context.pushReplacementNamed(
+                                  OtpFormPage.routeName,
+                                  extra: const OtpFormArgs(
+                                    type: OtpFormType.validateOtp,
+                                  ),
+                                )
+                            : null
+                        : () => context.pushNamed(UserTypeFormPage.routeName),
+                    text: 'Continue',
+                  );
+                },
+              ),
+            ),
           ),
           body: SafeArea(
             bottom: false,
@@ -92,9 +113,9 @@ class _OtpFormPageState extends State<OtpForm> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       child: AppShadow(
                         child: ReactivePhoneFormField<PhoneNumber>(
-                          formControl: phoneNumberForm.phoneNumberControl,
+                          formControlName: 'phoneNumber',
                           decoration: const InputDecoration(
-                            hintText: 'Enter your phone number ',
+                            hintText: 'Enter your phone number',
                           ),
                           countrySelectorNavigator:
                               CountrySelectorNavigator.searchDelegate(

@@ -8,14 +8,6 @@ abstract class ProfileFormSections {
 }
 
 enum WorkerForm implements ProfileFormSections {
-  phoneNumberForm(OtpForm()),
-  otpForm(
-    OtpForm(
-      args: OtpFormArgs(
-        type: OtpFormType.validateOtp,
-      ),
-    ),
-  ),
   identityDataForm(IdentityDataForm()),
   profileDataForm(ProfileDataForm()),
   workDayDataForm(WorkDayDataForm()),
@@ -29,14 +21,6 @@ enum WorkerForm implements ProfileFormSections {
 }
 
 enum CompanyForm implements ProfileFormSections {
-  phoneNumberForm(OtpForm()),
-  otpForm(
-    OtpForm(
-      args: OtpFormArgs(
-        type: OtpFormType.validateOtp,
-      ),
-    ),
-  ),
   companyDataForm(CompanyDataForm()),
   companyDetailForm(CompanyDetailForm()),
   addressDataForm(AddressDataForm());

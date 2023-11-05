@@ -52,7 +52,9 @@ class _AuthFormPageState extends State<AuthFormPage> {
             listener: (context, state) {
               state.authFailureOrSuccess?.fold(
                 (l) {},
-                (r) {},
+                (r) {
+                  // context.pushReplacement(AuthPage.routePath);
+                },
               );
             },
             builder: (context, state) {

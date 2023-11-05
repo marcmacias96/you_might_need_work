@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:you_might_need_work/features/auth/auth.dart';
+import 'package:you_might_need_work/features/auth/cubit/cubit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
