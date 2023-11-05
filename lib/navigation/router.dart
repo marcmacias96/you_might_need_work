@@ -21,10 +21,9 @@ GoRouter getGoRouter(AuthCubit authCubit) {
         path: '/${OnboardingPage.routeName}',
         name: OnboardingPage.routeName,
         builder: (context, state) {
-          var args = const OnboardingTypeArgs();
-          if (state.extra != null) args = state.extra! as OnboardingTypeArgs;
-          return OnboardingPage(
-            args: args,
+          return BlocProvider(
+            create: (context) => PageViewPositionCubit(),
+            child: const OnboardingPage(),
           );
         },
       ),
@@ -70,13 +69,12 @@ GoRouter getGoRouter(AuthCubit authCubit) {
       ),
     ],
     redirect: (context, state) {
-     
       return context.read<AuthCubit>().state.maybeMap(
         orElse: () {
           return null;
         },
-        
         unauthenticated: (_) {
+          if (state.fullPath!.contains('auth')) return null;
           return '/${OnboardingPage.routeName}';
         },
       );

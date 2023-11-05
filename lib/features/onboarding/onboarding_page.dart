@@ -2,11 +2,15 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/auth_form/auth_form_page.dart';
+import 'package:you_might_need_work/features/onboarding/enums/onboarding_page_view.dart';
 import 'package:you_might_need_work/theme/theme.dart';
+import 'package:you_might_need_work/utils/utils.dart';
 
 enum OnboardingType { firstOnboarding, secondOnboarding }
 
@@ -21,14 +25,53 @@ class OnboardingTypeArgs extends Equatable {
   List<Object?> get props => [onboardingType];
 }
 
-class OnboardingPage extends StatelessWidget {
-  const OnboardingPage({this.args = const OnboardingTypeArgs(), super.key});
-  final OnboardingTypeArgs? args;
+class OnboardingPage extends HookWidget {
+  const OnboardingPage({super.key});
   static const String routeName = 'onboarding';
 
   @override
   Widget build(BuildContext context) {
+    final pageController = usePageController();
+    return InheritedPageViewForm(
+      next: () => _nextPage(pageController),
+      back: () => _previousPage(pageController),
+      child: PageView(
+        controller: pageController,
+        onPageChanged: (pos) =>
+            context.read<PageViewPositionCubit>().positionUpdated(pos),
+        children: [
+          for (final section in OnboardingPageView.values) section.widget,
+        ],
+      ),
+    );
+  }
+
+  void _nextPage(PageController controller) {
+    FocusManager.instance.primaryFocus?.unfocus();
+    controller.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeIn,
+    );
+  }
+
+  void _previousPage(PageController controller) {
+    FocusManager.instance.primaryFocus?.unfocus();
+    controller.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
+  }
+}
+
+class Onboarding extends StatelessWidget {
+  const Onboarding({this.args = const OnboardingTypeArgs(), super.key});
+  final OnboardingTypeArgs? args;
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final actualStep = context.watch<PageViewPositionCubit>().state;
+
     return Scaffold(
       backgroundColor: AppColors.primary1,
       body: SafeArea(
@@ -45,15 +88,7 @@ class OnboardingPage extends StatelessWidget {
                 children: [
                   if (args!.onboardingType == OnboardingType.secondOnboarding)
                     GestureDetector(
-                      onTap: () {
-                        context.pushNamed(
-                          OnboardingPage.routeName,
-                          extra: const OnboardingTypeArgs(
-                            // ignore: avoid_redundant_argument_values
-                            onboardingType: OnboardingType.firstOnboarding,
-                          ),
-                        );
-                      },
+                      onTap: InheritedPageViewForm.of(context).back,
                       child: Text(
                         'BACK',
                         style: theme.textTheme.headlineMedium!
@@ -171,25 +206,19 @@ class OnboardingPage extends StatelessWidget {
                       SafeArea(
                         top: false,
                         child: GestureDetector(
-                          onTap: args!.onboardingType ==
-                                  OnboardingType.firstOnboarding
-                              ? () {
-                                  context.pushNamed(
-                                    OnboardingPage.routeName,
-                                    extra: const OnboardingTypeArgs(
-                                      onboardingType:
-                                          OnboardingType.secondOnboarding,
-                                    ),
-                                  );
-                                }
-                              : () {
-                                  context.pushNamed(
-                                    AuthFormPage.routeName,
-                                    extra: const AuthFormArgs(
-                                      type: AuthFormType.login,
-                                    ),
-                                  );
-                                },
+                          onTap: () {
+                            if (actualStep !=
+                                OnboardingPageView.values.length) {
+                              InheritedPageViewForm.of(context).next();
+                            } else {
+                              context.pushReplacementNamed(
+                                AuthFormPage.routeName,
+                                extra: const AuthFormArgs(
+                                  type: AuthFormType.login,
+                                ),
+                              );
+                            }
+                          },
                           child: Container(
                             width: 60,
                             height: 60,

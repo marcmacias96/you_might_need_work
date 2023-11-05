@@ -7,13 +7,7 @@ abstract class ProfileFormSections {
   final Widget widget;
 }
 
-
 enum WorkerForm implements ProfileFormSections {
-  identityDataForm(IdentityDataForm()),
-  profileDataForm(ProfileDataForm()),
-  workDayDataForm(WorkDayDataForm()),
-  addressDataForm(AddressDataForm()),
-  paymentMethodData(PaymentMethodDataForm()),
   phoneNumberForm(OtpForm()),
   otpForm(
     OtpForm(
@@ -21,7 +15,12 @@ enum WorkerForm implements ProfileFormSections {
         type: OtpFormType.validateOtp,
       ),
     ),
-  );
+  ),
+  identityDataForm(IdentityDataForm()),
+  profileDataForm(ProfileDataForm()),
+  workDayDataForm(WorkDayDataForm()),
+  addressDataForm(AddressDataForm()),
+  paymentMethodData(PaymentMethodDataForm());
 
   const WorkerForm(this.widget);
 
@@ -30,9 +29,6 @@ enum WorkerForm implements ProfileFormSections {
 }
 
 enum CompanyForm implements ProfileFormSections {
-  companyDataForm(CompanyDataForm()),
-  companyDetailForm(CompanyDetailForm()),
-  addressDataForm(AddressDataForm()),
   phoneNumberForm(OtpForm()),
   otpForm(
     OtpForm(
@@ -40,7 +36,10 @@ enum CompanyForm implements ProfileFormSections {
         type: OtpFormType.validateOtp,
       ),
     ),
-  );
+  ),
+  companyDataForm(CompanyDataForm()),
+  companyDetailForm(CompanyDetailForm()),
+  addressDataForm(AddressDataForm());
 
   const CompanyForm(this.widget);
 

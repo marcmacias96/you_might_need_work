@@ -6,7 +6,6 @@ import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:you_might_need_work/data/core/core.dart';
 
-
 /// A module for injecting Firebase and HTTP client dependencies.
 ///
 /// This module provides access to Firebase and HTTP client dependencies,
@@ -25,9 +24,9 @@ import 'package:you_might_need_work/data/core/core.dart';
 /// final httpClient =  getIt<Dio>();
 /// ```
 ///
-/// In the example above, you can access Firebase and HTTP 
+/// In the example above, you can access Firebase and HTTP
 /// client dependencies using
-/// instances of [FirebaseInjectableModule]. 
+/// instances of [FirebaseInjectableModule].
 /// This module is configured to provide
 /// singleton instances of [GoogleSignIn], [FirebaseAuth], and a pre-configured
 /// [Dio] HTTP client for making network requests.
@@ -51,7 +50,7 @@ abstract class FirebaseInjectableModule {
   ///
   /// The [Dio] HTTP client is configured with base options,
   /// including the base URL,
-  /// request/response timeouts, and custom headers 
+  /// request/response timeouts, and custom headers
   /// for network requests. It also
   /// includes an interceptor for logging request/response details.
   @lazySingleton
