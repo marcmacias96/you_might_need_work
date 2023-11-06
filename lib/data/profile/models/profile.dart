@@ -7,43 +7,56 @@ part 'profile.g.dart';
 
 @freezed
 class Profile with _$Profile {
-
   factory Profile({
-    required String firstName,
-    required String lastName,
-    @DocumentTypeConverter() required DocumentType documentType,
-    required String documentNumber,
-    required String rawPassword,
+    @JsonKey(name: 'first_name') required String firstName,
+    @JsonKey(name: 'last_name') required String lastName,
+    @JsonKey(name: 'document_type')
+    @DocumentTypeConverter()
+    required DocumentType documentType,
+    @JsonKey(name: 'document_number') required String documentNumber,
+    @JsonKey(name: 'raw_password') required String rawPassword,
     required String phone,
-    required String playerId,
-    @UserTypeConverter() required UserType userType,
-    required String displayName,
-    required String occupationTitle,
+    @JsonKey(name: 'player_id') required String playerId,
+    @JsonKey(name: 'user_type') @UserTypeConverter() required UserType userType,
+    @JsonKey(name: 'display_name') required String displayName,
+    @JsonKey(name: 'occupation_title') required String occupationTitle,
     required String address,
-    @JsonKey(includeIfNull: false) bool? isActive,
-    @JsonKey(includeIfNull: false) bool? isPhoneValidated,
-    @JsonKey(includeIfNull: false) String? feedback,
-    @JsonKey(includeIfNull: false) int? defaultCapacity,
-    @AvailableDaysConverter()
+    @JsonKey(name: 'is_active') @JsonKey(includeIfNull: false) bool? isActive,
+    @JsonKey(name: 'is_phone_validated')
     @JsonKey(includeIfNull: false)
+    bool? isPhoneValidated,
+    @JsonKey(includeIfNull: false) String? feedback,
+    @JsonKey(name: 'default_capacity')
+    @JsonKey(includeIfNull: false)
+    int? defaultCapacity,
+    @AvailableDaysConverter()
+    @JsonKey(includeIfNull: false, name: 'available_days')
     List<AvailableDays>? availableDays,
     @RegistrationProviderConverter()
-    @JsonKey(includeIfNull: false)
+    @JsonKey(includeIfNull: false, name: 'registration_provider')
     RegistrationProvider? registrationProvider,
     @JsonKey(includeIfNull: false) List<int>? industries,
     @EducationLevelConverter()
-    @JsonKey(includeIfNull: false)
+    @JsonKey(includeIfNull: false, name: 'education_level')
     EducationLevel? educationLevel,
     @JsonKey(includeIfNull: false) int? latitude,
     @JsonKey(includeIfNull: false) int? longitude,
-    @JsonKey(includeIfNull: false) DateTime? documentIssueDate,
-    @JsonKey(includeIfNull: false) bool? isDocumentValidated,
-    @JsonKey(includeIfNull: false) bool? isBasicInfoSetupCompleted,
-    @JsonKey(includeIfNull: false) bool? isWorkScheduleSetupCompleted,
-    @JsonKey(includeIfNull: false) bool? isAddressSetupCompleted,
-    @JsonKey(includeIfNull: false) bool? isBankAccountSetupCompleted,
+    @JsonKey(
+      includeIfNull: false,
+      name: 'document_issue_date',
+    )
+    DateTime? documentIssueDate,
+    @JsonKey(includeIfNull: false, name: 'is_document_validated')
+    bool? isDocumentValidated,
+    @JsonKey(includeIfNull: false, name: 'is_basic_info_setup_completed')
+    bool? isBasicInfoSetupCompleted,
+    @JsonKey(includeIfNull: false, name: 'is_work_schedule_setup_completed')
+    bool? isWorkScheduleSetupCompleted,
+    @JsonKey(includeIfNull: false, name: 'is_address_setup_completed')
+    bool? isAddressSetupCompleted,
+    @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
+    bool? isBankAccountSetupCompleted,
   }) = _Profile;
-  const Profile._();
 
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
