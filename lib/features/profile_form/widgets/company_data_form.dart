@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:you_might_need_work/assets/assets.dart';
@@ -37,7 +38,7 @@ class CompanyDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Company',
+                            AppLocalizations.of(context).company,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.titleLarge,
                           ),
@@ -57,13 +58,18 @@ class CompanyDataForm extends StatelessWidget {
                                 ),
                               ),
                               const Gap(AppPadding.xl),
-                              const Text('Upload your profile photo'),
+                              Text(
+                                AppLocalizations.of(context)
+                                    .uploadYourProfilePhoto,
+                              ),
                             ],
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText: 'Name of the company',
-                            hintText: 'Enter your name',
+                            labelText:
+                                AppLocalizations.of(context).nameOfTheCompany,
+                            hintText:
+                                AppLocalizations.of(context).enterYourName,
                             formControl: state
                                 .profileForm!.companyDataForm.companyControl,
                           ),
@@ -76,7 +82,7 @@ class CompanyDataForm extends StatelessWidget {
                                     form.companyDataForm.currentForm.valid
                                         ? InheritedPageViewForm.of(context).next
                                         : null,
-                                text: 'Continue',
+                                text: AppLocalizations.of(context).next,
                               );
                             },
                           ),

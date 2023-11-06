@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/data/profile/enums/enums.dart';
@@ -38,12 +39,12 @@ class IdentityDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Identity data',
+                            AppLocalizations.of(context).identityData,
                             textAlign: TextAlign.start,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            'Enter your details below',
+                            AppLocalizations.of(context).enterYourDetails,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
@@ -51,27 +52,32 @@ class IdentityDataForm extends StatelessWidget {
                           AppFormInput(
                             formControl:
                                 state.profileForm!.identityDataForm.nameControl,
-                            labelText: 'Name',
-                            hintText: 'Enter your name',
+                            labelText: AppLocalizations.of(context).name,
+                            hintText:
+                                AppLocalizations.of(context).enterYourName,
                             validationMessages: {
                               ValidationMessage.required: (_) =>
-                                  'The name must not be empty',
+                                  AppLocalizations.of(context)
+                                      .theFieldCannotBeEmpty,
                             },
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
                             formControl: identityForm.lastNameControl,
-                            labelText: 'Last name',
-                            hintText: 'Enter your last name',
+                            labelText: AppLocalizations.of(context).lastName,
+                            hintText:
+                                AppLocalizations.of(context).enterYourLastName,
                             validationMessages: {
                               ValidationMessage.required: (_) =>
-                                  'The last name must not be empty',
+                                  AppLocalizations.of(context)
+                                      .theFieldCannotBeEmpty,
                             },
                           ),
                           const Gap(AppPadding.xl),
                           AppDropDownField(
-                            labelText: 'Document type',
-                            hintText: 'Select one',
+                            labelText:
+                                AppLocalizations.of(context).documentType,
+                            hintText: AppLocalizations.of(context).selectOne,
                             formControl: identityForm.documentTypeControl,
                             items:
                                 DocumentType.values.map((e) => e.type).toList(),
@@ -79,22 +85,28 @@ class IdentityDataForm extends StatelessWidget {
                           const Gap(AppPadding.xl),
                           AppFormInput(
                             formControl: identityForm.documentNumberControl,
-                            labelText: 'Document number',
-                            hintText: 'Enter your document number',
+                            labelText:
+                                AppLocalizations.of(context).documentNumber,
+                            hintText: AppLocalizations.of(context)
+                                .enterDocumentNumber,
                             validationMessages: {
                               ValidationMessage.required: (_) =>
-                                  'The document number must not be empty',
+                                  AppLocalizations.of(context)
+                                      .theFieldCannotBeEmpty,
                             },
                             keyboardType: TextInputType.number,
                           ),
                           const Gap(AppPadding.xl),
                           AppDateInput(
-                            labelText: 'Document issue date',
-                            hintText: 'Select an issue date',
+                            labelText:
+                                AppLocalizations.of(context).documentIssueDate,
+                            hintText:
+                                AppLocalizations.of(context).selectIssueDate,
                             formControl: identityForm.documentIssueDateControl,
                             validationMessages: {
                               ValidationMessage.required: (_) =>
-                                  'The date must not be empty',
+                                  AppLocalizations.of(context)
+                                      .theFieldCannotBeEmpty,
                             },
                           ),
                           const Gap(AppPadding.xxl),
@@ -107,7 +119,7 @@ class IdentityDataForm extends StatelessWidget {
                                     ? () =>
                                         InheritedPageViewForm.of(context).next()
                                     : null,
-                                text: 'Continue',
+                                text: AppLocalizations.of(context).next,
                               );
                             },
                           ),

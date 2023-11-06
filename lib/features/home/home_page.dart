@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:you_might_need_work/features/auth/cubit/cubit.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,7 +19,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 context.read<AuthCubit>().signOut();
               },
-              child: const Text('Sign Out'),
+              child: Text(AppLocalizations.of(context).signOut),
             ),
           ],
         ),

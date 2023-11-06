@@ -1,6 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -21,7 +22,7 @@ class RegisterDonePage extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: AppColors.primary1,
         title: Text(
-          'You Might Need Work',
+          AppLocalizations.of(context).appTitle,
           style: theme.textTheme.bodyMedium!.copyWith(
             color: AppColors.white,
             fontWeight: FontWeight.bold,
@@ -52,7 +53,7 @@ class RegisterDonePage extends StatelessWidget {
                     SvgPicture.asset(Images.womanWithBoard),
                     const Gap(AppPadding.xxl),
                     Text(
-                      'Complete registration',
+                      AppLocalizations.of(context).completeRegistration,
                       style: theme.textTheme.titleLarge,
                     ),
                     const Gap(AppPadding.xl),
@@ -60,13 +61,13 @@ class RegisterDonePage extends StatelessWidget {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: 'Welcome to ',
+                            text: '${AppLocalizations.of(context).welcomeTo} ',
                             style: theme.textTheme.bodyMedium!.copyWith(
                               color: AppColors.grayGray2,
                             ),
                           ),
                           TextSpan(
-                            text: 'YouMightNeedWork',
+                            text: AppLocalizations.of(context).appTitle,
                             style: theme.textTheme.bodyMedium!.copyWith(
                               fontWeight: FontWeight.bold,
                             ),

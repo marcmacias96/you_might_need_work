@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
@@ -36,48 +37,54 @@ class CompanyDetailForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Company details',
+                            AppLocalizations.of(context).companyDetails,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.titleLarge,
                           ),
                           const Gap(AppPadding.medium),
                           Text(
-                            'Finally, please enter the following information',
+                            AppLocalizations.of(context)
+                                .companyDetailsDescription,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText: 'Select your industry',
-                            hintText: 'Select your industry',
+                            labelText: AppLocalizations.of(context).industry,
+                            hintText: AppLocalizations.of(context).selectOne,
                             formControl: state
                                 .profileForm!.companyDetailForm.industryControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
-                            labelText: 'Title',
-                            hintText: 'Enter your title',
+                            labelText: AppLocalizations.of(context).title,
+                            hintText:
+                                AppLocalizations.of(context).enterYourTitle,
                             formControl: state
                                 .profileForm!.companyDetailForm.titleControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
-                            labelText: 'Description',
-                            hintText: 'Enter your description',
+                            labelText: AppLocalizations.of(context).description,
+                            hintText: AppLocalizations.of(context)
+                                .enterYourDescription,
                             formControl: state.profileForm!.companyDetailForm
                                 .descriptionControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
-                            labelText: 'Ocupation',
-                            hintText: 'Select the occupation you need',
+                            labelText: AppLocalizations.of(context).ocupation,
+                            hintText: AppLocalizations.of(context)
+                                .selectTheOccupationYouNeed,
                             formControl: state.profileForm!.companyDetailForm
                                 .occupationControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
-                            labelText: 'Specialization',
-                            hintText: 'Enter your specialization',
+                            labelText:
+                                AppLocalizations.of(context).specialization,
+                            hintText: AppLocalizations.of(context)
+                                .enterYourSpecialization,
                             formControl: state.profileForm!.companyDetailForm
                                 .specializationControl,
                           ),
@@ -86,8 +93,10 @@ class CompanyDetailForm extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: AppDateInput(
-                                  labelText: 'Starting at',
-                                  hintText: 'Select a date',
+                                  labelText:
+                                      AppLocalizations.of(context).startingAt,
+                                  hintText:
+                                      AppLocalizations.of(context).selectDate,
                                   formControl: state.profileForm!
                                       .companyDetailForm.statingAtControl,
                                 ),
@@ -95,8 +104,10 @@ class CompanyDetailForm extends StatelessWidget {
                               const Gap(AppPadding.large),
                               Expanded(
                                 child: AppDateInput(
-                                  labelText: 'Ending at',
-                                  hintText: 'Select a date',
+                                  labelText:
+                                      AppLocalizations.of(context).endingAt,
+                                  hintText:
+                                      AppLocalizations.of(context).selectDate,
                                   formControl: state.profileForm!
                                       .companyDetailForm.endingAtControl,
                                 ),
@@ -108,28 +119,32 @@ class CompanyDetailForm extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: AppFormInput(
-                                  labelText: 'Payment for hour',
+                                  labelText: AppLocalizations.of(context)
+                                      .paymentForHour,
                                   hintText: '0',
                                   formControl: state.profileForm!
                                       .companyDetailForm.paymentForHourControl,
                                   keyboardType: TextInputType.number,
                                   validationMessages: {
                                     ValidationMessage.number: (_) =>
-                                        'Must be numbers',
+                                        AppLocalizations.of(context)
+                                            .mustBeNumbers,
                                   },
                                 ),
                               ),
                               const Gap(AppPadding.large),
                               Expanded(
                                 child: AppFormInput(
-                                  labelText: 'hours required',
+                                  labelText: AppLocalizations.of(context)
+                                      .hoursRequired,
                                   hintText: '0',
                                   formControl: state.profileForm!
                                       .companyDetailForm.hoursRequiredControl,
                                   keyboardType: TextInputType.number,
                                   validationMessages: {
                                     ValidationMessage.number: (_) =>
-                                        'Must be numbers',
+                                        AppLocalizations.of(context)
+                                            .mustBeNumbers,
                                   },
                                 ),
                               ),
@@ -144,7 +159,7 @@ class CompanyDetailForm extends StatelessWidget {
                                     form.companyDetailForm.currentForm.valid
                                         ? InheritedPageViewForm.of(context).next
                                         : null,
-                                text: 'Continue',
+                                text: AppLocalizations.of(context).next,
                               );
                             },
                           ),

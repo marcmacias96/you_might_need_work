@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/profile_form_cubit.dart';
@@ -36,20 +37,21 @@ class AddressDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Address',
+                            AppLocalizations.of(context).address,
                             textAlign: TextAlign.start,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            'Enter your address',
+                            AppLocalizations.of(context).enterYourAddress,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
                           const Gap(AppPadding.big),
                           AppFormInput(
-                            labelText: 'Address',
+                            labelText: AppLocalizations.of(context).address,
                             prefixIcon: Images.locationPin,
-                            hintText: 'Enter your address',
+                            hintText:
+                                AppLocalizations.of(context).enterYourAddress,
                             formControl:
                                 state.profileForm!.addressForm.addressControl,
                           ),
@@ -61,7 +63,7 @@ class AddressDataForm extends StatelessWidget {
                                 onPressed: form.addressForm.currentForm.valid
                                     ? InheritedPageViewForm.of(context).next
                                     : null,
-                                text: 'Continue',
+                                text: AppLocalizations.of(context).next,
                               );
                             },
                           ),
