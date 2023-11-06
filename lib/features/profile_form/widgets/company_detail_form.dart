@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/profile_form/models/models.dart';
 import 'package:you_might_need_work/theme/theme.dart';
@@ -88,16 +89,16 @@ class CompanyDetailForm extends StatelessWidget {
                                   labelText: 'Starting at',
                                   hintText: 'Select a date',
                                   formControl: state.profileForm!
-                                        .companyDetailForm.statingAtControl,
+                                      .companyDetailForm.statingAtControl,
                                 ),
                               ),
                               const Gap(AppPadding.large),
-                               Expanded(
+                              Expanded(
                                 child: AppDateInput(
                                   labelText: 'Ending at',
                                   hintText: 'Select a date',
-                                 formControl: state.profileForm!
-                                        .companyDetailForm.endingAtControl,
+                                  formControl: state.profileForm!
+                                      .companyDetailForm.endingAtControl,
                                 ),
                               ),
                             ],
@@ -112,6 +113,10 @@ class CompanyDetailForm extends StatelessWidget {
                                   formControl: state.profileForm!
                                       .companyDetailForm.paymentForHourControl,
                                   keyboardType: TextInputType.number,
+                                  validationMessages: {
+                                    ValidationMessage.number: (_) =>
+                                        'Must be numbers',
+                                  },
                                 ),
                               ),
                               const Gap(AppPadding.large),
@@ -122,6 +127,10 @@ class CompanyDetailForm extends StatelessWidget {
                                   formControl: state.profileForm!
                                       .companyDetailForm.hoursRequiredControl,
                                   keyboardType: TextInputType.number,
+                                  validationMessages: {
+                                    ValidationMessage.number: (_) =>
+                                        'Must be numbers',
+                                  },
                                 ),
                               ),
                             ],

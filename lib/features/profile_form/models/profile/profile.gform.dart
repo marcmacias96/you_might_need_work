@@ -2988,7 +2988,7 @@ class WorkDayDataForm implements FormModel<WorkDayData> {
   static FormGroup formElements(WorkDayData? workDayData) => FormGroup({
         capacityControlName: FormControl<String>(
             value: workDayData?.capacity,
-            validators: [RequiredValidator()],
+            validators: [RequiredValidator(), RangeValidator()],
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,
             disabled: false,

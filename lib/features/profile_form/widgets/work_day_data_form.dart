@@ -52,6 +52,17 @@ class WorkDayDataForm extends StatelessWidget {
                             labelText: 'Default capacity (total hours)',
                             hintText: 'Enter your capacity',
                             formControl: workDayDataForm.capacityControl,
+                            keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
+                          ),
+                          const Gap(AppPadding.big),
+                          Text(
+                            'This data entry only allows specific values. '
+                            'You must enter one of the following values: 0, '
+                            '0.5, 1, 1.5, 2, 2.5, and so on up to 60. '
+                            'Any other value will not be accepted',
+                            style: theme.textTheme.labelSmall,
                           ),
                           const Gap(AppPadding.xl),
                           Text(

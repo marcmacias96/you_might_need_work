@@ -85,6 +85,7 @@ class IdentityDataForm extends StatelessWidget {
                               ValidationMessage.required: (_) =>
                                   'The document number must not be empty',
                             },
+                            keyboardType: TextInputType.number,
                           ),
                           const Gap(AppPadding.xl),
                           AppDateInput(

@@ -1,5 +1,7 @@
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
+import 'package:you_might_need_work/utils/utils.dart';
+
 
 part 'profile.gform.dart';
 
@@ -198,6 +200,7 @@ class WorkDayData {
     @RfControl(
       validators: [
         RequiredValidator(),
+        RangeValidator(),
       ],
     )
     required this.capacity,
@@ -249,7 +252,7 @@ class PaymentMethod {
 
 @RfGroup<PhoneNumberData>()
 class PhoneNumberData {
-  PhoneNumberData( {
+  PhoneNumberData({
     @RfControl(
       validators: [
         RequiredPhoneValidator(),
@@ -260,5 +263,4 @@ class PhoneNumberData {
   });
 
   final PhoneNumber phoneNumber;
-  
 }

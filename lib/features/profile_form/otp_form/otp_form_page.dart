@@ -117,10 +117,17 @@ class _OtpFormPageState extends State<OtpFormPage> {
                           decoration: const InputDecoration(
                             hintText: 'Enter your phone number',
                           ),
+                          validationMessages: {
+                            PhoneValidationMessage.required: (_) =>
+                                'Phone Number is required',
+                          },
                           countrySelectorNavigator:
                               CountrySelectorNavigator.searchDelegate(
                             titleStyle:
                                 Theme.of(context).textTheme.headlineMedium,
+                            countries: [
+                              IsoCode.US,
+                            ],
                           ),
                         ),
                       ),
