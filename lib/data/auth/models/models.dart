@@ -1,1 +1,1 @@
-export 'auth_failure/auth_failure.dart';
+export 'auth_token/auth_token.dart';

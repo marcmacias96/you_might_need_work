@@ -29,17 +29,6 @@ class AuthFormCubit extends Cubit<AuthFormState> {
     );
   }
 
-  void signInWithGooglePressed() {
-    _performActionOnAuthRepositoryWithThirdPartyProviders(
-      _authRepository.signInWithGoogle,
-    );
-  }
-
-  void signInWithApplePressed() {
-    _performActionOnAuthRepositoryWithThirdPartyProviders(
-      _authRepository.signInWithApple,
-    );
-  }
 
   Future<void> _performActionOnAuthRepositoryWithEmailAndPassword(
     Future<Either<AuthFailure, Unit>> Function({
@@ -68,23 +57,4 @@ class AuthFormCubit extends Cubit<AuthFormState> {
     );
   }
 
-  Future<void> _performActionOnAuthRepositoryWithThirdPartyProviders(
-    Future<Either<AuthFailure, Unit>> Function() forwardedCall,
-  ) async {
-    emit(
-      state.copyWith(
-        isSubmitting: true,
-        authFailureOrSuccess: null,
-      ),
-    );
-
-    final failureOrSuccess = await forwardedCall();
-
-    emit(
-      state.copyWith(
-        isSubmitting: false,
-        authFailureOrSuccess: failureOrSuccess,
-      ),
-    );
-  }
 }

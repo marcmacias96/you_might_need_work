@@ -578,8 +578,6 @@ abstract class _$$AuthErrorImplCopyWith<$Res> {
       __$$AuthErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AuthFailure failure});
-
-  $AuthFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -593,22 +591,14 @@ class __$$AuthErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failure = null,
+    Object? failure = freezed,
   }) {
     return _then(_$AuthErrorImpl(
-      null == failure
+      freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as AuthFailure,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AuthFailureCopyWith<$Res> get failure {
-    return $AuthFailureCopyWith<$Res>(_value.failure, (value) {
-      return _then(_value.copyWith(failure: value));
-    });
   }
 }
 
@@ -630,11 +620,12 @@ class _$AuthErrorImpl implements AuthError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthErrorImpl &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override

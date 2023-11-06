@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:you_might_need_work/data/auth/models/models.dart';
+import 'package:you_might_need_work/data/core/models/models.dart';
+import 'package:you_might_need_work/data/profile/models/models.dart';
 
 /// An abstract repository interface for authentication-related operations.
 ///
@@ -37,7 +38,7 @@ abstract class IAuthRepository {
   /// and [password]. If the authentication is successful, 
   /// it returns [Right(Unit)].
   /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
-  Future<Either<AuthFailure, Unit>> signInWithEmailPassword({
+  Future<Either<CoreFailure, AuthToken>> signInWithEmailPassword({
     required String emailAddress,
     required String password,
   });
@@ -49,38 +50,24 @@ abstract class IAuthRepository {
   /// and [password]. If the registration is successful, 
   /// it returns [Right(Unit)].
   /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
+  Future<Either<CoreFailure, AuthToken>> registerWithEmailAndPassword({
     required String emailAddress,
     required String password,
   });
-
-  /// Sign in with Google.
-  ///   
-  /// This method attempts to authenticate a user with Google.
-  /// If the authentication is successful, it returns [Right(Unit)].
-  /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
-  Future<Either<AuthFailure, Unit>> signInWithGoogle();
-
-  /// Sign in with Apple.
-  ///   
-  /// This method attempts to authenticate a user with Apple.
-  /// If the authentication is successful, it returns [Right(Unit)].
-  /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
-  Future<Either<AuthFailure, Unit>> signInWithApple();
 
   /// Sign out.
   ///   
   /// This method attempts to sign out the currently authenticated user.
   /// If the sign out is successful, it returns [Right(Unit)].
   /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
-  Future<Either<AuthFailure, Unit>> signOut();
+  Future<Either<CoreFailure, Unit>> signOut();
 
   /// Check the authentication status.
   ///   
-  /// This method returns a stream of [Either<AuthFailure, User>].
-  /// If the user is authenticated, it returns [Right(User)].
+  /// This method returns a stream of [Either<AuthFailure, Profile>].
+  /// If the user is authenticated, it returns [Right(Profile)].
   /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
-  Stream<Either<AuthFailure, User>> authCheck();
+  Future<Either<CoreFailure, Profile>> authCheck();
 
   /// Get the authenticated user.
   ///
@@ -88,4 +75,5 @@ abstract class IAuthRepository {
   /// authenticated, it returns `null`. You can use this method to check the
   /// user's authentication status.
   // Future<User?> getUser();
+  
 }
