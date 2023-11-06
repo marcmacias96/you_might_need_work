@@ -1,11 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/auth_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/auth_form/models/models.dart';
 import 'package:you_might_need_work/injection.dart';
-import 'package:you_might_need_work/theme/app_padding.dart';
+import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
 enum AuthFormType { signUp, login }
@@ -34,98 +36,196 @@ class AuthFormPage extends StatefulWidget {
 }
 
 class _AuthFormPageState extends State<AuthFormPage> {
-  final Credentials credentials = Credentials.empty();
+  final credentials = Credentials.empty();
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return BlocProvider(
-      create: (context) => getIt<AuthFormCubit>(),
-      child: Scaffold(
-        body: BlocConsumer<AuthFormCubit, AuthFormState>(
-          listener: (context, state) {
-            state.authFailureOrSuccess?.fold(
-              (l) {},
-              (r) {},
-            );
-          },
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(AppPadding.big),
-              child: CustomScrollView(
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: BlocProvider(
+        create: (context) => getIt<AuthFormCubit>(),
+        child: Scaffold(
+          body: BlocConsumer<AuthFormCubit, AuthFormState>(
+            listener: (context, state) {
+              state.authFailureOrSuccess?.fold(
+                (l) {},
+                (r) {
+                  // context.pushReplacement(AuthPage.routePath);
+                },
+              );
+            },
+            builder: (context, state) {
+              return CustomScrollView(
                 slivers: [
                   SliverAppBar.medium(
+                    automaticallyImplyLeading: false,
                     elevation: 0,
-                    titleSpacing: 0,
-                    centerTitle: false,
-                    title: Text(
-                      widget.args.type == AuthFormType.login
-                          ? 'Login'
-                          : 'Sign Up',
-                      style: theme.textTheme.titleLarge,
+                    centerTitle: true,
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.args.type == AuthFormType.login
+                              ? 'Sign In'
+                              : 'Sign Up',
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.titleLarge,
+                        ),
+                      ],
                     ),
                   ),
                   SliverToBoxAdapter(
                     child: CredentialsFormBuilder(
                       model: credentials,
                       builder: (context, formModel, _) {
-                        return Form(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          child: Column(
-                            children: [
-                              AppFormInput(
-                                formControl: formModel.emailControl,
-                                labelText: 'Email',
-                                hintText: 'Enter your email',
-                                validationMessages: {
-                                  ValidationMessage.required: (_) =>
-                                      'The email must not be empty',
-                                  ValidationMessage.email: (_) =>
-                                      'The email must be valid',
-                                },
-                              ),
-                              const SizedBox(height: AppPadding.big),
-                              AppFormInput(
-                                formControl: formModel.passwordControl,
-                                obscureText: true,
-                                validationMessages: {
-                                  ValidationMessage.required: (_) =>
-                                      'The password must not be empty',
-                                  ValidationMessage.minLength: (_) =>
-                                      'The password must be'
-                                      ' at least 6 characters',
-                                },
-                                textInputAction: TextInputAction.done,
-                                hintText: 'Password',
-                                labelText: 'Password',
-                              ),
-                              const SizedBox(height: AppPadding.big),
-                              ReactiveCredentialsFormConsumer(
-                                builder: (context, form, child) {
-                                  return AppElevatedButton(
-                                    loading: state.isSubmitting,
-                                    onPressed: form.form.valid
-                                        ? () => handleAction(
-                                              context,
-                                              credentials: formModel.model,
-                                            )
-                                        : null,
-                                    text: widget.args.type == AuthFormType.login
-                                        ? 'Login'
-                                        : 'Get Started',
-                                  );
-                                },
-                              ),
-                            ],
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.large,
+                          ),
+                          child: Form(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            child: Column(
+                              children: [
+                                AppFormInput(
+                                  prefixIcon: Images.email,
+                                  formControl: formModel.emailControl,
+                                  labelText: 'E-mail',
+                                  hintText: 'Enter your email',
+                                  validationMessages: {
+                                    ValidationMessage.required: (_) =>
+                                        'The email must not be empty',
+                                    ValidationMessage.email: (_) =>
+                                        'The email must be valid',
+                                  },
+                                ),
+                                const SizedBox(height: AppPadding.big),
+                                AppFormInput(
+                                  prefixIcon: Images.lock,
+                                  suffixIcon: Images.eye,
+                                  formControl: formModel.passwordControl,
+                                  obscureText: true,
+                                  validationMessages: {
+                                    ValidationMessage.required: (_) =>
+                                        'The password must not be empty',
+                                    ValidationMessage.minLength: (_) =>
+                                        'The password must be'
+                                        ' at least 6 characters',
+                                  },
+                                  textInputAction: TextInputAction.done,
+                                  hintText: 'Password',
+                                  labelText: 'Password',
+                                ),
+                                const SizedBox(height: AppPadding.large),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'Forgot Password?',
+                                      style:
+                                          theme.textTheme.bodyMedium!.copyWith(
+                                        color: AppColors.grayGray1,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: AppPadding.xxxl),
+                                ReactiveCredentialsFormConsumer(
+                                  builder: (context, form, child) {
+                                    return AppElevatedButton(
+                                      loading: state.isSubmitting,
+                                      onPressed: form.form.valid
+                                          ? () => handleAction(
+                                                context,
+                                                credentials: formModel.model,
+                                              )
+                                          : null,
+                                      text:
+                                          widget.args.type == AuthFormType.login
+                                              ? 'Sign In'
+                                              : 'Sign Up',
+                                    );
+                                  },
+                                ),
+                                const SizedBox(height: AppPadding.xxxl),
+                                GestureDetector(
+                                  onTap: widget.args.type == AuthFormType.login
+                                      ? () {
+                                          context.pushNamed(
+                                            AuthFormPage.routeName,
+                                            extra: const AuthFormArgs(
+                                              type: AuthFormType.signUp,
+                                            ),
+                                          );
+                                        }
+                                      : () {
+                                          context.pushNamed(
+                                            AuthFormPage.routeName,
+                                            extra: const AuthFormArgs(
+                                              type: AuthFormType.login,
+                                            ),
+                                          );
+                                        },
+                                  child: widget.args.type == AuthFormType.login
+                                      ? Text.rich(
+                                          TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: 'Don’t Have Any Account?',
+                                                style: theme
+                                                    .textTheme.bodyMedium!
+                                                    .copyWith(
+                                                  color: AppColors.grayGray2,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: '  Sign Up',
+                                                style: theme
+                                                    .textTheme.bodyMedium!
+                                                    .copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Text.rich(
+                                          TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: 'You have an account?',
+                                                style: theme
+                                                    .textTheme.bodyMedium!
+                                                    .copyWith(
+                                                  color: AppColors.grayGray2,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: '  Sign In',
+                                                style: theme
+                                                    .textTheme.bodyMedium!
+                                                    .copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
                     ),
                   ),
                 ],
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

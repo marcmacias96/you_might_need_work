@@ -4,12 +4,14 @@ import 'package:you_might_need_work/features/auth/auth.dart';
 import 'package:you_might_need_work/features/auth_form/auth_form.dart';
 import 'package:you_might_need_work/features/home/home.dart';
 import 'package:you_might_need_work/features/onboarding/onboarding.dart';
+import 'package:you_might_need_work/features/profile_form/otp_form/otp_form.dart';
 import 'package:you_might_need_work/features/profile_form/profile_form.dart';
+import 'package:you_might_need_work/features/profile_form/register_done/register_done.dart';
+import 'package:you_might_need_work/features/profile_form/user_type_form/user_type_form.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 
-GoRouter getGoRouter(AuthCubit authCubit) {
+GoRouter getGoRouter() {
   return GoRouter(
-    refreshListenable: GoRouterRefreshStream(authCubit.stream),
     routes: [
       GoRoute(
         path: AuthPage.routePath,
@@ -18,18 +20,34 @@ GoRouter getGoRouter(AuthCubit authCubit) {
       GoRoute(
         path: '/${OnboardingPage.routeName}',
         name: OnboardingPage.routeName,
-        builder: (context, state) => const OnboardingPage(),
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => PageViewPositionCubit(),
+            child: const OnboardingPage(),
+          );
+        },
       ),
       GoRoute(
         path: '/${ProfileFormPage.routeName}',
         name: ProfileFormPage.routeName,
-        builder: (context, state) => const ProfileFormPage(),
+        builder: (context, state) {
+          final args = state.extra! as ProfileFormArgs;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => PageViewPositionCubit()),
+            ],
+            child: ProfileFormPage(
+              args: args,
+            ),
+          );
+        },
       ),
       GoRoute(
         path: '/${AuthFormPage.routeName}',
         name: AuthFormPage.routeName,
         builder: (context, state) {
-          final args = state.extra! as AuthFormArgs;
+          final args = state.extra as AuthFormArgs? ??
+              const AuthFormArgs(type: AuthFormType.login);
           return AuthFormPage(
             args: args,
           );
@@ -40,18 +58,26 @@ GoRouter getGoRouter(AuthCubit authCubit) {
         name: HomePage.routeName,
         builder: (context, state) => const HomePage(),
       ),
+      GoRoute(
+        path: '/${UserTypeFormPage.routeName}',
+        name: UserTypeFormPage.routeName,
+        builder: (context, state) => const UserTypeFormPage(),
+      ),
+      GoRoute(
+        path: '/${RegisterDonePage.routeName}',
+        name: RegisterDonePage.routeName,
+        builder: (context, state) => const RegisterDonePage(),
+      ),
+      GoRoute(
+        path: '/${OtpFormPage.routeName}',
+        name: OtpFormPage.routeName,
+        builder: (context, state) {
+          final args = state.extra! as  OtpFormArgs;
+          return  OtpFormPage(
+            args: args,
+          );
+        },
+      ),
     ],
-    redirect: (context, state) {
-     
-      return context.read<AuthCubit>().state.maybeMap(
-        orElse: () {
-          return null;
-        },
-        
-        unauthenticated: (_) {
-          return '/${OnboardingPage.routeName}';
-        },
-      );
-    },
   );
 }

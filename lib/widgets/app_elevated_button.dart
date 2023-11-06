@@ -20,16 +20,22 @@ class AppElevatedButton extends StatelessWidget {
     return Row(
       mainAxisSize: mainAxisSize,
       children: [
-        ElevatedButton(
-          onPressed: onPressed,
-          child: loading
-              ? const Padding(
-                  padding: AppPadding.insetAllBig,
-                  child: CircularProgressIndicator.adaptive(
-                    backgroundColor: AppColors.white,
-                  ),
-                )
-              : Text(text),
+        Expanded(
+          child: SizedBox(
+            height: 60,
+            child: ElevatedButton(
+              
+              onPressed: onPressed,
+              child: loading
+                  ? const Padding(
+                      padding: AppPadding.insetAllBig,
+                      child: CircularProgressIndicator.adaptive(
+                        backgroundColor: AppColors.white,
+                      ),
+                    )
+                  : Text(text),
+            ),
+          ),
         ),
       ],
     );

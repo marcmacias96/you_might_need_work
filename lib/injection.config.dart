@@ -16,10 +16,12 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:you_might_need_work/data/auth/auth.dart' as _i6;
 import 'package:you_might_need_work/data/auth/auth_repository.dart' as _i7;
 import 'package:you_might_need_work/data/core/helpers/firebase_injectable_module.dart'
-    as _i10;
-import 'package:you_might_need_work/features/auth/cubit/auth_cubit.dart' as _i8;
+    as _i11;
+import 'package:you_might_need_work/features/auth/cubit/auth_cubit.dart' as _i9;
 import 'package:you_might_need_work/features/auth_form/cubit/auth_form_cubit.dart'
-    as _i9;
+    as _i10;
+import 'package:you_might_need_work/features/profile_form/cubit/profile_form_cubit.dart'
+    as _i8;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -42,11 +44,12 @@ extension GetItInjectableX on _i1.GetIt {
           firebaseAuth: gh<_i4.FirebaseAuth>(),
           googleSignIn: gh<_i5.GoogleSignIn>(),
         ));
-    gh.factory<_i8.AuthCubit>(() => _i8.AuthCubit(gh<_i6.IAuthRepository>()));
-    gh.factory<_i9.AuthFormCubit>(
-        () => _i9.AuthFormCubit(gh<_i6.IAuthRepository>()));
+    gh.factory<_i8.ProfileFormCubit>(() => _i8.ProfileFormCubit());
+    gh.factory<_i9.AuthCubit>(() => _i9.AuthCubit(gh<_i6.IAuthRepository>()));
+    gh.factory<_i10.AuthFormCubit>(
+        () => _i10.AuthFormCubit(gh<_i6.IAuthRepository>()));
     return this;
   }
 }
 
-class _$FirebaseInjectableModule extends _i10.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i11.FirebaseInjectableModule {}

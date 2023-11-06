@@ -54,9 +54,11 @@ class AuthCubit extends Cubit<AuthState> {
             (AuthFailure failure) => emit(
               const AuthState.unauthenticated(),
             ),
-            (User user) => emit(
-              const AuthState.authenticated(),
-            ),
+            (User user) {
+              return emit(
+                const AuthState.authenticated(),
+              );
+            },
           ),
         );
   }
