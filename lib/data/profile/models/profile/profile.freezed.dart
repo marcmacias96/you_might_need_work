@@ -20,8 +20,6 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Profile {
-  @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_name')
   String get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
@@ -85,6 +83,8 @@ mixin _$Profile {
   bool? get isAddressSetupCompleted => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
   bool? get isBankAccountSetupCompleted => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -97,8 +97,7 @@ abstract class $ProfileCopyWith<$Res> {
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'first_name') String firstName,
+      {@JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'document_type')
       @DocumentTypeConverter()
@@ -143,7 +142,8 @@ abstract class $ProfileCopyWith<$Res> {
       @JsonKey(includeIfNull: false, name: 'is_address_setup_completed')
       bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
-      bool? isBankAccountSetupCompleted});
+      bool? isBankAccountSetupCompleted,
+      @JsonKey(includeIfNull: false) String? id});
 
   $OnboardingCopyWith<$Res> get onboarding;
 }
@@ -161,7 +161,6 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? documentType = freezed,
@@ -190,12 +189,9 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? isWorkScheduleSetupCompleted = freezed,
     Object? isAddressSetupCompleted = freezed,
     Object? isBankAccountSetupCompleted = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -308,6 +304,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.isBankAccountSetupCompleted
           : isBankAccountSetupCompleted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -328,8 +328,7 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'first_name') String firstName,
+      {@JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'document_type')
       @DocumentTypeConverter()
@@ -374,7 +373,8 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       @JsonKey(includeIfNull: false, name: 'is_address_setup_completed')
       bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
-      bool? isBankAccountSetupCompleted});
+      bool? isBankAccountSetupCompleted,
+      @JsonKey(includeIfNull: false) String? id});
 
   @override
   $OnboardingCopyWith<$Res> get onboarding;
@@ -391,7 +391,6 @@ class __$$ProfileImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? documentType = freezed,
@@ -420,12 +419,9 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? isWorkScheduleSetupCompleted = freezed,
     Object? isAddressSetupCompleted = freezed,
     Object? isBankAccountSetupCompleted = freezed,
+    Object? id = freezed,
   }) {
     return _then(_$ProfileImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -538,6 +534,10 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.isBankAccountSetupCompleted
           : isBankAccountSetupCompleted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -546,8 +546,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProfileImpl implements _Profile {
   _$ProfileImpl(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'first_name') required this.firstName,
+      {@JsonKey(name: 'first_name') required this.firstName,
       @JsonKey(name: 'last_name') required this.lastName,
       @JsonKey(name: 'document_type')
       @DocumentTypeConverter()
@@ -592,16 +591,14 @@ class _$ProfileImpl implements _Profile {
       @JsonKey(includeIfNull: false, name: 'is_address_setup_completed')
       this.isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
-      this.isBankAccountSetupCompleted})
+      this.isBankAccountSetupCompleted,
+      @JsonKey(includeIfNull: false) this.id})
       : _availableDays = availableDays,
         _industries = industries;
 
   factory _$ProfileImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileImplFromJson(json);
 
-  @override
-  @JsonKey(name: 'id')
-  final String? id;
   @override
   @JsonKey(name: 'first_name')
   final String firstName;
@@ -708,10 +705,13 @@ class _$ProfileImpl implements _Profile {
   @override
   @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
   final bool? isBankAccountSetupCompleted;
+  @override
+  @JsonKey(includeIfNull: false)
+  final String? id;
 
   @override
   String toString() {
-    return 'Profile(id: $id, firstName: $firstName, lastName: $lastName, documentType: $documentType, documentNumber: $documentNumber, rawPassword: $rawPassword, phone: $phone, playerId: $playerId, userType: $userType, displayName: $displayName, occupationTitle: $occupationTitle, address: $address, onboarding: $onboarding, isPhoneValidated: $isPhoneValidated, isActive: $isActive, feedback: $feedback, defaultCapacity: $defaultCapacity, availableDays: $availableDays, registrationProvider: $registrationProvider, industries: $industries, educationLevel: $educationLevel, latitude: $latitude, longitude: $longitude, documentIssueDate: $documentIssueDate, isDocumentValidated: $isDocumentValidated, isBasicInfoSetupCompleted: $isBasicInfoSetupCompleted, isWorkScheduleSetupCompleted: $isWorkScheduleSetupCompleted, isAddressSetupCompleted: $isAddressSetupCompleted, isBankAccountSetupCompleted: $isBankAccountSetupCompleted)';
+    return 'Profile(firstName: $firstName, lastName: $lastName, documentType: $documentType, documentNumber: $documentNumber, rawPassword: $rawPassword, phone: $phone, playerId: $playerId, userType: $userType, displayName: $displayName, occupationTitle: $occupationTitle, address: $address, onboarding: $onboarding, isPhoneValidated: $isPhoneValidated, isActive: $isActive, feedback: $feedback, defaultCapacity: $defaultCapacity, availableDays: $availableDays, registrationProvider: $registrationProvider, industries: $industries, educationLevel: $educationLevel, latitude: $latitude, longitude: $longitude, documentIssueDate: $documentIssueDate, isDocumentValidated: $isDocumentValidated, isBasicInfoSetupCompleted: $isBasicInfoSetupCompleted, isWorkScheduleSetupCompleted: $isWorkScheduleSetupCompleted, isAddressSetupCompleted: $isAddressSetupCompleted, isBankAccountSetupCompleted: $isBankAccountSetupCompleted, id: $id)';
   }
 
   @override
@@ -719,7 +719,6 @@ class _$ProfileImpl implements _Profile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -779,14 +778,14 @@ class _$ProfileImpl implements _Profile {
             (identical(other.isBankAccountSetupCompleted,
                     isBankAccountSetupCompleted) ||
                 other.isBankAccountSetupCompleted ==
-                    isBankAccountSetupCompleted));
+                    isBankAccountSetupCompleted) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        id,
         firstName,
         lastName,
         documentType,
@@ -814,7 +813,8 @@ class _$ProfileImpl implements _Profile {
         isBasicInfoSetupCompleted,
         isWorkScheduleSetupCompleted,
         isAddressSetupCompleted,
-        isBankAccountSetupCompleted
+        isBankAccountSetupCompleted,
+        id
       ]);
 
   @JsonKey(ignore: true)
@@ -833,8 +833,7 @@ class _$ProfileImpl implements _Profile {
 
 abstract class _Profile implements Profile {
   factory _Profile(
-      {@JsonKey(name: 'id') required final String? id,
-      @JsonKey(name: 'first_name') required final String firstName,
+      {@JsonKey(name: 'first_name') required final String firstName,
       @JsonKey(name: 'last_name') required final String lastName,
       @JsonKey(name: 'document_type')
       @DocumentTypeConverter()
@@ -883,13 +882,11 @@ abstract class _Profile implements Profile {
       @JsonKey(includeIfNull: false, name: 'is_address_setup_completed')
       final bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
-      final bool? isBankAccountSetupCompleted}) = _$ProfileImpl;
+      final bool? isBankAccountSetupCompleted,
+      @JsonKey(includeIfNull: false) final String? id}) = _$ProfileImpl;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
 
-  @override
-  @JsonKey(name: 'id')
-  String? get id;
   @override
   @JsonKey(name: 'first_name')
   String get firstName;
@@ -980,6 +977,9 @@ abstract class _Profile implements Profile {
   @override
   @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
   bool? get isBankAccountSetupCompleted;
+  @override
+  @JsonKey(includeIfNull: false)
+  String? get id;
   @override
   @JsonKey(ignore: true)
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
