@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -12,9 +11,8 @@ import 'package:you_might_need_work/injection.dart';
 
 /// A module for injecting HTTP client dependencies and SharedPreferences.
 ///
-/// This module provides access to Firebase and HTTP client dependencies,
-/// such as
-/// [FirebaseAuth], and [Dio],
+/// This module provides access to HTTP client dependencies,
+/// such as [Dio],
 /// which is a popular HTTP client for
 /// making network requests.
 /// It also configures the HTTP client with base options
@@ -23,7 +21,6 @@ import 'package:you_might_need_work/injection.dart';
 /// Example:
 ///
 /// ```dart
-/// final firebaseAuth = getIt<FirebaseAuth>();
 /// final httpClient =  getIt<Dio>();
 /// ```
 ///
@@ -31,17 +28,10 @@ import 'package:you_might_need_work/injection.dart';
 /// client dependencies using
 /// instances of [InjectableModule].
 /// This module is configured to provide
-/// singleton instances of [Dio], [FirebaseAuth], and a pre-configured
+/// singleton instances of [Dio], and a pre-configured
 /// [Dio] HTTP client for making network requests.
 @module
 abstract class InjectableModule {
-  /// Provides a [FirebaseAuth] instance as a lazy singleton.
-  ///
-  /// The [FirebaseAuth] instance is used for handling authentication and
-  /// authorization within a Firebase project.
-  @lazySingleton
-  FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
-
   /// Provides a [Dio] HTTP client as a lazy singleton.
   ///
   /// The [Dio] HTTP client is configured with base options,
