@@ -14,6 +14,7 @@ class PaymentMethodDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -39,20 +40,19 @@ class PaymentMethodDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppLocalizations.of(context).paymentMethod,
+                            localization.paymentMethod,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            AppLocalizations.of(context)
-                                .paymentMethodDescription,
+                            localization.paymentMethodDescription,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
                           const Gap(AppPadding.xl),
                           AppDropDownField(
-                            labelText: AppLocalizations.of(context).selectBank,
-                            hintText: AppLocalizations.of(context).selectOne,
+                            labelText: localization.selectBank,
+                            hintText: localization.selectOne,
                             formControl: paymentMethodForm.bankControl,
                             items: const [
                               'BANK_OF_AMERICA',
@@ -60,17 +60,15 @@ class PaymentMethodDataForm extends StatelessWidget {
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText:
-                                AppLocalizations.of(context).accountNumber,
-                            hintText: AppLocalizations.of(context)
-                                .enterYourAccountNumber,
+                            labelText: localization.accountNumber,
+                            hintText: localization.enterYourAccountNumber,
                             formControl: paymentMethodForm.accountNumberControl,
                             keyboardType: TextInputType.number,
                           ),
                           const Gap(AppPadding.xl),
                           AppDropDownField(
-                            labelText: AppLocalizations.of(context).accountType,
-                            hintText: AppLocalizations.of(context).selectOne,
+                            labelText: localization.accountType,
+                            hintText: localization.selectOne,
                             formControl: paymentMethodForm.accountTypeControl,
                             items: const [
                               'SAVINGS_ACCOUNT',
@@ -86,7 +84,7 @@ class PaymentMethodDataForm extends StatelessWidget {
                                     ? () =>
                                         InheritedPageViewForm.of(context).next()
                                     : null,
-                                text: AppLocalizations.of(context).next,
+                                text: localization.next,
                               );
                             },
                           ),

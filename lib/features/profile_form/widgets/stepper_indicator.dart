@@ -16,6 +16,7 @@ class StepperIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppPadding.xl,
@@ -25,7 +26,7 @@ class StepperIndicator extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context).appTitle,
+            localization.appTitle,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           const Gap(AppPadding.large),

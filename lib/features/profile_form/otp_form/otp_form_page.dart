@@ -46,6 +46,8 @@ class _OtpFormPageState extends State<OtpFormPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
+
     return ReactiveFormBuilder(
       form: () => form,
       builder: (context, form, _) {
@@ -55,7 +57,7 @@ class _OtpFormPageState extends State<OtpFormPage> {
             centerTitle: false,
             titleSpacing: AppPadding.xl,
             title: Text(
-              AppLocalizations.of(context).appTitle,
+              localization.appTitle,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
@@ -78,7 +80,7 @@ class _OtpFormPageState extends State<OtpFormPage> {
                                 )
                             : null
                         : () => context.pushNamed(UserTypeFormPage.routeName),
-                    text: AppLocalizations.of(context).next,
+                    text: localization.next,
                   );
                 },
               ),
@@ -92,8 +94,8 @@ class _OtpFormPageState extends State<OtpFormPage> {
                 children: [
                   Text(
                     widget.args.type == OtpFormType.phoneNumber
-                        ? AppLocalizations.of(context).enterYourPhoneNumber
-                        : AppLocalizations.of(context).confirmYourPhoneNumber,
+                        ? localization.enterYourPhoneNumber
+                        : localization.confirmYourPhoneNumber,
                     textAlign: TextAlign.start,
                     style: theme.textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.bold,
@@ -102,10 +104,8 @@ class _OtpFormPageState extends State<OtpFormPage> {
                   const Gap(AppPadding.xl),
                   Text(
                     widget.args.type == OtpFormType.phoneNumber
-                        ? AppLocalizations.of(context)
-                            .enterYourPhoneNumberDescription
-                        : AppLocalizations.of(context)
-                            .confirmYourPhoneNumberDescription,
+                        ? localization.enterYourPhoneNumberDescription
+                        : localization.confirmYourPhoneNumberDescription,
                     textAlign: TextAlign.start,
                     style: theme.textTheme.bodyMedium!
                         .copyWith(color: AppColors.grayGray2),
@@ -118,13 +118,11 @@ class _OtpFormPageState extends State<OtpFormPage> {
                         child: ReactivePhoneFormField<PhoneNumber>(
                           formControlName: 'phoneNumber',
                           decoration: InputDecoration(
-                            hintText: AppLocalizations.of(context)
-                                .enterYourPhoneNumber,
+                            hintText: localization.enterYourPhoneNumber,
                           ),
                           validationMessages: {
                             PhoneValidationMessage.required: (_) =>
-                                AppLocalizations.of(context)
-                                    .phoneNumberIsRequired,
+                                localization.phoneNumberIsRequired,
                           },
                           countrySelectorNavigator:
                               CountrySelectorNavigator.searchDelegate(

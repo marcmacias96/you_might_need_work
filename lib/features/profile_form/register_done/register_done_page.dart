@@ -17,12 +17,14 @@ class RegisterDonePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: AppColors.primary1,
         title: Text(
-          AppLocalizations.of(context).appTitle,
+          localization.appTitle,
           style: theme.textTheme.bodyMedium!.copyWith(
             color: AppColors.white,
             fontWeight: FontWeight.bold,
@@ -53,7 +55,7 @@ class RegisterDonePage extends StatelessWidget {
                     SvgPicture.asset(Images.womanWithBoard),
                     const Gap(AppPadding.xxl),
                     Text(
-                      AppLocalizations.of(context).completeRegistration,
+                      localization.completeRegistration,
                       style: theme.textTheme.titleLarge,
                     ),
                     const Gap(AppPadding.xl),
@@ -67,7 +69,7 @@ class RegisterDonePage extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: AppLocalizations.of(context).appTitle,
+                            text: localization.appTitle,
                             style: theme.textTheme.bodyMedium!.copyWith(
                               fontWeight: FontWeight.bold,
                             ),

@@ -16,6 +16,7 @@ class CompanyDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -38,7 +39,7 @@ class CompanyDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppLocalizations.of(context).company,
+                            localization.company,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.titleLarge,
                           ),
@@ -59,17 +60,14 @@ class CompanyDataForm extends StatelessWidget {
                               ),
                               const Gap(AppPadding.xl),
                               Text(
-                                AppLocalizations.of(context)
-                                    .uploadYourProfilePhoto,
+                                localization.uploadYourProfilePhoto,
                               ),
                             ],
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText:
-                                AppLocalizations.of(context).nameOfTheCompany,
-                            hintText:
-                                AppLocalizations.of(context).enterYourName,
+                            labelText: localization.nameOfTheCompany,
+                            hintText: localization.enterYourName,
                             formControl: state
                                 .profileForm!.companyDataForm.companyControl,
                           ),
@@ -82,7 +80,7 @@ class CompanyDataForm extends StatelessWidget {
                                     form.companyDataForm.currentForm.valid
                                         ? InheritedPageViewForm.of(context).next
                                         : null,
-                                text: AppLocalizations.of(context).next,
+                                text: localization.next,
                               );
                             },
                           ),

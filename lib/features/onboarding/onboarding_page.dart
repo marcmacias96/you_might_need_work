@@ -70,6 +70,7 @@ class Onboarding extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final actualStep = context.watch<PageViewPositionCubit>().state;
+    final localization = AppLocalizations.of(context);
 
     return Scaffold(
       backgroundColor: AppColors.primary1,
@@ -89,7 +90,7 @@ class Onboarding extends StatelessWidget {
                     GestureDetector(
                       onTap: InheritedPageViewForm.of(context).back,
                       child: Text(
-                        AppLocalizations.of(context).back,
+                        localization.back,
                         style: theme.textTheme.headlineMedium!
                             .copyWith(color: AppColors.grayGray1),
                       ),
@@ -104,7 +105,7 @@ class Onboarding extends StatelessWidget {
                       );
                     },
                     child: Text(
-                      AppLocalizations.of(context).skip,
+                      localization.skip,
                       style: theme.textTheme.headlineMedium!
                           .copyWith(color: AppColors.grayGray1),
                     ),
@@ -118,8 +119,8 @@ class Onboarding extends StatelessWidget {
                 children: [
                   Text(
                     args!.onboardingType == OnboardingType.firstOnboarding
-                        ? AppLocalizations.of(context).firstOnboardingTitle
-                        : AppLocalizations.of(context).secondOnboardingTitle,
+                        ? localization.firstOnboardingTitle
+                        : localization.secondOnboardingTitle,
                     style: theme.textTheme.headlineLarge!.copyWith(
                       color: AppColors.white,
                       fontWeight: FontWeight.bold,
@@ -134,10 +135,8 @@ class Onboarding extends StatelessWidget {
                     ),
                     child: Text(
                       args!.onboardingType == OnboardingType.firstOnboarding
-                          ? AppLocalizations.of(context)
-                              .fisrtOnboardingDescription
-                          : AppLocalizations.of(context)
-                              .secondOnboardingDescription,
+                          ? localization.fisrtOnboardingDescription
+                          : localization.secondOnboardingDescription,
                       style: theme.textTheme.bodyLarge!.copyWith(
                         color: AppColors.white,
                       ),

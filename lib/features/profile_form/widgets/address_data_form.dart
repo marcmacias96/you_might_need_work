@@ -15,6 +15,7 @@ class AddressDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -37,21 +38,20 @@ class AddressDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppLocalizations.of(context).address,
+                            localization.address,
                             textAlign: TextAlign.start,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            AppLocalizations.of(context).enterYourAddress,
+                            localization.enterYourAddress,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
                           const Gap(AppPadding.big),
                           AppFormInput(
-                            labelText: AppLocalizations.of(context).address,
+                            labelText: localization.address,
                             prefixIcon: Images.locationPin,
-                            hintText:
-                                AppLocalizations.of(context).enterYourAddress,
+                            hintText: localization.enterYourAddress,
                             formControl:
                                 state.profileForm!.addressForm.addressControl,
                           ),
@@ -63,7 +63,7 @@ class AddressDataForm extends StatelessWidget {
                                 onPressed: form.addressForm.currentForm.valid
                                     ? InheritedPageViewForm.of(context).next
                                     : null,
-                                text: AppLocalizations.of(context).next,
+                                text: localization.next,
                               );
                             },
                           ),

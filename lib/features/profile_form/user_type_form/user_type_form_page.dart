@@ -15,13 +15,15 @@ class UserTypeFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: false,
         titleSpacing: AppPadding.xl,
         title: Text(
-          AppLocalizations.of(context).appTitle,
+          localization.appTitle,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
@@ -35,7 +37,7 @@ class UserTypeFormPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                AppLocalizations.of(context).selectUserTitle,
+                localization.selectUserTitle,
                 style: theme.textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -44,7 +46,7 @@ class UserTypeFormPage extends StatelessWidget {
                 height: AppPadding.big,
               ),
               Text(
-                AppLocalizations.of(context).enterYourDetails,
+                localization.enterYourDetails,
                 textAlign: TextAlign.start,
                 style: theme.textTheme.bodyMedium!
                     .copyWith(color: AppColors.grayGray2),
@@ -77,7 +79,7 @@ class UserTypeFormPage extends StatelessWidget {
                             height: AppPadding.small,
                           ),
                           Text(
-                            AppLocalizations.of(context).company,
+                            localization.company,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -89,8 +91,7 @@ class UserTypeFormPage extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  AppLocalizations.of(context)
-                                      .companyDescription,
+                                  localization.companyDescription,
                                   style: theme.textTheme.labelSmall,
                                 ),
                               ),
@@ -129,7 +130,7 @@ class UserTypeFormPage extends StatelessWidget {
                             height: AppPadding.small,
                           ),
                           Text(
-                            AppLocalizations.of(context).worker,
+                            localization.worker,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -141,8 +142,7 @@ class UserTypeFormPage extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  AppLocalizations.of(context)
-                                      .workerDescription,
+                                  localization.workerDescription,
                                   style: theme.textTheme.labelSmall,
                                 ),
                               ),

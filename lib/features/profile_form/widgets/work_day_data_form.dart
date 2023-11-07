@@ -15,6 +15,7 @@ class WorkDayDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -39,21 +40,19 @@ class WorkDayDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppLocalizations.of(context).yourWorkDay,
+                            localization.yourWorkDay,
                             textAlign: TextAlign.start,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            AppLocalizations.of(context).enterYourDetailsWork,
+                            localization.enterYourDetailsWork,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText:
-                                AppLocalizations.of(context).defaultCapacity,
-                            hintText:
-                                AppLocalizations.of(context).enterYourCapacity,
+                            labelText: localization.defaultCapacity,
+                            hintText: localization.enterYourCapacity,
                             formControl: workDayDataForm.capacityControl,
                             keyboardType: const TextInputType.numberWithOptions(
                               decimal: true,
@@ -61,13 +60,12 @@ class WorkDayDataForm extends StatelessWidget {
                           ),
                           const Gap(AppPadding.big),
                           Text(
-                            AppLocalizations.of(context)
-                                .capacityValidationDescription,
+                            localization.capacityValidationDescription,
                             style: theme.textTheme.labelSmall,
                           ),
                           const Gap(AppPadding.xl),
                           Text(
-                            AppLocalizations.of(context).daysYouWork,
+                            localization.daysYouWork,
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall!
@@ -89,7 +87,7 @@ class WorkDayDataForm extends StatelessWidget {
                                     ? () =>
                                         InheritedPageViewForm.of(context).next()
                                     : null,
-                                text: AppLocalizations.of(context).next,
+                                text: localization.next,
                               );
                             },
                           ),

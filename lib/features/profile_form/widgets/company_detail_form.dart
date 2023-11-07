@@ -15,6 +15,7 @@ class CompanyDetailForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -37,54 +38,48 @@ class CompanyDetailForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppLocalizations.of(context).companyDetails,
+                            localization.companyDetails,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.titleLarge,
                           ),
                           const Gap(AppPadding.medium),
                           Text(
-                            AppLocalizations.of(context)
-                                .companyDetailsDescription,
+                            localization.companyDetailsDescription,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText: AppLocalizations.of(context).industry,
-                            hintText: AppLocalizations.of(context).selectOne,
+                            labelText: localization.industry,
+                            hintText: localization.selectOne,
                             formControl: state
                                 .profileForm!.companyDetailForm.industryControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
-                            labelText: AppLocalizations.of(context).title,
-                            hintText:
-                                AppLocalizations.of(context).enterYourTitle,
+                            labelText: localization.title,
+                            hintText: localization.enterYourTitle,
                             formControl: state
                                 .profileForm!.companyDetailForm.titleControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
-                            labelText: AppLocalizations.of(context).description,
-                            hintText: AppLocalizations.of(context)
-                                .enterYourDescription,
+                            labelText: localization.description,
+                            hintText: localization.enterYourDescription,
                             formControl: state.profileForm!.companyDetailForm
                                 .descriptionControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
-                            labelText: AppLocalizations.of(context).ocupation,
-                            hintText: AppLocalizations.of(context)
-                                .selectTheOccupationYouNeed,
+                            labelText: localization.ocupation,
+                            hintText: localization.selectTheOccupationYouNeed,
                             formControl: state.profileForm!.companyDetailForm
                                 .occupationControl,
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
-                            labelText:
-                                AppLocalizations.of(context).specialization,
-                            hintText: AppLocalizations.of(context)
-                                .enterYourSpecialization,
+                            labelText: localization.specialization,
+                            hintText: localization.enterYourSpecialization,
                             formControl: state.profileForm!.companyDetailForm
                                 .specializationControl,
                           ),
@@ -93,10 +88,8 @@ class CompanyDetailForm extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: AppDateInput(
-                                  labelText:
-                                      AppLocalizations.of(context).startingAt,
-                                  hintText:
-                                      AppLocalizations.of(context).selectDate,
+                                  labelText: localization.startingAt,
+                                  hintText: localization.selectDate,
                                   formControl: state.profileForm!
                                       .companyDetailForm.statingAtControl,
                                 ),
@@ -104,10 +97,8 @@ class CompanyDetailForm extends StatelessWidget {
                               const Gap(AppPadding.large),
                               Expanded(
                                 child: AppDateInput(
-                                  labelText:
-                                      AppLocalizations.of(context).endingAt,
-                                  hintText:
-                                      AppLocalizations.of(context).selectDate,
+                                  labelText: localization.endingAt,
+                                  hintText: localization.selectDate,
                                   formControl: state.profileForm!
                                       .companyDetailForm.endingAtControl,
                                 ),
@@ -119,32 +110,28 @@ class CompanyDetailForm extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: AppFormInput(
-                                  labelText: AppLocalizations.of(context)
-                                      .paymentForHour,
+                                  labelText: localization.paymentForHour,
                                   hintText: '0',
                                   formControl: state.profileForm!
                                       .companyDetailForm.paymentForHourControl,
                                   keyboardType: TextInputType.number,
                                   validationMessages: {
                                     ValidationMessage.number: (_) =>
-                                        AppLocalizations.of(context)
-                                            .mustBeNumbers,
+                                        localization.mustBeNumbers,
                                   },
                                 ),
                               ),
                               const Gap(AppPadding.large),
                               Expanded(
                                 child: AppFormInput(
-                                  labelText: AppLocalizations.of(context)
-                                      .hoursRequired,
+                                  labelText: localization.hoursRequired,
                                   hintText: '0',
                                   formControl: state.profileForm!
                                       .companyDetailForm.hoursRequiredControl,
                                   keyboardType: TextInputType.number,
                                   validationMessages: {
                                     ValidationMessage.number: (_) =>
-                                        AppLocalizations.of(context)
-                                            .mustBeNumbers,
+                                        localization.mustBeNumbers,
                                   },
                                 ),
                               ),
@@ -159,7 +146,7 @@ class CompanyDetailForm extends StatelessWidget {
                                     form.companyDetailForm.currentForm.valid
                                         ? InheritedPageViewForm.of(context).next
                                         : null,
-                                text: AppLocalizations.of(context).next,
+                                text: localization.next,
                               );
                             },
                           ),
