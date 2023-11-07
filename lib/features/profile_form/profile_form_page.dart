@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:you_might_need_work/data/profile/enums/enums.dart';
-import 'package:you_might_need_work/features/profile_form/cubit/profile_form_cubit.dart';
+import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/profile_form/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/models/models.dart';
 import 'package:you_might_need_work/features/profile_form/register_done/register_done.dart';
@@ -14,13 +13,13 @@ import 'package:you_might_need_work/utils/utils.dart';
 
 class ProfileFormArgs extends Equatable {
   const ProfileFormArgs({
-    required this.profileType,
+    required this.steps,
   });
 
-  final UserType profileType;
+  final List<ProfileFormSections> steps;
 
   @override
-  List<Object?> get props => [profileType];
+  List<Object?> get props => [steps];
 }
 
 class ProfileFormPage extends HookWidget {
@@ -37,9 +36,7 @@ class ProfileFormPage extends HookWidget {
   Widget build(BuildContext context) {
     final pageController = usePageController();
     final actualStep = context.watch<PageViewPositionCubit>().state;
-    final actualForm = args.profileType == UserType.company
-        ? CompanyForm.values as List<ProfileFormSections>
-        : WorkerForm.values;
+  
 
     return BlocProvider(
       create: (context) => getIt<ProfileFormCubit>(),
@@ -48,7 +45,7 @@ class ProfileFormPage extends HookWidget {
           context,
           controller: pageController,
           actualStep: actualStep,
-          totalSteps: actualForm.length,
+          totalSteps: args.steps.length,
         ),
         back: () => _previousPage(pageController),
         child: ProfileFormBuilder(
@@ -61,7 +58,7 @@ class ProfileFormPage extends HookWidget {
                   children: [
                     StepperIndicator(
                       actualStep: actualStep,
-                      totalSteps: actualForm.length,
+                      totalSteps: args.steps.length,
                     ),
                     Expanded(
                       child: PageView(
@@ -71,7 +68,7 @@ class ProfileFormPage extends HookWidget {
                             .read<PageViewPositionCubit>()
                             .positionUpdated(pos),
                         children: [
-                          for (final section in actualForm) section.widget,
+                          for (final section in args.steps) section.widget,
                         ],
                       ),
                     ),

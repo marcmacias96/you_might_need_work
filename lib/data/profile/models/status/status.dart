@@ -1,5 +1,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:you_might_need_work/data/profile/enums/enums.dart';
+import 'package:you_might_need_work/data/profile/helpers/helpers.dart';
 
 part 'status.freezed.dart';
 part 'status.g.dart';
@@ -8,7 +10,8 @@ part 'status.g.dart';
 class Status with _$Status {
   factory Status({
         required String display,
-        required String value,
+        @OnboardingStatusConverter()
+        required OnboardingStatus value,
         @JsonKey(name: 'require_action')
         required bool requireAction,
         required String message,

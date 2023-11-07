@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:you_might_need_work/assets/assets.dart';
-import 'package:you_might_need_work/data/profile/enums/enums.dart';
+import 'package:you_might_need_work/features/profile_form/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/profile_form.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 
@@ -67,7 +67,7 @@ class UserTypeFormPage extends StatelessWidget {
                         context.pushNamed(
                           ProfileFormPage.routeName,
                           extra: const ProfileFormArgs(
-                            profileType: UserType.company,
+                            steps: CompanyForm.values,
                           ),
                         );
                       },
@@ -118,7 +118,7 @@ class UserTypeFormPage extends StatelessWidget {
                         context.pushNamed(
                           ProfileFormPage.routeName,
                           extra: const ProfileFormArgs(
-                            profileType: UserType.employee,
+                            steps: WorkerForm.values,
                           ),
                         );
                       },

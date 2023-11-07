@@ -8,6 +8,7 @@ enum OnboardingStep {
 
   const OnboardingStep(this.value);
   final String value;
+  
   static OnboardingStep fromString(String value) {
     return OnboardingStep.values.firstWhere(
       (element) => element.value == value,

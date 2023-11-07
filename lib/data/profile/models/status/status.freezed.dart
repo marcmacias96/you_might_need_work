@@ -21,7 +21,8 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Status {
   String get display => throw _privateConstructorUsedError;
-  String get value => throw _privateConstructorUsedError;
+  @OnboardingStatusConverter()
+  OnboardingStatus get value => throw _privateConstructorUsedError;
   @JsonKey(name: 'require_action')
   bool get requireAction => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
@@ -38,7 +39,7 @@ abstract class $StatusCopyWith<$Res> {
   @useResult
   $Res call(
       {String display,
-      String value,
+      @OnboardingStatusConverter() OnboardingStatus value,
       @JsonKey(name: 'require_action') bool requireAction,
       String message});
 }
@@ -69,7 +70,7 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String,
+              as OnboardingStatus,
       requireAction: null == requireAction
           ? _value.requireAction
           : requireAction // ignore: cast_nullable_to_non_nullable
@@ -91,7 +92,7 @@ abstract class _$$StatusImplCopyWith<$Res> implements $StatusCopyWith<$Res> {
   @useResult
   $Res call(
       {String display,
-      String value,
+      @OnboardingStatusConverter() OnboardingStatus value,
       @JsonKey(name: 'require_action') bool requireAction,
       String message});
 }
@@ -120,7 +121,7 @@ class __$$StatusImplCopyWithImpl<$Res>
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String,
+              as OnboardingStatus,
       requireAction: null == requireAction
           ? _value.requireAction
           : requireAction // ignore: cast_nullable_to_non_nullable
@@ -138,7 +139,7 @@ class __$$StatusImplCopyWithImpl<$Res>
 class _$StatusImpl implements _Status {
   _$StatusImpl(
       {required this.display,
-      required this.value,
+      @OnboardingStatusConverter() required this.value,
       @JsonKey(name: 'require_action') required this.requireAction,
       required this.message});
 
@@ -148,7 +149,8 @@ class _$StatusImpl implements _Status {
   @override
   final String display;
   @override
-  final String value;
+  @OnboardingStatusConverter()
+  final OnboardingStatus value;
   @override
   @JsonKey(name: 'require_action')
   final bool requireAction;
@@ -194,7 +196,7 @@ class _$StatusImpl implements _Status {
 abstract class _Status implements Status {
   factory _Status(
       {required final String display,
-      required final String value,
+      @OnboardingStatusConverter() required final OnboardingStatus value,
       @JsonKey(name: 'require_action') required final bool requireAction,
       required final String message}) = _$StatusImpl;
 
@@ -203,7 +205,8 @@ abstract class _Status implements Status {
   @override
   String get display;
   @override
-  String get value;
+  @OnboardingStatusConverter()
+  OnboardingStatus get value;
   @override
   @JsonKey(name: 'require_action')
   bool get requireAction;

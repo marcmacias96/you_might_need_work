@@ -8,7 +8,8 @@ part of 'status.dart';
 
 _$StatusImpl _$$StatusImplFromJson(Map<String, dynamic> json) => _$StatusImpl(
       display: json['display'] as String,
-      value: json['value'] as String,
+      value:
+          const OnboardingStatusConverter().fromJson(json['value'] as String),
       requireAction: json['require_action'] as bool,
       message: json['message'] as String,
     );
@@ -16,7 +17,7 @@ _$StatusImpl _$$StatusImplFromJson(Map<String, dynamic> json) => _$StatusImpl(
 Map<String, dynamic> _$$StatusImplToJson(_$StatusImpl instance) =>
     <String, dynamic>{
       'display': instance.display,
-      'value': instance.value,
+      'value': const OnboardingStatusConverter().toJson(instance.value),
       'require_action': instance.requireAction,
       'message': instance.message,
     };
