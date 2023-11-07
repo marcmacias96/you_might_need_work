@@ -6,10 +6,8 @@ abstract class IBankAccountRepository {
   Future<Either<CoreFailure, List<BankAccount>>> getBanksAccounts();
   Future<Either<CoreFailure, Unit>> createBankAccount(
     BankAccount bankAccount,
-    int profileId,
   );
   Future<Either<CoreFailure, Unit>> updateBankAccount(
     BankAccount bankAccount,
-    int bankAccountId,
   );
 }

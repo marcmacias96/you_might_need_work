@@ -5,28 +5,27 @@ import 'package:you_might_need_work/data/bank_account/i_bank_account_repository.
 import 'package:you_might_need_work/data/bank_account/models/bank_account.dart';
 import 'package:you_might_need_work/data/core/helpers/endpoints.dart';
 import 'package:you_might_need_work/data/core/models/core_failure/core_failure.dart';
+import 'package:you_might_need_work/data/local/local.dart';
 
 @LazySingleton(as: IBankAccountRepository)
 class BankAccountRepository implements IBankAccountRepository {
-  BankAccountRepository({required Dio dio}) : _dio = dio;
+  BankAccountRepository({
+    required Dio dio,
+    required ILocalRepository localRepository,
+  })  : _dio = dio,
+        _localRepository = localRepository;
 
   final Dio _dio;
-
+  final ILocalRepository _localRepository;
   @override
   Future<Either<CoreFailure, Unit>> createBankAccount(
     BankAccount bankAccount,
-    int profileId,
   ) async {
     try {
+      final userId = _localRepository.getUserId();
       final response = await _dio.post<dynamic>(
         Endpoints.createBankAccount,
-        data: BankAccount(
-          user: profileId,
-          bank: bankAccount.bank,
-          accountNumber: bankAccount.accountNumber,
-          accountType: bankAccount.accountType,
-          bankDefault: bankAccount.bankDefault,
-        ).toJson(),
+        data: bankAccount.copyWith(user: userId!).toJson(),
       );
       if (response.data == null) {
         return left(const CoreFailure.unexpected());
@@ -62,18 +61,11 @@ class BankAccountRepository implements IBankAccountRepository {
   @override
   Future<Either<CoreFailure, Unit>> updateBankAccount(
     BankAccount bankAccount,
-    int bankAccountId,
   ) async {
     try {
       final response = await _dio.post<dynamic>(
         Endpoints.updateBankAccount,
-        data: {
-          'bank_account': bankAccountId,
-          'bank': bankAccount.bank,
-          'account_number': bankAccount.accountNumber,
-          'account_type': bankAccount.accountType,
-          'default': bankAccount.bankDefault,
-        },
+        data: bankAccount.toJson(),
       );
       if (response.data == null) {
         return left(const CoreFailure.unexpected());
