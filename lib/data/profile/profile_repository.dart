@@ -32,4 +32,19 @@ class ProfileRepository implements IProfileRepository {
       return left(const CoreFailure.unexpected());
     }
   }
+
+  @override
+  Future<Either<CoreFailure, Unit>> updateProfile(Profile profile) async {
+    try {
+      await _dio.post<dynamic>(
+        Endpoints.updateUser,
+        data: profile.toJson(),
+      );
+      return right(unit);
+    } on DioException catch (_) {
+      return left(const CoreFailure.serverError());
+    } catch (_) {
+      return left(const CoreFailure.unexpected());
+    }
+  }
 }

@@ -7,4 +7,5 @@ mixin Endpoints {
   static const String getBanksAccounts = '/users/bank-accounts/';
   static const String createBankAccount = '/users/bank-accounts/create/';
   static const String updateBankAccount = '/users/bank-accounts/update/';
+  static const String updateUser = '/users/update/';
 }
