@@ -1,8 +1,7 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -71,6 +70,7 @@ class Onboarding extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final actualStep = context.watch<PageViewPositionCubit>().state;
+    final localization = AppLocalizations.of(context);
 
     return Scaffold(
       backgroundColor: AppColors.primary1,
@@ -90,7 +90,7 @@ class Onboarding extends StatelessWidget {
                     GestureDetector(
                       onTap: InheritedPageViewForm.of(context).back,
                       child: Text(
-                        'BACK',
+                        localization.back,
                         style: theme.textTheme.headlineMedium!
                             .copyWith(color: AppColors.grayGray1),
                       ),
@@ -105,7 +105,7 @@ class Onboarding extends StatelessWidget {
                       );
                     },
                     child: Text(
-                      'SKIP',
+                      localization.skip,
                       style: theme.textTheme.headlineMedium!
                           .copyWith(color: AppColors.grayGray1),
                     ),
@@ -119,8 +119,8 @@ class Onboarding extends StatelessWidget {
                 children: [
                   Text(
                     args!.onboardingType == OnboardingType.firstOnboarding
-                        ? 'Schedule Your Jobs'
-                        : 'Manage Your Job',
+                        ? localization.firstOnboardingTitle
+                        : localization.secondOnboardingTitle,
                     style: theme.textTheme.headlineLarge!.copyWith(
                       color: AppColors.white,
                       fontWeight: FontWeight.bold,
@@ -135,8 +135,8 @@ class Onboarding extends StatelessWidget {
                     ),
                     child: Text(
                       args!.onboardingType == OnboardingType.firstOnboarding
-                          ? 'It is a long established fact that a reader will be distracted by the readable content of a page when looking.'
-                          : 'It is a long established fact that a reader will be distracted by the readable content of a page when looking.',
+                          ? localization.fisrtOnboardingDescription
+                          : localization.secondOnboardingDescription,
                       style: theme.textTheme.bodyLarge!.copyWith(
                         color: AppColors.white,
                       ),

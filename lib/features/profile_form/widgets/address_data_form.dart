@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:you_might_need_work/assets/assets.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/profile_form_cubit.dart';
@@ -14,6 +15,7 @@ class AddressDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -36,20 +38,20 @@ class AddressDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Address',
+                            localization.address,
                             textAlign: TextAlign.start,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            'Enter your address',
+                            localization.enterYourAddress,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
                           const Gap(AppPadding.big),
                           AppFormInput(
-                            labelText: 'Address',
+                            labelText: localization.address,
                             prefixIcon: Images.locationPin,
-                            hintText: 'Enter your address',
+                            hintText: localization.enterYourAddress,
                             formControl:
                                 state.profileForm!.addressForm.addressControl,
                           ),
@@ -61,7 +63,7 @@ class AddressDataForm extends StatelessWidget {
                                 onPressed: form.addressForm.currentForm.valid
                                     ? InheritedPageViewForm.of(context).next
                                     : null,
-                                text: 'Continue',
+                                text: localization.next,
                               );
                             },
                           ),

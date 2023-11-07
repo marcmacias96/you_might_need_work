@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
@@ -15,6 +16,7 @@ class StepperIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppPadding.xl,
@@ -24,7 +26,7 @@ class StepperIndicator extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'You Might Need Work',
+            localization.appTitle,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           const Gap(AppPadding.large),
@@ -36,7 +38,9 @@ class StepperIndicator extends StatelessWidget {
                 ),
               ),
               const Gap(AppPadding.large),
-              Text('Steps $actualStep/$totalSteps'),
+              Text(
+                '${AppLocalizations.of(context).step} $actualStep/$totalSteps',
+              ),
             ],
           ),
         ],

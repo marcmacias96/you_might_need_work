@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/data/profile/enums/enums.dart';
@@ -15,6 +16,7 @@ class IdentityDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -38,12 +40,12 @@ class IdentityDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Identity data',
+                            localization.identityData,
                             textAlign: TextAlign.start,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            'Enter your details below',
+                            localization.enterYourDetails,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
@@ -51,27 +53,27 @@ class IdentityDataForm extends StatelessWidget {
                           AppFormInput(
                             formControl:
                                 state.profileForm!.identityDataForm.nameControl,
-                            labelText: 'Name',
-                            hintText: 'Enter your name',
+                            labelText: localization.name,
+                            hintText: localization.enterYourName,
                             validationMessages: {
                               ValidationMessage.required: (_) =>
-                                  'The name must not be empty',
+                                  localization.theFieldCannotBeEmpty,
                             },
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
                             formControl: identityForm.lastNameControl,
-                            labelText: 'Last name',
-                            hintText: 'Enter your last name',
+                            labelText: localization.lastName,
+                            hintText: localization.enterYourLastName,
                             validationMessages: {
                               ValidationMessage.required: (_) =>
-                                  'The last name must not be empty',
+                                  localization.theFieldCannotBeEmpty,
                             },
                           ),
                           const Gap(AppPadding.xl),
                           AppDropDownField(
-                            labelText: 'Document type',
-                            hintText: 'Select one',
+                            labelText: localization.documentType,
+                            hintText: localization.selectOne,
                             formControl: identityForm.documentTypeControl,
                             items:
                                 DocumentType.values.map((e) => e.type).toList(),
@@ -79,22 +81,22 @@ class IdentityDataForm extends StatelessWidget {
                           const Gap(AppPadding.xl),
                           AppFormInput(
                             formControl: identityForm.documentNumberControl,
-                            labelText: 'Document number',
-                            hintText: 'Enter your document number',
+                            labelText: localization.documentNumber,
+                            hintText: localization.enterDocumentNumber,
                             validationMessages: {
                               ValidationMessage.required: (_) =>
-                                  'The document number must not be empty',
+                                  localization.theFieldCannotBeEmpty,
                             },
                             keyboardType: TextInputType.number,
                           ),
                           const Gap(AppPadding.xl),
                           AppDateInput(
-                            labelText: 'Document issue date',
-                            hintText: 'Select an issue date',
+                            labelText: localization.documentIssueDate,
+                            hintText: localization.selectIssueDate,
                             formControl: identityForm.documentIssueDateControl,
                             validationMessages: {
                               ValidationMessage.required: (_) =>
-                                  'The date must not be empty',
+                                  localization.theFieldCannotBeEmpty,
                             },
                           ),
                           const Gap(AppPadding.xxl),
@@ -107,7 +109,7 @@ class IdentityDataForm extends StatelessWidget {
                                     ? () =>
                                         InheritedPageViewForm.of(context).next()
                                     : null,
-                                text: 'Continue',
+                                text: localization.next,
                               );
                             },
                           ),

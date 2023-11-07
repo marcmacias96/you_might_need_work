@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/profile_form/models/models.dart';
@@ -13,6 +14,7 @@ class PaymentMethodDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -38,19 +40,19 @@ class PaymentMethodDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Payment method',
+                            localization.paymentMethod,
                             textAlign: TextAlign.center,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            'Enter your bank details for your future payments',
+                            localization.paymentMethodDescription,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
                           const Gap(AppPadding.xl),
                           AppDropDownField(
-                            labelText: 'Select the bank',
-                            hintText: 'Select one',
+                            labelText: localization.selectBank,
+                            hintText: localization.selectOne,
                             formControl: paymentMethodForm.bankControl,
                             items: const [
                               'BANK_OF_AMERICA',
@@ -58,15 +60,15 @@ class PaymentMethodDataForm extends StatelessWidget {
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText: 'Account number',
-                            hintText: 'Enter your account number',
+                            labelText: localization.accountNumber,
+                            hintText: localization.enterYourAccountNumber,
                             formControl: paymentMethodForm.accountNumberControl,
                             keyboardType: TextInputType.number,
                           ),
                           const Gap(AppPadding.xl),
                           AppDropDownField(
-                            labelText: 'Account type',
-                            hintText: 'Select one',
+                            labelText: localization.accountType,
+                            hintText: localization.selectOne,
                             formControl: paymentMethodForm.accountTypeControl,
                             items: const [
                               'SAVINGS_ACCOUNT',
@@ -82,7 +84,7 @@ class PaymentMethodDataForm extends StatelessWidget {
                                     ? () =>
                                         InheritedPageViewForm.of(context).next()
                                     : null,
-                                text: 'Continue',
+                                text: localization.next,
                               );
                             },
                           ),

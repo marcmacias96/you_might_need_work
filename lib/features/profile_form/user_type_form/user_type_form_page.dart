@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:you_might_need_work/assets/assets.dart';
@@ -14,13 +15,15 @@ class UserTypeFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: false,
         titleSpacing: AppPadding.xl,
         title: Text(
-          'You Might Need Work',
+          localization.appTitle,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
@@ -34,7 +37,7 @@ class UserTypeFormPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'What type of user are you?',
+                localization.selectUserTitle,
                 style: theme.textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -43,7 +46,7 @@ class UserTypeFormPage extends StatelessWidget {
                 height: AppPadding.big,
               ),
               Text(
-                'Enter your details below',
+                localization.enterYourDetails,
                 textAlign: TextAlign.start,
                 style: theme.textTheme.bodyMedium!
                     .copyWith(color: AppColors.grayGray2),
@@ -76,7 +79,7 @@ class UserTypeFormPage extends StatelessWidget {
                             height: AppPadding.small,
                           ),
                           Text(
-                            'Company',
+                            localization.company,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -88,8 +91,7 @@ class UserTypeFormPage extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'You are looking to hire '
-                                  'workers for your project?',
+                                  localization.companyDescription,
                                   style: theme.textTheme.labelSmall,
                                 ),
                               ),
@@ -128,7 +130,7 @@ class UserTypeFormPage extends StatelessWidget {
                             height: AppPadding.small,
                           ),
                           Text(
-                            'Worker',
+                            localization.worker,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -140,7 +142,7 @@ class UserTypeFormPage extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Are you looking for a company to hire you?',
+                                  localization.workerDescription,
                                   style: theme.textTheme.labelSmall,
                                 ),
                               ),

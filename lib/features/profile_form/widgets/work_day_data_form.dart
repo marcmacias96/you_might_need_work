@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:you_might_need_work/data/profile/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
@@ -14,6 +15,7 @@ class WorkDayDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -38,19 +40,19 @@ class WorkDayDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Your work day',
+                            localization.yourWorkDay,
                             textAlign: TextAlign.start,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            'Enter the details of your work day',
+                            localization.enterYourDetailsWork,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText: 'Default capacity (total hours)',
-                            hintText: 'Enter your capacity',
+                            labelText: localization.defaultCapacity,
+                            hintText: localization.enterYourCapacity,
                             formControl: workDayDataForm.capacityControl,
                             keyboardType: const TextInputType.numberWithOptions(
                               decimal: true,
@@ -58,15 +60,12 @@ class WorkDayDataForm extends StatelessWidget {
                           ),
                           const Gap(AppPadding.big),
                           Text(
-                            'This data entry only allows specific values. '
-                            'You must enter one of the following values: 0, '
-                            '0.5, 1, 1.5, 2, 2.5, and so on up to 60. '
-                            'Any other value will not be accepted',
+                            localization.capacityValidationDescription,
                             style: theme.textTheme.labelSmall,
                           ),
                           const Gap(AppPadding.xl),
                           Text(
-                            'Days you work',
+                            localization.daysYouWork,
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall!
@@ -88,7 +87,7 @@ class WorkDayDataForm extends StatelessWidget {
                                     ? () =>
                                         InheritedPageViewForm.of(context).next()
                                     : null,
-                                text: 'Continue',
+                                text: localization.next,
                               );
                             },
                           ),

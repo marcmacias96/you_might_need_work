@@ -1,5 +1,8 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,6 +46,8 @@ class _OtpFormPageState extends State<OtpFormPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
+
     return ReactiveFormBuilder(
       form: () => form,
       builder: (context, form, _) {
@@ -52,7 +57,7 @@ class _OtpFormPageState extends State<OtpFormPage> {
             centerTitle: false,
             titleSpacing: AppPadding.xl,
             title: Text(
-              'You Might Need Work',
+              localization.appTitle,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
@@ -75,7 +80,7 @@ class _OtpFormPageState extends State<OtpFormPage> {
                                 )
                             : null
                         : () => context.pushNamed(UserTypeFormPage.routeName),
-                    text: 'Continue',
+                    text: localization.next,
                   );
                 },
               ),
@@ -89,8 +94,8 @@ class _OtpFormPageState extends State<OtpFormPage> {
                 children: [
                   Text(
                     widget.args.type == OtpFormType.phoneNumber
-                        ? 'Enter your phone number'
-                        : 'Confirm your phone number',
+                        ? localization.enterYourPhoneNumber
+                        : localization.confirmYourPhoneNumber,
                     textAlign: TextAlign.start,
                     style: theme.textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.bold,
@@ -99,10 +104,8 @@ class _OtpFormPageState extends State<OtpFormPage> {
                   const Gap(AppPadding.xl),
                   Text(
                     widget.args.type == OtpFormType.phoneNumber
-                        ? 'Enter your phone number, we will send you an '
-                            'authentication code'
-                        : 'Please enter the code we sent to your phone '
-                            '(406) 555-0120',
+                        ? localization.enterYourPhoneNumberDescription
+                        : localization.confirmYourPhoneNumberDescription,
                     textAlign: TextAlign.start,
                     style: theme.textTheme.bodyMedium!
                         .copyWith(color: AppColors.grayGray2),
@@ -114,12 +117,12 @@ class _OtpFormPageState extends State<OtpFormPage> {
                       child: AppShadow(
                         child: ReactivePhoneFormField<PhoneNumber>(
                           formControlName: 'phoneNumber',
-                          decoration: const InputDecoration(
-                            hintText: 'Enter your phone number',
+                          decoration: InputDecoration(
+                            hintText: localization.enterYourPhoneNumber,
                           ),
                           validationMessages: {
                             PhoneValidationMessage.required: (_) =>
-                                'Phone Number is required',
+                                localization.phoneNumberIsRequired,
                           },
                           countrySelectorNavigator:
                               CountrySelectorNavigator.searchDelegate(
@@ -179,7 +182,8 @@ class _OtpFormPageState extends State<OtpFormPage> {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Resend code in ',
+                                text:
+                                    '${AppLocalizations.of(context).resedCodeIn} ',
                                 style: theme.textTheme.bodyMedium!.copyWith(
                                   color: AppColors.grayGray2,
                                 ),

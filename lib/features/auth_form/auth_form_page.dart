@@ -1,6 +1,9 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/assets/assets.dart';
@@ -37,10 +40,10 @@ class AuthFormPage extends StatefulWidget {
 
 class _AuthFormPageState extends State<AuthFormPage> {
   final credentials = Credentials.empty();
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -69,8 +72,8 @@ class _AuthFormPageState extends State<AuthFormPage> {
                       children: [
                         Text(
                           widget.args.type == AuthFormType.login
-                              ? 'Sign In'
-                              : 'Sign Up',
+                              ? localization.signIn
+                              : localization.signUp,
                           textAlign: TextAlign.center,
                           style: theme.textTheme.titleLarge,
                         ),
@@ -93,13 +96,13 @@ class _AuthFormPageState extends State<AuthFormPage> {
                                 AppFormInput(
                                   prefixIcon: Images.email,
                                   formControl: formModel.emailControl,
-                                  labelText: 'E-mail',
-                                  hintText: 'Enter your email',
+                                  labelText: localization.email,
+                                  hintText: localization.enterYourEmail,
                                   validationMessages: {
                                     ValidationMessage.required: (_) =>
-                                        'The email must not be empty',
+                                        localization.emailMustNotBeEmpty,
                                     ValidationMessage.email: (_) =>
-                                        'The email must be valid',
+                                        localization.emailMustBeValid,
                                   },
                                 ),
                                 const SizedBox(height: AppPadding.big),
@@ -110,21 +113,20 @@ class _AuthFormPageState extends State<AuthFormPage> {
                                   obscureText: true,
                                   validationMessages: {
                                     ValidationMessage.required: (_) =>
-                                        'The password must not be empty',
+                                        localization.passwordMustNotBeEmpty,
                                     ValidationMessage.minLength: (_) =>
-                                        'The password must be'
-                                        ' at least 6 characters',
+                                        localization.passwordMustBe,
                                   },
                                   textInputAction: TextInputAction.done,
-                                  hintText: 'Password',
-                                  labelText: 'Password',
+                                  hintText: localization.password,
+                                  labelText: localization.password,
                                 ),
                                 const SizedBox(height: AppPadding.large),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Text(
-                                      'Forgot Password?',
+                                      localization.forgotPassword,
                                       style:
                                           theme.textTheme.bodyMedium!.copyWith(
                                         color: AppColors.grayGray1,
@@ -145,8 +147,8 @@ class _AuthFormPageState extends State<AuthFormPage> {
                                           : null,
                                       text:
                                           widget.args.type == AuthFormType.login
-                                              ? 'Sign In'
-                                              : 'Sign Up',
+                                              ? localization.signIn
+                                              : localization.signUp,
                                     );
                                   },
                                 ),
@@ -174,7 +176,8 @@ class _AuthFormPageState extends State<AuthFormPage> {
                                           TextSpan(
                                             children: [
                                               TextSpan(
-                                                text: 'Don’t Have Any Account?',
+                                                text: localization
+                                                    .dontHaveAnyAccount,
                                                 style: theme
                                                     .textTheme.bodyMedium!
                                                     .copyWith(
@@ -182,7 +185,8 @@ class _AuthFormPageState extends State<AuthFormPage> {
                                                 ),
                                               ),
                                               TextSpan(
-                                                text: '  Sign Up',
+                                                text:
+                                                    ' ${AppLocalizations.of(context).signUp}',
                                                 style: theme
                                                     .textTheme.bodyMedium!
                                                     .copyWith(
@@ -196,7 +200,8 @@ class _AuthFormPageState extends State<AuthFormPage> {
                                           TextSpan(
                                             children: [
                                               TextSpan(
-                                                text: 'You have an account?',
+                                                text: localization
+                                                    .youHaveAnAccount,
                                                 style: theme
                                                     .textTheme.bodyMedium!
                                                     .copyWith(
@@ -204,7 +209,8 @@ class _AuthFormPageState extends State<AuthFormPage> {
                                                 ),
                                               ),
                                               TextSpan(
-                                                text: '  Sign In',
+                                                text:
+                                                    ' ${AppLocalizations.of(context).signIn}',
                                                 style: theme
                                                     .textTheme.bodyMedium!
                                                     .copyWith(

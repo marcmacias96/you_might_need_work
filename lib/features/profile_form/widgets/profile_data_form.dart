@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:you_might_need_work/assets/assets.dart';
@@ -16,6 +17,7 @@ class ProfileDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -40,12 +42,12 @@ class ProfileDataForm extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Profile',
+                            localization.profile,
                             textAlign: TextAlign.start,
                             style: theme.textTheme.titleLarge,
                           ),
                           Text(
-                            'Enter your profile data',
+                            localization.enterYourProfile,
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(color: AppColors.grayGray2),
                           ),
@@ -67,13 +69,15 @@ class ProfileDataForm extends StatelessWidget {
                               const SizedBox(
                                 width: AppPadding.big,
                               ),
-                              const Text('Upload your profile photo'),
+                              Text(
+                                localization.uploadYourProfilePhoto,
+                              ),
                             ],
                           ),
                           const Gap(AppPadding.xl),
                           AppDropDownField(
-                            labelText: 'Level of study',
-                            hintText: 'Select one',
+                            labelText: localization.levelOfStudy,
+                            hintText: localization.selectOne,
                             formControl: profileDataForm.levelOfStudyControl,
                             items: EducationLevel.values
                                 .map((e) => e.value)
@@ -81,8 +85,8 @@ class ProfileDataForm extends StatelessWidget {
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText: 'Ocupation',
-                            hintText: 'Enter your ocupation',
+                            labelText: localization.ocupation,
+                            hintText: localization.enterYourOcupation,
                             formControl: profileDataForm.occupationControl,
                           ),
                           const Gap(AppPadding.xxl),
@@ -95,7 +99,7 @@ class ProfileDataForm extends StatelessWidget {
                                     ? () =>
                                         InheritedPageViewForm.of(context).next()
                                     : null,
-                                text: 'Continue',
+                                text: localization.next,
                               );
                             },
                           ),
