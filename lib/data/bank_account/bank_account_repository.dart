@@ -23,13 +23,10 @@ class BankAccountRepository implements IBankAccountRepository {
   ) async {
     try {
       final userId = _localRepository.getUserId();
-      final response = await _dio.post<dynamic>(
+      await _dio.post<dynamic>(
         Endpoints.createBankAccount,
         data: bankAccount.copyWith(user: userId!).toJson(),
       );
-      if (response.data == null) {
-        return left(const CoreFailure.unexpected());
-      }
       return right(unit);
     } on DioException catch (_) {
       return left(const CoreFailure.serverError());
@@ -63,13 +60,10 @@ class BankAccountRepository implements IBankAccountRepository {
     BankAccount bankAccount,
   ) async {
     try {
-      final response = await _dio.post<dynamic>(
+      await _dio.post<dynamic>(
         Endpoints.updateBankAccount,
         data: bankAccount.toJson(),
       );
-      if (response.data == null) {
-        return left(const CoreFailure.unexpected());
-      }
       return right(unit);
     } on DioException catch (_) {
       return left(const CoreFailure.serverError());
