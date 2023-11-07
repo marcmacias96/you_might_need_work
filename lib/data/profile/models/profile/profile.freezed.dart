@@ -26,28 +26,30 @@ mixin _$Profile {
   String get lastName => throw _privateConstructorUsedError;
   @JsonKey(name: 'document_type')
   @DocumentTypeConverter()
-  DocumentType get documentType => throw _privateConstructorUsedError;
+  DocumentType? get documentType => throw _privateConstructorUsedError;
   @JsonKey(name: 'document_number')
-  String get documentNumber => throw _privateConstructorUsedError;
+  String? get documentNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'raw_password')
-  String get rawPassword => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
+  String? get rawPassword => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
   @JsonKey(name: 'player_id')
-  String get playerId => throw _privateConstructorUsedError;
+  String? get playerId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_type')
   @UserTypeConverter()
-  UserType get userType => throw _privateConstructorUsedError;
+  UserType? get userType => throw _privateConstructorUsedError;
   @JsonKey(name: 'display_name')
-  String get displayName => throw _privateConstructorUsedError;
+  String? get displayName => throw _privateConstructorUsedError;
   @JsonKey(name: 'occupation_title')
-  String get occupationTitle => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
+  String? get occupationTitle => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'on_boarding')
+  Onboarding get onboarding => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_phone_validated')
+  @JsonKey(includeIfNull: false)
+  bool get isPhoneValidated => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_active')
   @JsonKey(includeIfNull: false)
   bool? get isActive => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_phone_validated')
-  @JsonKey(includeIfNull: false)
-  bool? get isPhoneValidated => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   String? get feedback => throw _privateConstructorUsedError;
   @JsonKey(name: 'default_capacity')
@@ -97,19 +99,20 @@ abstract class $ProfileCopyWith<$Res> {
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'document_type')
       @DocumentTypeConverter()
-      DocumentType documentType,
-      @JsonKey(name: 'document_number') String documentNumber,
-      @JsonKey(name: 'raw_password') String rawPassword,
-      String phone,
-      @JsonKey(name: 'player_id') String playerId,
-      @JsonKey(name: 'user_type') @UserTypeConverter() UserType userType,
-      @JsonKey(name: 'display_name') String displayName,
-      @JsonKey(name: 'occupation_title') String occupationTitle,
-      String address,
-      @JsonKey(name: 'is_active') @JsonKey(includeIfNull: false) bool? isActive,
+      DocumentType? documentType,
+      @JsonKey(name: 'document_number') String? documentNumber,
+      @JsonKey(name: 'raw_password') String? rawPassword,
+      String? phone,
+      @JsonKey(name: 'player_id') String? playerId,
+      @JsonKey(name: 'user_type') @UserTypeConverter() UserType? userType,
+      @JsonKey(name: 'display_name') String? displayName,
+      @JsonKey(name: 'occupation_title') String? occupationTitle,
+      String? address,
+      @JsonKey(name: 'on_boarding') Onboarding onboarding,
       @JsonKey(name: 'is_phone_validated')
       @JsonKey(includeIfNull: false)
-      bool? isPhoneValidated,
+      bool isPhoneValidated,
+      @JsonKey(name: 'is_active') @JsonKey(includeIfNull: false) bool? isActive,
       @JsonKey(includeIfNull: false) String? feedback,
       @JsonKey(name: 'default_capacity')
       @JsonKey(includeIfNull: false)
@@ -138,6 +141,8 @@ abstract class $ProfileCopyWith<$Res> {
       bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
       bool? isBankAccountSetupCompleted});
+
+  $OnboardingCopyWith<$Res> get onboarding;
 }
 
 /// @nodoc
@@ -155,17 +160,18 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   $Res call({
     Object? firstName = null,
     Object? lastName = null,
-    Object? documentType = null,
-    Object? documentNumber = null,
-    Object? rawPassword = null,
-    Object? phone = null,
-    Object? playerId = null,
-    Object? userType = null,
-    Object? displayName = null,
-    Object? occupationTitle = null,
-    Object? address = null,
+    Object? documentType = freezed,
+    Object? documentNumber = freezed,
+    Object? rawPassword = freezed,
+    Object? phone = freezed,
+    Object? playerId = freezed,
+    Object? userType = freezed,
+    Object? displayName = freezed,
+    Object? occupationTitle = freezed,
+    Object? address = freezed,
+    Object? onboarding = null,
+    Object? isPhoneValidated = null,
     Object? isActive = freezed,
-    Object? isPhoneValidated = freezed,
     Object? feedback = freezed,
     Object? defaultCapacity = freezed,
     Object? availableDays = freezed,
@@ -190,49 +196,53 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      documentType: null == documentType
+      documentType: freezed == documentType
           ? _value.documentType
           : documentType // ignore: cast_nullable_to_non_nullable
-              as DocumentType,
-      documentNumber: null == documentNumber
+              as DocumentType?,
+      documentNumber: freezed == documentNumber
           ? _value.documentNumber
           : documentNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      rawPassword: null == rawPassword
+              as String?,
+      rawPassword: freezed == rawPassword
           ? _value.rawPassword
           : rawPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      playerId: null == playerId
+              as String?,
+      playerId: freezed == playerId
           ? _value.playerId
           : playerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userType: null == userType
+              as String?,
+      userType: freezed == userType
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
-              as UserType,
-      displayName: null == displayName
+              as UserType?,
+      displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String,
-      occupationTitle: null == occupationTitle
+              as String?,
+      occupationTitle: freezed == occupationTitle
           ? _value.occupationTitle
           : occupationTitle // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
+              as String?,
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      onboarding: null == onboarding
+          ? _value.onboarding
+          : onboarding // ignore: cast_nullable_to_non_nullable
+              as Onboarding,
+      isPhoneValidated: null == isPhoneValidated
+          ? _value.isPhoneValidated
+          : isPhoneValidated // ignore: cast_nullable_to_non_nullable
+              as bool,
       isActive: freezed == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPhoneValidated: freezed == isPhoneValidated
-          ? _value.isPhoneValidated
-          : isPhoneValidated // ignore: cast_nullable_to_non_nullable
               as bool?,
       feedback: freezed == feedback
           ? _value.feedback
@@ -292,6 +302,14 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
               as bool?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OnboardingCopyWith<$Res> get onboarding {
+    return $OnboardingCopyWith<$Res>(_value.onboarding, (value) {
+      return _then(_value.copyWith(onboarding: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -306,19 +324,20 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       @JsonKey(name: 'last_name') String lastName,
       @JsonKey(name: 'document_type')
       @DocumentTypeConverter()
-      DocumentType documentType,
-      @JsonKey(name: 'document_number') String documentNumber,
-      @JsonKey(name: 'raw_password') String rawPassword,
-      String phone,
-      @JsonKey(name: 'player_id') String playerId,
-      @JsonKey(name: 'user_type') @UserTypeConverter() UserType userType,
-      @JsonKey(name: 'display_name') String displayName,
-      @JsonKey(name: 'occupation_title') String occupationTitle,
-      String address,
-      @JsonKey(name: 'is_active') @JsonKey(includeIfNull: false) bool? isActive,
+      DocumentType? documentType,
+      @JsonKey(name: 'document_number') String? documentNumber,
+      @JsonKey(name: 'raw_password') String? rawPassword,
+      String? phone,
+      @JsonKey(name: 'player_id') String? playerId,
+      @JsonKey(name: 'user_type') @UserTypeConverter() UserType? userType,
+      @JsonKey(name: 'display_name') String? displayName,
+      @JsonKey(name: 'occupation_title') String? occupationTitle,
+      String? address,
+      @JsonKey(name: 'on_boarding') Onboarding onboarding,
       @JsonKey(name: 'is_phone_validated')
       @JsonKey(includeIfNull: false)
-      bool? isPhoneValidated,
+      bool isPhoneValidated,
+      @JsonKey(name: 'is_active') @JsonKey(includeIfNull: false) bool? isActive,
       @JsonKey(includeIfNull: false) String? feedback,
       @JsonKey(name: 'default_capacity')
       @JsonKey(includeIfNull: false)
@@ -347,6 +366,9 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
       bool? isBankAccountSetupCompleted});
+
+  @override
+  $OnboardingCopyWith<$Res> get onboarding;
 }
 
 /// @nodoc
@@ -362,17 +384,18 @@ class __$$ProfileImplCopyWithImpl<$Res>
   $Res call({
     Object? firstName = null,
     Object? lastName = null,
-    Object? documentType = null,
-    Object? documentNumber = null,
-    Object? rawPassword = null,
-    Object? phone = null,
-    Object? playerId = null,
-    Object? userType = null,
-    Object? displayName = null,
-    Object? occupationTitle = null,
-    Object? address = null,
+    Object? documentType = freezed,
+    Object? documentNumber = freezed,
+    Object? rawPassword = freezed,
+    Object? phone = freezed,
+    Object? playerId = freezed,
+    Object? userType = freezed,
+    Object? displayName = freezed,
+    Object? occupationTitle = freezed,
+    Object? address = freezed,
+    Object? onboarding = null,
+    Object? isPhoneValidated = null,
     Object? isActive = freezed,
-    Object? isPhoneValidated = freezed,
     Object? feedback = freezed,
     Object? defaultCapacity = freezed,
     Object? availableDays = freezed,
@@ -397,49 +420,53 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      documentType: null == documentType
+      documentType: freezed == documentType
           ? _value.documentType
           : documentType // ignore: cast_nullable_to_non_nullable
-              as DocumentType,
-      documentNumber: null == documentNumber
+              as DocumentType?,
+      documentNumber: freezed == documentNumber
           ? _value.documentNumber
           : documentNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      rawPassword: null == rawPassword
+              as String?,
+      rawPassword: freezed == rawPassword
           ? _value.rawPassword
           : rawPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      playerId: null == playerId
+              as String?,
+      playerId: freezed == playerId
           ? _value.playerId
           : playerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userType: null == userType
+              as String?,
+      userType: freezed == userType
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
-              as UserType,
-      displayName: null == displayName
+              as UserType?,
+      displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String,
-      occupationTitle: null == occupationTitle
+              as String?,
+      occupationTitle: freezed == occupationTitle
           ? _value.occupationTitle
           : occupationTitle // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
+              as String?,
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      onboarding: null == onboarding
+          ? _value.onboarding
+          : onboarding // ignore: cast_nullable_to_non_nullable
+              as Onboarding,
+      isPhoneValidated: null == isPhoneValidated
+          ? _value.isPhoneValidated
+          : isPhoneValidated // ignore: cast_nullable_to_non_nullable
+              as bool,
       isActive: freezed == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPhoneValidated: freezed == isPhoneValidated
-          ? _value.isPhoneValidated
-          : isPhoneValidated // ignore: cast_nullable_to_non_nullable
               as bool?,
       feedback: freezed == feedback
           ? _value.feedback
@@ -518,10 +545,11 @@ class _$ProfileImpl implements _Profile {
       @JsonKey(name: 'display_name') required this.displayName,
       @JsonKey(name: 'occupation_title') required this.occupationTitle,
       required this.address,
-      @JsonKey(name: 'is_active') @JsonKey(includeIfNull: false) this.isActive,
+      @JsonKey(name: 'on_boarding') required this.onboarding,
       @JsonKey(name: 'is_phone_validated')
       @JsonKey(includeIfNull: false)
-      this.isPhoneValidated,
+      required this.isPhoneValidated,
+      @JsonKey(name: 'is_active') @JsonKey(includeIfNull: false) this.isActive,
       @JsonKey(includeIfNull: false) this.feedback,
       @JsonKey(name: 'default_capacity')
       @JsonKey(includeIfNull: false)
@@ -565,38 +593,41 @@ class _$ProfileImpl implements _Profile {
   @override
   @JsonKey(name: 'document_type')
   @DocumentTypeConverter()
-  final DocumentType documentType;
+  final DocumentType? documentType;
   @override
   @JsonKey(name: 'document_number')
-  final String documentNumber;
+  final String? documentNumber;
   @override
   @JsonKey(name: 'raw_password')
-  final String rawPassword;
+  final String? rawPassword;
   @override
-  final String phone;
+  final String? phone;
   @override
   @JsonKey(name: 'player_id')
-  final String playerId;
+  final String? playerId;
   @override
   @JsonKey(name: 'user_type')
   @UserTypeConverter()
-  final UserType userType;
+  final UserType? userType;
   @override
   @JsonKey(name: 'display_name')
-  final String displayName;
+  final String? displayName;
   @override
   @JsonKey(name: 'occupation_title')
-  final String occupationTitle;
+  final String? occupationTitle;
   @override
-  final String address;
+  final String? address;
+  @override
+  @JsonKey(name: 'on_boarding')
+  final Onboarding onboarding;
+  @override
+  @JsonKey(name: 'is_phone_validated')
+  @JsonKey(includeIfNull: false)
+  final bool isPhoneValidated;
   @override
   @JsonKey(name: 'is_active')
   @JsonKey(includeIfNull: false)
   final bool? isActive;
-  @override
-  @JsonKey(name: 'is_phone_validated')
-  @JsonKey(includeIfNull: false)
-  final bool? isPhoneValidated;
   @override
   @JsonKey(includeIfNull: false)
   final String? feedback;
@@ -662,7 +693,7 @@ class _$ProfileImpl implements _Profile {
 
   @override
   String toString() {
-    return 'Profile(firstName: $firstName, lastName: $lastName, documentType: $documentType, documentNumber: $documentNumber, rawPassword: $rawPassword, phone: $phone, playerId: $playerId, userType: $userType, displayName: $displayName, occupationTitle: $occupationTitle, address: $address, isActive: $isActive, isPhoneValidated: $isPhoneValidated, feedback: $feedback, defaultCapacity: $defaultCapacity, availableDays: $availableDays, registrationProvider: $registrationProvider, industries: $industries, educationLevel: $educationLevel, latitude: $latitude, longitude: $longitude, documentIssueDate: $documentIssueDate, isDocumentValidated: $isDocumentValidated, isBasicInfoSetupCompleted: $isBasicInfoSetupCompleted, isWorkScheduleSetupCompleted: $isWorkScheduleSetupCompleted, isAddressSetupCompleted: $isAddressSetupCompleted, isBankAccountSetupCompleted: $isBankAccountSetupCompleted)';
+    return 'Profile(firstName: $firstName, lastName: $lastName, documentType: $documentType, documentNumber: $documentNumber, rawPassword: $rawPassword, phone: $phone, playerId: $playerId, userType: $userType, displayName: $displayName, occupationTitle: $occupationTitle, address: $address, onboarding: $onboarding, isPhoneValidated: $isPhoneValidated, isActive: $isActive, feedback: $feedback, defaultCapacity: $defaultCapacity, availableDays: $availableDays, registrationProvider: $registrationProvider, industries: $industries, educationLevel: $educationLevel, latitude: $latitude, longitude: $longitude, documentIssueDate: $documentIssueDate, isDocumentValidated: $isDocumentValidated, isBasicInfoSetupCompleted: $isBasicInfoSetupCompleted, isWorkScheduleSetupCompleted: $isWorkScheduleSetupCompleted, isAddressSetupCompleted: $isAddressSetupCompleted, isBankAccountSetupCompleted: $isBankAccountSetupCompleted)';
   }
 
   @override
@@ -690,10 +721,12 @@ class _$ProfileImpl implements _Profile {
             (identical(other.occupationTitle, occupationTitle) ||
                 other.occupationTitle == occupationTitle) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.isActive, isActive) ||
-                other.isActive == isActive) &&
+            (identical(other.onboarding, onboarding) ||
+                other.onboarding == onboarding) &&
             (identical(other.isPhoneValidated, isPhoneValidated) ||
                 other.isPhoneValidated == isPhoneValidated) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
             (identical(other.feedback, feedback) ||
                 other.feedback == feedback) &&
             (identical(other.defaultCapacity, defaultCapacity) ||
@@ -745,8 +778,9 @@ class _$ProfileImpl implements _Profile {
         displayName,
         occupationTitle,
         address,
-        isActive,
+        onboarding,
         isPhoneValidated,
+        isActive,
         feedback,
         defaultCapacity,
         const DeepCollectionEquality().hash(_availableDays),
@@ -783,23 +817,24 @@ abstract class _Profile implements Profile {
       @JsonKey(name: 'last_name') required final String lastName,
       @JsonKey(name: 'document_type')
       @DocumentTypeConverter()
-      required final DocumentType documentType,
-      @JsonKey(name: 'document_number') required final String documentNumber,
-      @JsonKey(name: 'raw_password') required final String rawPassword,
-      required final String phone,
-      @JsonKey(name: 'player_id') required final String playerId,
+      required final DocumentType? documentType,
+      @JsonKey(name: 'document_number') required final String? documentNumber,
+      @JsonKey(name: 'raw_password') required final String? rawPassword,
+      required final String? phone,
+      @JsonKey(name: 'player_id') required final String? playerId,
       @JsonKey(name: 'user_type')
       @UserTypeConverter()
-      required final UserType userType,
-      @JsonKey(name: 'display_name') required final String displayName,
-      @JsonKey(name: 'occupation_title') required final String occupationTitle,
-      required final String address,
+      required final UserType? userType,
+      @JsonKey(name: 'display_name') required final String? displayName,
+      @JsonKey(name: 'occupation_title') required final String? occupationTitle,
+      required final String? address,
+      @JsonKey(name: 'on_boarding') required final Onboarding onboarding,
+      @JsonKey(name: 'is_phone_validated')
+      @JsonKey(includeIfNull: false)
+      required final bool isPhoneValidated,
       @JsonKey(name: 'is_active')
       @JsonKey(includeIfNull: false)
       final bool? isActive,
-      @JsonKey(name: 'is_phone_validated')
-      @JsonKey(includeIfNull: false)
-      final bool? isPhoneValidated,
       @JsonKey(includeIfNull: false) final String? feedback,
       @JsonKey(name: 'default_capacity')
       @JsonKey(includeIfNull: false)
@@ -840,38 +875,41 @@ abstract class _Profile implements Profile {
   @override
   @JsonKey(name: 'document_type')
   @DocumentTypeConverter()
-  DocumentType get documentType;
+  DocumentType? get documentType;
   @override
   @JsonKey(name: 'document_number')
-  String get documentNumber;
+  String? get documentNumber;
   @override
   @JsonKey(name: 'raw_password')
-  String get rawPassword;
+  String? get rawPassword;
   @override
-  String get phone;
+  String? get phone;
   @override
   @JsonKey(name: 'player_id')
-  String get playerId;
+  String? get playerId;
   @override
   @JsonKey(name: 'user_type')
   @UserTypeConverter()
-  UserType get userType;
+  UserType? get userType;
   @override
   @JsonKey(name: 'display_name')
-  String get displayName;
+  String? get displayName;
   @override
   @JsonKey(name: 'occupation_title')
-  String get occupationTitle;
+  String? get occupationTitle;
   @override
-  String get address;
+  String? get address;
+  @override
+  @JsonKey(name: 'on_boarding')
+  Onboarding get onboarding;
+  @override
+  @JsonKey(name: 'is_phone_validated')
+  @JsonKey(includeIfNull: false)
+  bool get isPhoneValidated;
   @override
   @JsonKey(name: 'is_active')
   @JsonKey(includeIfNull: false)
   bool? get isActive;
-  @override
-  @JsonKey(name: 'is_phone_validated')
-  @JsonKey(includeIfNull: false)
-  bool? get isPhoneValidated;
   @override
   @JsonKey(includeIfNull: false)
   String? get feedback;

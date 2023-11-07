@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:you_might_need_work/data/auth/auth.dart';
 import 'package:you_might_need_work/data/auth/models/models.dart';
+import 'package:you_might_need_work/data/core/models/models.dart';
 import 'package:you_might_need_work/features/auth_form/models/models.dart';
 
 part 'auth_form_state.dart';
@@ -31,7 +32,7 @@ class AuthFormCubit extends Cubit<AuthFormState> {
 
 
   Future<void> _performActionOnAuthRepositoryWithEmailAndPassword(
-    Future<Either<AuthFailure, Unit>> Function({
+    Future<Either<CoreFailure, AuthToken>> Function({
       required String emailAddress,
       required String password,
     }) forwardedCall, {

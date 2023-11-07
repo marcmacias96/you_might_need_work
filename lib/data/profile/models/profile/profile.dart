@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:you_might_need_work/data/profile/enums/enums.dart';
 import 'package:you_might_need_work/data/profile/helpers/helpers.dart';
+import 'package:you_might_need_work/data/profile/models/models.dart';
 
 part 'profile.freezed.dart';
 part 'profile.g.dart';
@@ -12,19 +13,22 @@ class Profile with _$Profile {
     @JsonKey(name: 'last_name') required String lastName,
     @JsonKey(name: 'document_type')
     @DocumentTypeConverter()
-    required DocumentType documentType,
-    @JsonKey(name: 'document_number') required String documentNumber,
-    @JsonKey(name: 'raw_password') required String rawPassword,
-    required String phone,
-    @JsonKey(name: 'player_id') required String playerId,
-    @JsonKey(name: 'user_type') @UserTypeConverter() required UserType userType,
-    @JsonKey(name: 'display_name') required String displayName,
-    @JsonKey(name: 'occupation_title') required String occupationTitle,
-    required String address,
-    @JsonKey(name: 'is_active') @JsonKey(includeIfNull: false) bool? isActive,
+    required DocumentType? documentType,
+    @JsonKey(name: 'document_number') required String? documentNumber,
+    @JsonKey(name: 'raw_password') required String? rawPassword,
+    required String? phone,
+    @JsonKey(name: 'player_id') required String? playerId,
+    @JsonKey(name: 'user_type')
+    @UserTypeConverter()
+    required UserType? userType,
+    @JsonKey(name: 'display_name') required String? displayName,
+    @JsonKey(name: 'occupation_title') required String? occupationTitle,
+    required String? address,
+    @JsonKey(name: 'on_boarding') required Onboarding onboarding,
     @JsonKey(name: 'is_phone_validated')
     @JsonKey(includeIfNull: false)
-    bool? isPhoneValidated,
+    required bool isPhoneValidated,
+    @JsonKey(name: 'is_active') @JsonKey(includeIfNull: false) bool? isActive,
     @JsonKey(includeIfNull: false) String? feedback,
     @JsonKey(name: 'default_capacity')
     @JsonKey(includeIfNull: false)

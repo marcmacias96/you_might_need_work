@@ -50,10 +50,14 @@ class _AppState extends State<App> {
         return null;
       },
       authenticated: (value) {
-        _router.goNamed(
+        final profile = value.profile;
+        if(!profile.isPhoneValidated)  {
+          _router.goNamed(
           OtpFormPage.routeName,
           extra: const OtpFormArgs(),
         );
+        }
+        
       },
       unauthenticated: (_) {
         _router.goNamed(OnboardingPage.routeName);

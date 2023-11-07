@@ -15,7 +15,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i8;
 import 'package:you_might_need_work/data/auth/auth.dart' as _i11;
 import 'package:you_might_need_work/data/auth/auth_repository.dart' as _i12;
-import 'package:you_might_need_work/data/core/helpers/firebase_injectable_module.dart'
+import 'package:you_might_need_work/data/core/helpers/injectable_module.dart'
     as _i16;
 import 'package:you_might_need_work/data/local/i_local_repository.dart' as _i13;
 import 'package:you_might_need_work/data/local/local.dart' as _i9;
@@ -42,15 +42,14 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    final firebaseInjectableModule = _$FirebaseInjectableModule();
-    gh.lazySingleton<_i3.Dio>(() => firebaseInjectableModule.httpClient);
-    gh.lazySingleton<_i4.FirebaseAuth>(
-        () => firebaseInjectableModule.firebaseAuth);
+    final injectableModule = _$InjectableModule();
+    gh.lazySingleton<_i3.Dio>(() => injectableModule.httpClient);
+    gh.lazySingleton<_i4.FirebaseAuth>(() => injectableModule.firebaseAuth);
     gh.lazySingleton<_i5.IProfileRepository>(
         () => _i6.ProfileRepository(dio: gh<_i3.Dio>()));
     gh.factory<_i7.ProfileFormCubit>(() => _i7.ProfileFormCubit());
     await gh.factoryAsync<_i8.SharedPreferences>(
-      () => firebaseInjectableModule.sharedPreferences,
+      () => injectableModule.sharedPreferences,
       preResolve: true,
     );
     gh.lazySingleton<_i9.ILocalRepository>(() =>
@@ -68,4 +67,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$FirebaseInjectableModule extends _i16.FirebaseInjectableModule {}
+class _$InjectableModule extends _i16.InjectableModule {}

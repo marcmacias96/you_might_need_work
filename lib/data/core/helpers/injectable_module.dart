@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -5,8 +7,10 @@ import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:you_might_need_work/data/core/core.dart';
+import 'package:you_might_need_work/data/local/i_local_repository.dart';
+import 'package:you_might_need_work/injection.dart';
 
-/// A module for injecting Firebase and HTTP client dependencies.
+/// A module for injecting HTTP client dependencies and SharedPreferences.
 ///
 /// This module provides access to Firebase and HTTP client dependencies,
 /// such as
@@ -25,12 +29,12 @@ import 'package:you_might_need_work/data/core/core.dart';
 ///
 /// In the example above, you can access Firebase and HTTP
 /// client dependencies using
-/// instances of [FirebaseInjectableModule].
+/// instances of [InjectableModule].
 /// This module is configured to provide
-/// singleton instances of [GoogleSignIn], [FirebaseAuth], and a pre-configured
+/// singleton instances of [Dio], [FirebaseAuth], and a pre-configured
 /// [Dio] HTTP client for making network requests.
 @module
-abstract class FirebaseInjectableModule {
+abstract class InjectableModule {
   /// Provides a [FirebaseAuth] instance as a lazy singleton.
   ///
   /// The [FirebaseAuth] instance is used for handling authentication and
@@ -51,12 +55,12 @@ abstract class FirebaseInjectableModule {
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'X-Auth-Token': dotenv.env['API_KEY']!,
+      'x-api-key': dotenv.env['API_KEY']!,
     };
     dio.options = BaseOptions(
       baseUrl: Endpoints.baseUrl,
-      connectTimeout: const Duration(milliseconds: 60000),
-      receiveTimeout: const Duration(milliseconds: 60000),
+      connectTimeout: const Duration(milliseconds: 20000),
+      receiveTimeout: const Duration(milliseconds: 20000),
       headers: headers,
     );
     dio.interceptors.add(
@@ -64,6 +68,26 @@ abstract class FirebaseInjectableModule {
         requestHeader: true,
         requestBody: true,
         responseHeader: true,
+      ),
+    );
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          final authToken = getIt<ILocalRepository>().getAuthData();
+          if (authToken == null) {
+            handler.reject(
+              DioException.badResponse(
+                statusCode: 401,
+                requestOptions: options,
+                response: Response(requestOptions: options),
+              ),
+            );
+          }
+          options.headers.addAll({
+            HttpHeaders.authorizationHeader: 'Bearer ${authToken?.access}',
+          });
+          handler.next(options);
+        },
       ),
     );
     return dio;

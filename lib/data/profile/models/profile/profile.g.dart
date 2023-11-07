@@ -10,28 +10,30 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
     _$ProfileImpl(
       firstName: json['first_name'] as String,
       lastName: json['last_name'] as String,
-      documentType: const DocumentTypeConverter()
-          .fromJson(json['document_type'] as String),
-      documentNumber: json['document_number'] as String,
-      rawPassword: json['raw_password'] as String,
-      phone: json['phone'] as String,
-      playerId: json['player_id'] as String,
-      userType: const UserTypeConverter().fromJson(json['user_type'] as String),
-      displayName: json['display_name'] as String,
-      occupationTitle: json['occupation_title'] as String,
-      address: json['address'] as String,
+      documentType:
+          const DocumentTypeConverter().fromJson(json['document_type']),
+      documentNumber: json['document_number'] as String?,
+      rawPassword: json['raw_password'] as String?,
+      phone: json['phone'] as String?,
+      playerId: json['player_id'] as String?,
+      userType: const UserTypeConverter().fromJson(json['user_type']),
+      displayName: json['display_name'] as String?,
+      occupationTitle: json['occupation_title'] as String?,
+      address: json['address'] as String?,
+      onboarding:
+          Onboarding.fromJson(json['on_boarding'] as Map<String, dynamic>),
+      isPhoneValidated: json['is_phone_validated'] as bool,
       isActive: json['is_active'] as bool?,
-      isPhoneValidated: json['is_phone_validated'] as bool?,
       feedback: json['feedback'] as String?,
       defaultCapacity: json['default_capacity'] as int?,
       availableDays: _$JsonConverterFromJson<List<String>, List<AvailableDays>>(
           json['available_days'], const AvailableDaysConverter().fromJson),
-      registrationProvider: $enumDecodeNullable(
-          _$RegistrationProviderEnumMap, json['registration_provider']),
+      registrationProvider: const RegistrationProviderConverter()
+          .fromJson(json['registration_provider']),
       industries:
           (json['industries'] as List<dynamic>?)?.map((e) => e as int).toList(),
-      educationLevel: _$JsonConverterFromJson<String, EducationLevel>(
-          json['education_level'], const EducationLevelConverter().fromJson),
+      educationLevel:
+          const EducationLevelConverter().fromJson(json['education_level']),
       latitude: json['latitude'] as int?,
       longitude: json['longitude'] as int?,
       documentIssueDate: json['document_issue_date'] == null
@@ -60,8 +62,9 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) {
     'display_name': instance.displayName,
     'occupation_title': instance.occupationTitle,
     'address': instance.address,
-    'is_active': instance.isActive,
+    'on_boarding': instance.onboarding,
     'is_phone_validated': instance.isPhoneValidated,
+    'is_active': instance.isActive,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -76,13 +79,13 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) {
       'available_days',
       _$JsonConverterToJson<List<String>, List<AvailableDays>>(
           instance.availableDays, const AvailableDaysConverter().toJson));
-  writeNotNull('registration_provider',
-      _$RegistrationProviderEnumMap[instance.registrationProvider]);
-  writeNotNull('industries', instance.industries);
   writeNotNull(
-      'education_level',
-      _$JsonConverterToJson<String, EducationLevel>(
-          instance.educationLevel, const EducationLevelConverter().toJson));
+      'registration_provider',
+      const RegistrationProviderConverter()
+          .toJson(instance.registrationProvider));
+  writeNotNull('industries', instance.industries);
+  writeNotNull('education_level',
+      const EducationLevelConverter().toJson(instance.educationLevel));
   writeNotNull('latitude', instance.latitude);
   writeNotNull('longitude', instance.longitude);
   writeNotNull(
@@ -103,11 +106,6 @@ Value? _$JsonConverterFromJson<Json, Value>(
   Value? Function(Json json) fromJson,
 ) =>
     json == null ? null : fromJson(json as Json);
-
-const _$RegistrationProviderEnumMap = {
-  RegistrationProvider.apple: 'apple',
-  RegistrationProvider.google: 'google',
-};
 
 Json? _$JsonConverterToJson<Json, Value>(
   Value? value,

@@ -74,13 +74,20 @@ class AuthRepository implements IAuthRepository {
     required String password,
   }) async {
     try {
-      final response = await _dio.get<dynamic>(Endpoints.signIn);
+      final response = await _dio.post<dynamic>(
+        Endpoints.signIn,
+        data: {
+          'username': emailAddress,
+          'password': password,
+        },
+      );
       final data = (response.data as Map<String, dynamic>)['data'];
       final authToken = AuthToken.fromJson(data as Map<String, dynamic>);
       await _localRepository.cacheAuthData(authToken);
+    
       return right(authToken);
     } on DioException catch (e) {
-      if ((e.response as Map<String, dynamic>?)?['code_transaction'] ==
+      if ((e.response?.data as Map<String, dynamic>?)?['code_transaction'] ==
           'ERROR_AUTH') {
         return left(const CoreFailure.invalidEmailAndPasswordCombination());
       }

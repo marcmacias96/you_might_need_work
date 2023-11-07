@@ -1,2 +1,2 @@
 export 'endpoints.dart';
-export 'firebase_injectable_module.dart';
+export 'injectable_module.dart';

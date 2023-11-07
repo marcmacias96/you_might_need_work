@@ -13,7 +13,7 @@ class ProfileRepository implements IProfileRepository {
   final Dio _dio;
 
   @override
-  Future<Either<CoreFailure, Unit>> createProfile() {
+  Future<Either<CoreFailure, Unit>> createProfile(Profile profile) {
     // TODO: implement createProfile
     throw UnimplementedError();
   }
@@ -22,7 +22,10 @@ class ProfileRepository implements IProfileRepository {
   Future<Either<CoreFailure, Profile>> getProfile() async {
     try {
       final response = await _dio.get<dynamic>(Endpoints.getUser);
-      final profile = Profile.fromJson(response.data as Map<String, dynamic>);
+      final profileJson = (((response.data as Map<String, dynamic>)['data']
+              as Map<String, dynamic>)['results'] as List<dynamic>)
+          .first;
+      final profile = Profile.fromJson(profileJson as Map<String, dynamic>);
       return right(profile);
     } on DioException catch (_) {
       return left(const CoreFailure.serverError());

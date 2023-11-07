@@ -4,5 +4,5 @@ import 'package:you_might_need_work/data/profile/models/models.dart';
 
 abstract class IProfileRepository {
   Future<Either<CoreFailure, Profile>> getProfile();
-  Future<Either<CoreFailure, Unit>> createProfile();
+  Future<Either<CoreFailure, Unit>> createProfile(Profile profile);
 }

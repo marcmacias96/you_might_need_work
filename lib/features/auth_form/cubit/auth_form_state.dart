@@ -4,7 +4,7 @@ part of 'auth_form_cubit.dart';
 class AuthFormState with _$AuthFormState {
   const factory AuthFormState({
     required bool isSubmitting,
-    required Either<AuthFailure, Unit>? authFailureOrSuccess,
+    required Either<CoreFailure, AuthToken>? authFailureOrSuccess,
   }) = _AuthFormState;
 
   factory AuthFormState.initial() => const AuthFormState(

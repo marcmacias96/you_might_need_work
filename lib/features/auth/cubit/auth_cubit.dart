@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:you_might_need_work/data/auth/auth.dart';
-import 'package:you_might_need_work/data/auth/models/models.dart';
+import 'package:you_might_need_work/data/core/models/models.dart';
+import 'package:you_might_need_work/data/profile/models/models.dart';
 
 part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';
@@ -39,8 +38,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   final IAuthRepository _authRepository;
 
-  StreamSubscription<Either<AuthFailure, User>>? _authStreamSubscription;
-
   /// Check the authentication status and update the state.
   ///
   /// This method checks the authentication status by listening to changes in
@@ -48,19 +45,17 @@ class AuthCubit extends Cubit<AuthState> {
   /// result: unauthenticated if there's a failure, or authenticated if there's
   /// a valid user.
   Future<void> authCheck() async {
-    await _authStreamSubscription?.cancel();
-    _authStreamSubscription = _authRepository.authCheck().listen(
-          (Either<AuthFailure, User> failureOrUser) => failureOrUser.fold(
-            (AuthFailure failure) => emit(
-              const AuthState.unauthenticated(),
-            ),
-            (User user) {
-              return emit(
-                const AuthState.authenticated(),
-              );
-            },
-          ),
+    final failureOrProfile = await _authRepository.authCheck();
+    return failureOrProfile.fold(
+      (CoreFailure failure) => emit(
+        const AuthState.unauthenticated(),
+      ),
+      (Profile profile) {
+        return emit(
+          AuthState.authenticated(profile),
         );
+      },
+    );
   }
 
   /// Sign out the current user.
@@ -69,12 +64,5 @@ class AuthCubit extends Cubit<AuthState> {
   /// corresponding method in the [_authRepository].
   Future<void> signOut() async {
     await _authRepository.signOut();
-  }
-
-  @override
-  Future<void> close() async {
-    await _authStreamSubscription?.cancel();
-
-    return super.close();
   }
 }
