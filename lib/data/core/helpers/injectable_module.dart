@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:injectable/injectable.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:you_might_need_work/data/core/core.dart';
 import 'package:you_might_need_work/data/local/i_local_repository.dart';
+import 'package:you_might_need_work/features/auth/cubit/cubit.dart';
 import 'package:you_might_need_work/injection.dart';
 
 /// A module for injecting HTTP client dependencies and SharedPreferences.
@@ -24,7 +26,7 @@ import 'package:you_might_need_work/injection.dart';
 /// final httpClient =  getIt<Dio>();
 /// ```
 ///
-/// In the example above, you can access Firebase and HTTP
+/// In the example above, you can access  HTTP
 /// client dependencies using
 /// instances of [InjectableModule].
 /// This module is configured to provide
@@ -63,20 +65,35 @@ abstract class InjectableModule {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
+          if (options.path == Endpoints.signIn ||
+              options.path == Endpoints.signUp) {
+            return handler.next(options);
+          }
           final authToken = getIt<ILocalRepository>().getAuthData();
-          if (authToken == null) {
-            handler.reject(
-              DioException.badResponse(
-                statusCode: 401,
-                requestOptions: options,
-                response: Response(requestOptions: options),
-              ),
-            );
+          if (authToken == null || JwtDecoder.isExpired(authToken.access)) {
+            options.headers.remove(HttpHeaders.authorizationHeader);
+            return handler.next(options);
           }
           options.headers.addAll({
-            HttpHeaders.authorizationHeader: 'Bearer ${authToken?.access}',
+            HttpHeaders.authorizationHeader: 'Bearer ${authToken.access}',
           });
-          handler.next(options);
+          return handler.next(options);
+        },
+        onError: (e, handler) async {
+          final authToken = getIt<ILocalRepository>().getAuthData();
+          if (authToken == null) {
+            return handler.next(e);
+          }
+          if (e.response?.statusCode == 401) {
+            if (JwtDecoder.isExpired(authToken.refresh)) {
+              await getIt<AuthCubit>().signOut();
+            } else {
+              await getIt<AuthCubit>()
+                  .refreshToken(refreshToken: authToken.refresh);
+              return handler.resolve(await dio.fetch(e.requestOptions));
+            }
+          }
+          return handler.next(e);
         },
       ),
     );

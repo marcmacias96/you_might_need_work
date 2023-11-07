@@ -64,5 +64,17 @@ class AuthCubit extends Cubit<AuthState> {
   /// corresponding method in the [_authRepository].
   Future<void> signOut() async {
     await _authRepository.signOut();
+    emit(const AuthState.unauthenticated());
+  }
+
+  // Refresh token
+  //
+  // This method refresh token of actual session using the stored refresh token
+  // by calling the
+  /// corresponding method in the [_authRepository].
+  Future<void> refreshToken({
+    required String refreshToken,
+  }) async {
+    await _authRepository.refreshToken(refreshToken);
   }
 }

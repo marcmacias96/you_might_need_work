@@ -25,7 +25,7 @@ import 'package:you_might_need_work/data/profile/models/models.dart';
 /// }
 /// ```
 ///
-/// In the example above, an instance of a class implementing 
+/// In the example above, an instance of a class implementing
 /// the [IAuthRepository]
 /// interface is used to perform authentication operations. You can use this
 /// interface as a contract to define authentication-related methods within your
@@ -33,9 +33,9 @@ import 'package:you_might_need_work/data/profile/models/models.dart';
 abstract class IAuthRepository {
   /// Sign in with an email and password.
   ///
-  /// This method attempts to authenticate a user with 
+  /// This method attempts to authenticate a user with
   /// the provided [emailAddress]
-  /// and [password]. If the authentication is successful, 
+  /// and [password]. If the authentication is successful,
   /// it returns [Right(Unit)].
   /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
   Future<Either<CoreFailure, AuthToken>> signInWithEmailPassword({
@@ -45,9 +45,9 @@ abstract class IAuthRepository {
 
   /// Register a new user with an email and password.
   ///
-  /// This method attempts to register a new user 
+  /// This method attempts to register a new user
   /// with the provided [emailAddress]
-  /// and [password]. If the registration is successful, 
+  /// and [password]. If the registration is successful,
   /// it returns [Right(Unit)].
   /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
   Future<Either<CoreFailure, AuthToken>> registerWithEmailAndPassword({
@@ -56,24 +56,18 @@ abstract class IAuthRepository {
   });
 
   /// Sign out.
-  ///   
+  ///
   /// This method attempts to sign out the currently authenticated user.
   /// If the sign out is successful, it returns [Right(Unit)].
   /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
   Future<Either<CoreFailure, Unit>> signOut();
 
   /// Check the authentication status.
-  ///   
+  ///
   /// This method returns a stream of [Either<AuthFailure, Profile>].
   /// If the user is authenticated, it returns [Right(Profile)].
   /// Otherwise, it returns [Left(AuthFailure)] with details of the failure.
   Future<Either<CoreFailure, Profile>> authCheck();
 
-  /// Get the authenticated user.
-  ///
-  /// This method retrieves the currently authenticated user. If no user is
-  /// authenticated, it returns `null`. You can use this method to check the
-  /// user's authentication status.
-  // Future<User?> getUser();
-  
+  Future<Either<CoreFailure, Unit>> refreshToken(String refreshToken);
 }

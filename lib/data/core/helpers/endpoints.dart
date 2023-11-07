@@ -3,4 +3,5 @@ mixin Endpoints {
   static const String signIn = '/auth/token/';
   static const String signUp = '/';
   static const String getUser = '/users/';
+  static const String refresh = '/auth/token/refresh/';
 }

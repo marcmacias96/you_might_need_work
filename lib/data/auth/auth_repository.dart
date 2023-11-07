@@ -84,13 +84,36 @@ class AuthRepository implements IAuthRepository {
       final data = (response.data as Map<String, dynamic>)['data'];
       final authToken = AuthToken.fromJson(data as Map<String, dynamic>);
       await _localRepository.cacheAuthData(authToken);
-    
+
       return right(authToken);
     } on DioException catch (e) {
       if ((e.response?.data as Map<String, dynamic>?)?['code_transaction'] ==
           'ERROR_AUTH') {
         return left(const CoreFailure.invalidEmailAndPasswordCombination());
       }
+      return left(const CoreFailure.serverError());
+    } catch (_) {
+      return left(const CoreFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<CoreFailure, Unit>> refreshToken(
+    String refreshToken,
+  ) async {
+    try {
+      final response = await _dio.post<AuthToken>(
+        Endpoints.refresh,
+        data: {
+          'refresh': refreshToken,
+        },
+      );
+      if (response.data == null) {
+        return left(const CoreFailure.unexpected());
+      }
+      await _localRepository.cacheAuthData(response.data!);
+      return right(unit);
+    } on DioException catch (_) {
       return left(const CoreFailure.serverError());
     } catch (_) {
       return left(const CoreFailure.unexpected());
