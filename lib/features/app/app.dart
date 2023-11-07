@@ -8,7 +8,7 @@ import 'package:you_might_need_work/features/home/home.dart';
 import 'package:you_might_need_work/features/onboarding/onboarding.dart';
 import 'package:you_might_need_work/features/profile_form/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/otp_form/otp_form.dart';
-import 'package:you_might_need_work/features/profile_form/profile_form_page.dart';
+import 'package:you_might_need_work/features/profile_form/profile_form.dart';
 import 'package:you_might_need_work/features/profile_form/user_type_form/user_type_form.dart';
 import 'package:you_might_need_work/injection.dart';
 import 'package:you_might_need_work/navigation/navigation.dart';

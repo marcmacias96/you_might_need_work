@@ -5,9 +5,9 @@ import 'package:you_might_need_work/data/auth/auth.dart';
 import 'package:you_might_need_work/data/auth/models/models.dart';
 import 'package:you_might_need_work/data/core/core.dart';
 import 'package:you_might_need_work/data/core/models/models.dart';
-import 'package:you_might_need_work/data/local/i_local_repository.dart';
-import 'package:you_might_need_work/data/profile/i_profile_repository.dart';
+import 'package:you_might_need_work/data/local/local.dart';
 import 'package:you_might_need_work/data/profile/models/models.dart';
+import 'package:you_might_need_work/data/profile/profile.dart';
 
 @LazySingleton(as: IAuthRepository)
 class AuthRepository implements IAuthRepository {

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:you_might_need_work/data/auth/models/auth_token/auth_token.dart';
+import 'package:you_might_need_work/data/auth/models/models.dart';
 import 'package:you_might_need_work/data/local/local.dart';
 
 @LazySingleton(as: ILocalRepository)
