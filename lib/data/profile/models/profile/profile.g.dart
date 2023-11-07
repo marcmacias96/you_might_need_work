@@ -46,6 +46,7 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
       isAddressSetupCompleted: json['is_address_setup_completed'] as bool?,
       isBankAccountSetupCompleted:
           json['is_bank_account_setup_completed'] as bool?,
+      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) {
@@ -98,6 +99,7 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) {
   writeNotNull('is_address_setup_completed', instance.isAddressSetupCompleted);
   writeNotNull(
       'is_bank_account_setup_completed', instance.isBankAccountSetupCompleted);
+  writeNotNull('id', instance.id);
   return val;
 }
 

@@ -83,6 +83,8 @@ mixin _$Profile {
   bool? get isAddressSetupCompleted => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
   bool? get isBankAccountSetupCompleted => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -140,7 +142,8 @@ abstract class $ProfileCopyWith<$Res> {
       @JsonKey(includeIfNull: false, name: 'is_address_setup_completed')
       bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
-      bool? isBankAccountSetupCompleted});
+      bool? isBankAccountSetupCompleted,
+      @JsonKey(includeIfNull: false) String? id});
 
   $OnboardingCopyWith<$Res> get onboarding;
 }
@@ -186,6 +189,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? isWorkScheduleSetupCompleted = freezed,
     Object? isAddressSetupCompleted = freezed,
     Object? isBankAccountSetupCompleted = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       firstName: null == firstName
@@ -300,6 +304,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.isBankAccountSetupCompleted
           : isBankAccountSetupCompleted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -365,7 +373,8 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       @JsonKey(includeIfNull: false, name: 'is_address_setup_completed')
       bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
-      bool? isBankAccountSetupCompleted});
+      bool? isBankAccountSetupCompleted,
+      @JsonKey(includeIfNull: false) String? id});
 
   @override
   $OnboardingCopyWith<$Res> get onboarding;
@@ -410,6 +419,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? isWorkScheduleSetupCompleted = freezed,
     Object? isAddressSetupCompleted = freezed,
     Object? isBankAccountSetupCompleted = freezed,
+    Object? id = freezed,
   }) {
     return _then(_$ProfileImpl(
       firstName: null == firstName
@@ -524,6 +534,10 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.isBankAccountSetupCompleted
           : isBankAccountSetupCompleted // ignore: cast_nullable_to_non_nullable
               as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -577,7 +591,8 @@ class _$ProfileImpl implements _Profile {
       @JsonKey(includeIfNull: false, name: 'is_address_setup_completed')
       this.isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
-      this.isBankAccountSetupCompleted})
+      this.isBankAccountSetupCompleted,
+      @JsonKey(includeIfNull: false) this.id})
       : _availableDays = availableDays,
         _industries = industries;
 
@@ -690,10 +705,13 @@ class _$ProfileImpl implements _Profile {
   @override
   @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
   final bool? isBankAccountSetupCompleted;
+  @override
+  @JsonKey(includeIfNull: false)
+  final String? id;
 
   @override
   String toString() {
-    return 'Profile(firstName: $firstName, lastName: $lastName, documentType: $documentType, documentNumber: $documentNumber, rawPassword: $rawPassword, phone: $phone, playerId: $playerId, userType: $userType, displayName: $displayName, occupationTitle: $occupationTitle, address: $address, onboarding: $onboarding, isPhoneValidated: $isPhoneValidated, isActive: $isActive, feedback: $feedback, defaultCapacity: $defaultCapacity, availableDays: $availableDays, registrationProvider: $registrationProvider, industries: $industries, educationLevel: $educationLevel, latitude: $latitude, longitude: $longitude, documentIssueDate: $documentIssueDate, isDocumentValidated: $isDocumentValidated, isBasicInfoSetupCompleted: $isBasicInfoSetupCompleted, isWorkScheduleSetupCompleted: $isWorkScheduleSetupCompleted, isAddressSetupCompleted: $isAddressSetupCompleted, isBankAccountSetupCompleted: $isBankAccountSetupCompleted)';
+    return 'Profile(firstName: $firstName, lastName: $lastName, documentType: $documentType, documentNumber: $documentNumber, rawPassword: $rawPassword, phone: $phone, playerId: $playerId, userType: $userType, displayName: $displayName, occupationTitle: $occupationTitle, address: $address, onboarding: $onboarding, isPhoneValidated: $isPhoneValidated, isActive: $isActive, feedback: $feedback, defaultCapacity: $defaultCapacity, availableDays: $availableDays, registrationProvider: $registrationProvider, industries: $industries, educationLevel: $educationLevel, latitude: $latitude, longitude: $longitude, documentIssueDate: $documentIssueDate, isDocumentValidated: $isDocumentValidated, isBasicInfoSetupCompleted: $isBasicInfoSetupCompleted, isWorkScheduleSetupCompleted: $isWorkScheduleSetupCompleted, isAddressSetupCompleted: $isAddressSetupCompleted, isBankAccountSetupCompleted: $isBankAccountSetupCompleted, id: $id)';
   }
 
   @override
@@ -760,7 +778,8 @@ class _$ProfileImpl implements _Profile {
             (identical(other.isBankAccountSetupCompleted,
                     isBankAccountSetupCompleted) ||
                 other.isBankAccountSetupCompleted ==
-                    isBankAccountSetupCompleted));
+                    isBankAccountSetupCompleted) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
@@ -794,7 +813,8 @@ class _$ProfileImpl implements _Profile {
         isBasicInfoSetupCompleted,
         isWorkScheduleSetupCompleted,
         isAddressSetupCompleted,
-        isBankAccountSetupCompleted
+        isBankAccountSetupCompleted,
+        id
       ]);
 
   @JsonKey(ignore: true)
@@ -862,7 +882,8 @@ abstract class _Profile implements Profile {
       @JsonKey(includeIfNull: false, name: 'is_address_setup_completed')
       final bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
-      final bool? isBankAccountSetupCompleted}) = _$ProfileImpl;
+      final bool? isBankAccountSetupCompleted,
+      @JsonKey(includeIfNull: false) final String? id}) = _$ProfileImpl;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
 
@@ -956,6 +977,9 @@ abstract class _Profile implements Profile {
   @override
   @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
   bool? get isBankAccountSetupCompleted;
+  @override
+  @JsonKey(includeIfNull: false)
+  String? get id;
   @override
   @JsonKey(ignore: true)
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>

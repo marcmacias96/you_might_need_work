@@ -14,19 +14,21 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i7;
 import 'package:you_might_need_work/data/auth/auth.dart' as _i10;
 import 'package:you_might_need_work/data/auth/auth_repository.dart' as _i11;
+import 'package:you_might_need_work/data/bank_account/bank_account_repository.dart'
+    as _i13;
+import 'package:you_might_need_work/data/bank_account/i_bank_account_repository.dart'
+    as _i12;
 import 'package:you_might_need_work/data/core/helpers/injectable_module.dart'
-    as _i15;
-import 'package:you_might_need_work/data/local/i_local_repository.dart' as _i12;
+    as _i16;
 import 'package:you_might_need_work/data/local/local.dart' as _i8;
 import 'package:you_might_need_work/data/local/local_repository.dart' as _i9;
-import 'package:you_might_need_work/data/profile/i_profile_repository.dart'
-    as _i4;
+import 'package:you_might_need_work/data/profile/profile.dart' as _i4;
 import 'package:you_might_need_work/data/profile/profile_repository.dart'
     as _i5;
 import 'package:you_might_need_work/features/auth/cubit/auth_cubit.dart'
-    as _i13;
-import 'package:you_might_need_work/features/auth_form/cubit/auth_form_cubit.dart'
     as _i14;
+import 'package:you_might_need_work/features/auth_form/cubit/auth_form_cubit.dart'
+    as _i15;
 import 'package:you_might_need_work/features/profile_form/cubit/profile_form_cubit.dart'
     as _i6;
 
@@ -54,15 +56,20 @@ extension GetItInjectableX on _i1.GetIt {
         _i9.LocalRepository(sharedPreferences: gh<_i7.SharedPreferences>()));
     gh.lazySingleton<_i10.IAuthRepository>(() => _i11.AuthRepository(
           dio: gh<_i3.Dio>(),
-          localRepository: gh<_i12.ILocalRepository>(),
+          localRepository: gh<_i8.ILocalRepository>(),
           profileRepository: gh<_i4.IProfileRepository>(),
         ));
-    gh.factory<_i13.AuthCubit>(
-        () => _i13.AuthCubit(gh<_i10.IAuthRepository>()));
-    gh.factory<_i14.AuthFormCubit>(
-        () => _i14.AuthFormCubit(gh<_i10.IAuthRepository>()));
+    gh.lazySingleton<_i12.IBankAccountRepository>(
+        () => _i13.BankAccountRepository(
+              dio: gh<_i3.Dio>(),
+              localRepository: gh<_i8.ILocalRepository>(),
+            ));
+    gh.factory<_i14.AuthCubit>(
+        () => _i14.AuthCubit(gh<_i10.IAuthRepository>()));
+    gh.factory<_i15.AuthFormCubit>(
+        () => _i15.AuthFormCubit(gh<_i10.IAuthRepository>()));
     return this;
   }
 }
 
-class _$InjectableModule extends _i15.InjectableModule {}
+class _$InjectableModule extends _i16.InjectableModule {}
