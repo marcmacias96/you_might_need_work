@@ -7,6 +7,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:you_might_need_work/assets/assets.dart';
+import 'package:you_might_need_work/features/auth/auth.dart';
 import 'package:you_might_need_work/features/auth_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/auth_form/models/models.dart';
 import 'package:you_might_need_work/injection.dart';
@@ -56,7 +57,7 @@ class _AuthFormPageState extends State<AuthFormPage> {
               state.authFailureOrSuccess?.fold(
                 (l) {},
                 (r) {
-                  // context.pushReplacement(AuthPage.routePath);
+                  context.pushReplacement(AuthPage.routePath);
                 },
               );
             },

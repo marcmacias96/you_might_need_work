@@ -20,27 +20,27 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() authenticated,
+    required TResult Function(Profile profile) authenticated,
     required TResult Function() unauthenticated,
-    required TResult Function(AuthFailure failure) error,
+    required TResult Function(CoreFailure failure) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? authenticated,
+    TResult? Function(Profile profile)? authenticated,
     TResult? Function()? unauthenticated,
-    TResult? Function(AuthFailure failure)? error,
+    TResult? Function(CoreFailure failure)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? authenticated,
+    TResult Function(Profile profile)? authenticated,
     TResult Function()? unauthenticated,
-    TResult Function(AuthFailure failure)? error,
+    TResult Function(CoreFailure failure)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,9 +131,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() authenticated,
+    required TResult Function(Profile profile) authenticated,
     required TResult Function() unauthenticated,
-    required TResult Function(AuthFailure failure) error,
+    required TResult Function(CoreFailure failure) error,
   }) {
     return initial();
   }
@@ -143,9 +143,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? authenticated,
+    TResult? Function(Profile profile)? authenticated,
     TResult? Function()? unauthenticated,
-    TResult? Function(AuthFailure failure)? error,
+    TResult? Function(CoreFailure failure)? error,
   }) {
     return initial?.call();
   }
@@ -155,9 +155,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? authenticated,
+    TResult Function(Profile profile)? authenticated,
     TResult Function()? unauthenticated,
-    TResult Function(AuthFailure failure)? error,
+    TResult Function(CoreFailure failure)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -251,9 +251,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() authenticated,
+    required TResult Function(Profile profile) authenticated,
     required TResult Function() unauthenticated,
-    required TResult Function(AuthFailure failure) error,
+    required TResult Function(CoreFailure failure) error,
   }) {
     return loading();
   }
@@ -263,9 +263,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? authenticated,
+    TResult? Function(Profile profile)? authenticated,
     TResult? Function()? unauthenticated,
-    TResult? Function(AuthFailure failure)? error,
+    TResult? Function(CoreFailure failure)? error,
   }) {
     return loading?.call();
   }
@@ -275,9 +275,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? authenticated,
+    TResult Function(Profile profile)? authenticated,
     TResult Function()? unauthenticated,
-    TResult Function(AuthFailure failure)? error,
+    TResult Function(CoreFailure failure)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -336,6 +336,10 @@ abstract class _$$AuthenticatedImplCopyWith<$Res> {
   factory _$$AuthenticatedImplCopyWith(
           _$AuthenticatedImpl value, $Res Function(_$AuthenticatedImpl) then) =
       __$$AuthenticatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Profile profile});
+
+  $ProfileCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -345,37 +349,69 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
   __$$AuthenticatedImplCopyWithImpl(
       _$AuthenticatedImpl _value, $Res Function(_$AuthenticatedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? profile = null,
+  }) {
+    return _then(_$AuthenticatedImpl(
+      null == profile
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as Profile,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileCopyWith<$Res> get profile {
+    return $ProfileCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$AuthenticatedImpl implements _Authenticated {
-  const _$AuthenticatedImpl();
+  const _$AuthenticatedImpl(this.profile);
+
+  @override
+  final Profile profile;
 
   @override
   String toString() {
-    return 'AuthState.authenticated()';
+    return 'AuthState.authenticated(profile: $profile)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthenticatedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AuthenticatedImpl &&
+            (identical(other.profile, profile) || other.profile == profile));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, profile);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
+      __$$AuthenticatedImplCopyWithImpl<_$AuthenticatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() authenticated,
+    required TResult Function(Profile profile) authenticated,
     required TResult Function() unauthenticated,
-    required TResult Function(AuthFailure failure) error,
+    required TResult Function(CoreFailure failure) error,
   }) {
-    return authenticated();
+    return authenticated(profile);
   }
 
   @override
@@ -383,11 +419,11 @@ class _$AuthenticatedImpl implements _Authenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? authenticated,
+    TResult? Function(Profile profile)? authenticated,
     TResult? Function()? unauthenticated,
-    TResult? Function(AuthFailure failure)? error,
+    TResult? Function(CoreFailure failure)? error,
   }) {
-    return authenticated?.call();
+    return authenticated?.call(profile);
   }
 
   @override
@@ -395,13 +431,13 @@ class _$AuthenticatedImpl implements _Authenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? authenticated,
+    TResult Function(Profile profile)? authenticated,
     TResult Function()? unauthenticated,
-    TResult Function(AuthFailure failure)? error,
+    TResult Function(CoreFailure failure)? error,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated();
+      return authenticated(profile);
     }
     return orElse();
   }
@@ -448,7 +484,12 @@ class _$AuthenticatedImpl implements _Authenticated {
 }
 
 abstract class _Authenticated implements AuthState {
-  const factory _Authenticated() = _$AuthenticatedImpl;
+  const factory _Authenticated(final Profile profile) = _$AuthenticatedImpl;
+
+  Profile get profile;
+  @JsonKey(ignore: true)
+  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -491,9 +532,9 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() authenticated,
+    required TResult Function(Profile profile) authenticated,
     required TResult Function() unauthenticated,
-    required TResult Function(AuthFailure failure) error,
+    required TResult Function(CoreFailure failure) error,
   }) {
     return unauthenticated();
   }
@@ -503,9 +544,9 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? authenticated,
+    TResult? Function(Profile profile)? authenticated,
     TResult? Function()? unauthenticated,
-    TResult? Function(AuthFailure failure)? error,
+    TResult? Function(CoreFailure failure)? error,
   }) {
     return unauthenticated?.call();
   }
@@ -515,9 +556,9 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? authenticated,
+    TResult Function(Profile profile)? authenticated,
     TResult Function()? unauthenticated,
-    TResult Function(AuthFailure failure)? error,
+    TResult Function(CoreFailure failure)? error,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -577,9 +618,9 @@ abstract class _$$AuthErrorImplCopyWith<$Res> {
           _$AuthErrorImpl value, $Res Function(_$AuthErrorImpl) then) =
       __$$AuthErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AuthFailure failure});
+  $Res call({CoreFailure failure});
 
-  $AuthFailureCopyWith<$Res> get failure;
+  $CoreFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -599,14 +640,14 @@ class __$$AuthErrorImplCopyWithImpl<$Res>
       null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as AuthFailure,
+              as CoreFailure,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AuthFailureCopyWith<$Res> get failure {
-    return $AuthFailureCopyWith<$Res>(_value.failure, (value) {
+  $CoreFailureCopyWith<$Res> get failure {
+    return $CoreFailureCopyWith<$Res>(_value.failure, (value) {
       return _then(_value.copyWith(failure: value));
     });
   }
@@ -618,7 +659,7 @@ class _$AuthErrorImpl implements AuthError {
   const _$AuthErrorImpl(this.failure);
 
   @override
-  final AuthFailure failure;
+  final CoreFailure failure;
 
   @override
   String toString() {
@@ -647,9 +688,9 @@ class _$AuthErrorImpl implements AuthError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() authenticated,
+    required TResult Function(Profile profile) authenticated,
     required TResult Function() unauthenticated,
-    required TResult Function(AuthFailure failure) error,
+    required TResult Function(CoreFailure failure) error,
   }) {
     return error(failure);
   }
@@ -659,9 +700,9 @@ class _$AuthErrorImpl implements AuthError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? authenticated,
+    TResult? Function(Profile profile)? authenticated,
     TResult? Function()? unauthenticated,
-    TResult? Function(AuthFailure failure)? error,
+    TResult? Function(CoreFailure failure)? error,
   }) {
     return error?.call(failure);
   }
@@ -671,9 +712,9 @@ class _$AuthErrorImpl implements AuthError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? authenticated,
+    TResult Function(Profile profile)? authenticated,
     TResult Function()? unauthenticated,
-    TResult Function(AuthFailure failure)? error,
+    TResult Function(CoreFailure failure)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -724,9 +765,9 @@ class _$AuthErrorImpl implements AuthError {
 }
 
 abstract class AuthError implements AuthState {
-  const factory AuthError(final AuthFailure failure) = _$AuthErrorImpl;
+  const factory AuthError(final CoreFailure failure) = _$AuthErrorImpl;
 
-  AuthFailure get failure;
+  CoreFailure get failure;
   @JsonKey(ignore: true)
   _$$AuthErrorImplCopyWith<_$AuthErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;

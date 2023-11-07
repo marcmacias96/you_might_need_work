@@ -9,7 +9,6 @@ analyzer:
     - "**/*.iconfig.dart"
     - "**/*.config.dart"
     - "**/*.gform.dart"
-    - "firebase_options.dart"
 
   errors:
     public_member_api_docs: ignore

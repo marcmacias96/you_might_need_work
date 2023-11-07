@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthFormState {
   bool get isSubmitting => throw _privateConstructorUsedError;
-  Either<AuthFailure, Unit>? get authFailureOrSuccess =>
+  Either<CoreFailure, AuthToken>? get authFailureOrSuccess =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +32,8 @@ abstract class $AuthFormStateCopyWith<$Res> {
       _$AuthFormStateCopyWithImpl<$Res, AuthFormState>;
   @useResult
   $Res call(
-      {bool isSubmitting, Either<AuthFailure, Unit>? authFailureOrSuccess});
+      {bool isSubmitting,
+      Either<CoreFailure, AuthToken>? authFailureOrSuccess});
 }
 
 /// @nodoc
@@ -59,7 +60,7 @@ class _$AuthFormStateCopyWithImpl<$Res, $Val extends AuthFormState>
       authFailureOrSuccess: freezed == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<AuthFailure, Unit>?,
+              as Either<CoreFailure, AuthToken>?,
     ) as $Val);
   }
 }
@@ -73,7 +74,8 @@ abstract class _$$AuthFormStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isSubmitting, Either<AuthFailure, Unit>? authFailureOrSuccess});
+      {bool isSubmitting,
+      Either<CoreFailure, AuthToken>? authFailureOrSuccess});
 }
 
 /// @nodoc
@@ -98,7 +100,7 @@ class __$$AuthFormStateImplCopyWithImpl<$Res>
       authFailureOrSuccess: freezed == authFailureOrSuccess
           ? _value.authFailureOrSuccess
           : authFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<AuthFailure, Unit>?,
+              as Either<CoreFailure, AuthToken>?,
     ));
   }
 }
@@ -112,7 +114,7 @@ class _$AuthFormStateImpl implements _AuthFormState {
   @override
   final bool isSubmitting;
   @override
-  final Either<AuthFailure, Unit>? authFailureOrSuccess;
+  final Either<CoreFailure, AuthToken>? authFailureOrSuccess;
 
   @override
   String toString() {
@@ -143,14 +145,14 @@ class _$AuthFormStateImpl implements _AuthFormState {
 
 abstract class _AuthFormState implements AuthFormState {
   const factory _AuthFormState(
-          {required final bool isSubmitting,
-          required final Either<AuthFailure, Unit>? authFailureOrSuccess}) =
-      _$AuthFormStateImpl;
+      {required final bool isSubmitting,
+      required final Either<CoreFailure, AuthToken>?
+          authFailureOrSuccess}) = _$AuthFormStateImpl;
 
   @override
   bool get isSubmitting;
   @override
-  Either<AuthFailure, Unit>? get authFailureOrSuccess;
+  Either<CoreFailure, AuthToken>? get authFailureOrSuccess;
   @override
   @JsonKey(ignore: true)
   _$$AuthFormStateImplCopyWith<_$AuthFormStateImpl> get copyWith =>
