@@ -84,7 +84,7 @@ mixin _$Profile {
   @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
   bool? get isBankAccountSetupCompleted => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
-  String? get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -143,7 +143,7 @@ abstract class $ProfileCopyWith<$Res> {
       bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
       bool? isBankAccountSetupCompleted,
-      @JsonKey(includeIfNull: false) String? id});
+      @JsonKey(includeIfNull: false) int? id});
 
   $OnboardingCopyWith<$Res> get onboarding;
 }
@@ -307,7 +307,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ) as $Val);
   }
 
@@ -374,7 +374,7 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
       bool? isBankAccountSetupCompleted,
-      @JsonKey(includeIfNull: false) String? id});
+      @JsonKey(includeIfNull: false) int? id});
 
   @override
   $OnboardingCopyWith<$Res> get onboarding;
@@ -537,7 +537,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ));
   }
 }
@@ -707,7 +707,7 @@ class _$ProfileImpl implements _Profile {
   final bool? isBankAccountSetupCompleted;
   @override
   @JsonKey(includeIfNull: false)
-  final String? id;
+  final int? id;
 
   @override
   String toString() {
@@ -883,7 +883,7 @@ abstract class _Profile implements Profile {
       final bool? isAddressSetupCompleted,
       @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
       final bool? isBankAccountSetupCompleted,
-      @JsonKey(includeIfNull: false) final String? id}) = _$ProfileImpl;
+      @JsonKey(includeIfNull: false) final int? id}) = _$ProfileImpl;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
 
@@ -979,7 +979,7 @@ abstract class _Profile implements Profile {
   bool? get isBankAccountSetupCompleted;
   @override
   @JsonKey(includeIfNull: false)
-  String? get id;
+  int? get id;
   @override
   @JsonKey(ignore: true)
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>

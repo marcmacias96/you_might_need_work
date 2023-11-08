@@ -46,7 +46,7 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
       isAddressSetupCompleted: json['is_address_setup_completed'] as bool?,
       isBankAccountSetupCompleted:
           json['is_bank_account_setup_completed'] as bool?,
-      id: json['id'] as String?,
+      id: json['id'] as int?,
     );
 
 Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) {
