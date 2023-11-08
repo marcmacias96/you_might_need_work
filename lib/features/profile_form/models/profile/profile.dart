@@ -2,7 +2,6 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 
-
 part 'profile.gform.dart';
 
 @Rf()
@@ -39,9 +38,16 @@ class CompanyData {
       ],
     )
     required this.company,
+    @RfControl(
+      validators: [
+        RequiredValidator(),
+      ],
+    )
+    required this.feedback,
   });
 
   final String company;
+  final String feedback;
 }
 
 @RfGroup<CompanyDetail>()

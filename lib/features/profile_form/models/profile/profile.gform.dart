@@ -1094,13 +1094,19 @@ class CompanyDataForm implements FormModel<CompanyData> {
 
   static const String companyControlName = "company";
 
+  static const String feedbackControlName = "feedback";
+
   final FormGroup form;
 
   final String? path;
 
   String companyControlPath() => pathBuilder(companyControlName);
 
+  String feedbackControlPath() => pathBuilder(feedbackControlName);
+
   String get _companyValue => companyControl.value as String;
+
+  String get _feedbackValue => feedbackControl.value as String;
 
   bool get containsCompany {
     try {
@@ -1111,9 +1117,22 @@ class CompanyDataForm implements FormModel<CompanyData> {
     }
   }
 
+  bool get containsFeedback {
+    try {
+      form.control(feedbackControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Object? get companyErrors => companyControl.errors;
 
+  Object? get feedbackErrors => feedbackControl.errors;
+
   void get companyFocus => form.focus(companyControlPath());
+
+  void get feedbackFocus => form.focus(feedbackControlPath());
 
   void companyValueUpdate(
     String value, {
@@ -1124,12 +1143,30 @@ class CompanyDataForm implements FormModel<CompanyData> {
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
+  void feedbackValueUpdate(
+    String value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    feedbackControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
   void companyValuePatch(
     String value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
     companyControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void feedbackValuePatch(
+    String value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    feedbackControl.patchValue(value,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
@@ -1143,8 +1180,21 @@ class CompanyDataForm implements FormModel<CompanyData> {
       companyControl.reset(
           value: value, updateParent: updateParent, emitEvent: emitEvent);
 
+  void feedbackValueReset(
+    String value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      feedbackControl.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+
   FormControl<String> get companyControl =>
       form.control(companyControlPath()) as FormControl<String>;
+
+  FormControl<String> get feedbackControl =>
+      form.control(feedbackControlPath()) as FormControl<String>;
 
   void companySetDisabled(
     bool disabled, {
@@ -1164,13 +1214,31 @@ class CompanyDataForm implements FormModel<CompanyData> {
     }
   }
 
+  void feedbackSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      feedbackControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      feedbackControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
   @override
   CompanyData get model {
     if (!currentForm.valid) {
       debugPrint(
           '[${path ?? 'CompanyDataForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
     }
-    return CompanyData(company: _companyValue);
+    return CompanyData(company: _companyValue, feedback: _feedbackValue);
   }
 
   @override
@@ -1216,6 +1284,13 @@ class CompanyDataForm implements FormModel<CompanyData> {
   static FormGroup formElements(CompanyData? companyData) => FormGroup({
         companyControlName: FormControl<String>(
             value: companyData?.company,
+            validators: [RequiredValidator()],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false),
+        feedbackControlName: FormControl<String>(
+            value: companyData?.feedback,
             validators: [RequiredValidator()],
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,

@@ -111,5 +111,11 @@
     "enterYourTitle":"Enter your title",
     "enterYourDescription":"Enter your description",
     "selectTheOccupationYouNeed":"Select the occupation you need",
-    "enterYourSpecialization":"Enter your specialization"
+    "enterYourSpecialization":"Enter your specialization",
+    "wantTo": "I want to:",
+    "feedback1" : "Track billable time clients for it",
+    "feedback2" : "Make sure my business is on track",
+    "feedback3" : "Better estimate future projects",
+    "feedback4" : "Provide evidence of my work",
+    "feedback5" : "Something else..."
 }
