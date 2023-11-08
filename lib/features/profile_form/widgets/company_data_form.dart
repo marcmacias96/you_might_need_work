@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:you_might_need_work/assets/assets.dart';
-import 'package:you_might_need_work/data/profile/enums/feedback_options.dart';
+import 'package:you_might_need_work/data/profile/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/profile_form/models/models.dart';
 import 'package:you_might_need_work/theme/theme.dart';
@@ -85,7 +86,8 @@ class CompanyDataForm extends StatelessWidget {
                           ),
                           const Gap(AppPadding.medium),
                           CompanyFeedback(
-                            profileForm: state.profileForm!,
+                            feedbackControl: state
+                                .profileForm!.companyDataForm.feedbackControl,
                           ),
                           const SizedBox(height: AppPadding.xl),
                           ReactiveProfileFormConsumer(
@@ -115,8 +117,8 @@ class CompanyDataForm extends StatelessWidget {
 }
 
 class CompanyFeedback extends StatefulWidget {
-  const CompanyFeedback({required this.profileForm, super.key});
-  final ProfileForm profileForm;
+  const CompanyFeedback({required this.feedbackControl, super.key});
+  final FormControl<String> feedbackControl;
   @override
   State<CompanyFeedback> createState() => _CompanyFeedbackState();
 }
@@ -124,35 +126,23 @@ class CompanyFeedback extends StatefulWidget {
 class _CompanyFeedbackState extends State<CompanyFeedback> {
   @override
   Widget build(BuildContext context) {
-    final companyDataForm = widget.profileForm.companyDataForm;
+    final feedbackControl = widget.feedbackControl;
     final localization = AppLocalizations.of(context);
-
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final feedback = FeedbackOptions.values[index];
-        var actualValue = companyDataForm.feedbackControl.value ?? '';
-
         return RadioListTile(
           contentPadding: EdgeInsets.zero,
-          groupValue: feedback.value,
-          value: actualValue,
+          groupValue: feedbackControl.value ?? '',
+          value: feedback.value,
           onChanged: (value) {
-            actualValue = feedback.value;
-            companyDataForm.feedbackControl.patchValue(actualValue);
+            feedbackControl.patchValue(value);
             setState(() {});
           },
           title: Text(
-            feedback.name == 'feedbackOption1'
-                ? localization.feedback1
-                : feedback.name == 'feedbackOption2'
-                    ? localization.feedback2
-                    : feedback.name == 'feedbackOption3'
-                        ? localization.feedback3
-                        : feedback.name == 'feedbackOption4'
-                            ? localization.feedback4
-                            : localization.feedback5,
+            feedback.getTraduction(localization),
           ),
         );
       },
