@@ -60,7 +60,7 @@ class Profile with _$Profile {
     bool? isAddressSetupCompleted,
     @JsonKey(includeIfNull: false, name: 'is_bank_account_setup_completed')
     bool? isBankAccountSetupCompleted,
-    @JsonKey(includeIfNull: false) String? id,
+    @JsonKey(includeIfNull: false) int? id,
   }) = _Profile;
 
   factory Profile.fromJson(Map<String, dynamic> json) =>
