@@ -142,7 +142,7 @@ class _CompanyFeedbackState extends State<CompanyFeedback> {
             setState(() {});
           },
           title: Text(
-            feedback.getTraduction(localization),
+            feedback.getTranslation(localization),
           ),
         );
       },

@@ -18,7 +18,7 @@ enum FeedbackOptions {
     );
   }
 
-  String getTraduction(AppLocalizations localization) {
+  String getTranslation(AppLocalizations localization) {
     switch (this) {
       case FeedbackOptions.feedbackOption1:
         return localization.feedback1;
