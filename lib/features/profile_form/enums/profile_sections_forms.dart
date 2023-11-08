@@ -44,7 +44,7 @@ enum CompanyForm implements ProfileFormSections {
   @override
   final Widget widget;
 
-   static CompanyForm fromString(String value) {
+  static CompanyForm fromString(String value) {
     return CompanyForm.values.firstWhere(
       (element) => element.name == value,
       orElse: () => CompanyForm.companyDataForm,

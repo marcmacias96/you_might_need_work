@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:you_might_need_work/assets/assets.dart';
+import 'package:you_might_need_work/data/profile/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/profile_form/models/models.dart';
 import 'package:you_might_need_work/theme/theme.dart';
@@ -28,6 +30,7 @@ class CompanyDataForm extends StatelessWidget {
             SliverToBoxAdapter(
               child: BlocBuilder<ProfileFormCubit, ProfileFormState>(
                 builder: (context, state) {
+                  final companyDataForm = state.profileForm!.companyDataForm;
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppPadding.xl,
@@ -68,10 +71,25 @@ class CompanyDataForm extends StatelessWidget {
                           AppFormInput(
                             labelText: localization.nameOfTheCompany,
                             hintText: localization.enterYourName,
-                            formControl: state
-                                .profileForm!.companyDataForm.companyControl,
+                            formControl: companyDataForm.companyControl,
                           ),
-                          const SizedBox(height: AppPadding.xxl),
+                          const Gap(AppPadding.xl),
+                          Text(
+                            localization.wantTo,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  color: AppColors.grayGray2,
+                                ),
+                          ),
+                          const Gap(AppPadding.medium),
+                          CompanyFeedback(
+                            feedbackControl: state
+                                .profileForm!.companyDataForm.feedbackControl,
+                          ),
+                          const SizedBox(height: AppPadding.xl),
                           ReactiveProfileFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
@@ -94,6 +112,42 @@ class CompanyDataForm extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class CompanyFeedback extends StatefulWidget {
+  const CompanyFeedback({required this.feedbackControl, super.key});
+  final FormControl<String> feedbackControl;
+  @override
+  State<CompanyFeedback> createState() => _CompanyFeedbackState();
+}
+
+class _CompanyFeedbackState extends State<CompanyFeedback> {
+  @override
+  Widget build(BuildContext context) {
+    final feedbackControl = widget.feedbackControl;
+    final localization = AppLocalizations.of(context);
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        final feedback = FeedbackOptions.values[index];
+        return RadioListTile(
+          contentPadding: EdgeInsets.zero,
+          groupValue: feedbackControl.value ?? '',
+          value: feedback.value,
+          onChanged: (value) {
+            feedbackControl.patchValue(value);
+            setState(() {});
+          },
+          title: Text(
+            feedback.getTranslation(localization),
+          ),
+        );
+      },
+      separatorBuilder: (context, index) => const Gap(AppPadding.extraSmall),
+      itemCount: FeedbackOptions.values.length,
     );
   }
 }
