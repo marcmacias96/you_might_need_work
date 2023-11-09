@@ -39,7 +39,7 @@ class BankAccountRepository implements IBankAccountRepository {
   Future<Either<CoreFailure, List<BankAccount>>> getBankAccounts() async {
     try {
       final response = await _dio.get<dynamic>(
-        Endpoints.getBanksAccounts,
+        Endpoints.getBankAccounts,
       );
       if (response.data == null) {
         return left(const CoreFailure.unexpected());
