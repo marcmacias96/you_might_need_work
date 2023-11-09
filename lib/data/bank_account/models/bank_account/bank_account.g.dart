@@ -1,24 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bank.dart';
+part of 'bank_account.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BankImpl _$$BankImplFromJson(Map<String, dynamic> json) => _$BankImpl(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      country: json['country'] as String,
-      bicCode: json['bic_code'] as String,
+_$BankAccountImpl _$$BankAccountImplFromJson(Map<String, dynamic> json) =>
+    _$BankAccountImpl(
+      user: json['user'] as int,
+      bank: json['bank'] as int,
+      accountNumber: json['account_number'] as String,
+      accountType: json['account_type'] as String,
+      bankDefault: json['default'] as bool,
     );
 
-Map<String, dynamic> _$$BankImplToJson(_$BankImpl instance) =>
+Map<String, dynamic> _$$BankAccountImplToJson(_$BankAccountImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'country': instance.country,
-      'bic_code': instance.bicCode,
+      'user': instance.user,
+      'bank': instance.bank,
+      'account_number': instance.accountNumber,
+      'account_type': instance.accountType,
+      'default': instance.bankDefault,
     };
 
 _$BankAccountResponseImpl _$$BankAccountResponseImplFromJson(

@@ -1,18 +1,20 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'bank.freezed.dart';
-part 'bank.g.dart';
+part 'bank_account.freezed.dart';
+part 'bank_account.g.dart';
 
 @freezed
-class Bank with _$Bank {
-  factory Bank({
-    required int id,
-    required String name,
-    required String country,
-    @JsonKey(name: 'bic_code') required String bicCode,
-  }) = _Bank;
+class BankAccount with _$BankAccount {
+  factory BankAccount({
+    required int user,
+    required int bank,
+    @JsonKey(name: 'account_number') required String accountNumber,
+    @JsonKey(name: 'account_type') required String accountType,
+    @JsonKey(name: 'default') required bool bankDefault,
+  }) = _BankAccount;
 
-  factory Bank.fromJson(Map<String, dynamic> json) => _$BankFromJson(json);
+  factory BankAccount.fromJson(Map<String, dynamic> json) =>
+      _$BankAccountFromJson(json);
 }
 
 @freezed

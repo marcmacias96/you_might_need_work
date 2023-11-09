@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:you_might_need_work/data/bank_account/models/bank_account.dart';
+import 'package:you_might_need_work/data/bank_account/models/models.dart';
 import 'package:you_might_need_work/data/core/models/core_failure/core_failure.dart';
 
 /// An abstract repository interface for bank account-related operations.
