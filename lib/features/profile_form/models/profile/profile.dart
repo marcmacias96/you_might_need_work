@@ -1,249 +1,244 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 
 part 'profile.gform.dart';
+part 'profile.g.dart';
+part 'profile.freezed.dart';
 
 @Rf()
-class Profile {
-  Profile({
-    this.companyData,
-    this.companyDetail,
-    this.address,
-    this.identityData,
-    this.profileData,
-    this.workDayData,
-    this.paymentMethod,
-    this.phoneNumber,
-  });
+@freezed
+class Profile with _$Profile {
+  factory Profile({
+    CompanyData? companyData,
+    CompanyDetail? companyDetail,
+    Address? address,
+    IdentityData? identityData,
+    ProfileData? profileData,
+    WorkDayData? workDayData,
+    PaymentMethod? paymentMethod,
+    PhoneNumberData? phoneNumber,
+  }) = _Profile;
 
   factory Profile.empty() => Profile();
 
-  final CompanyData? companyData;
-  final CompanyDetail? companyDetail;
-  final Address? address;
-  final IdentityData? identityData;
-  final ProfileData? profileData;
-  final WorkDayData? workDayData;
-  final PaymentMethod? paymentMethod;
-  final PhoneNumberData? phoneNumber;
+  factory Profile.fromJson(Map<String, dynamic> json) =>
+      _$ProfileFromJson(json);
 }
 
 @RfGroup<CompanyData>()
-class CompanyData {
-  CompanyData({
+@freezed
+class CompanyData with _$CompanyData {
+  factory CompanyData({
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.company,
+    required String company,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.feedback,
-  });
+    required String feedback,
+  }) = _CompanyData;
 
-  final String company;
-  final String feedback;
+  factory CompanyData.fromJson(Map<String, dynamic> json) =>
+      _$CompanyDataFromJson(json);
 }
 
 @RfGroup<CompanyDetail>()
-class CompanyDetail {
-  CompanyDetail({
+@freezed
+class CompanyDetail with _$CompanyDetail {
+  factory CompanyDetail({
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.industry,
+    required String industry,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.description,
+    required String description,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.title,
+    required String title,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.occupation,
+    required String occupation,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.specialization,
+    required String specialization,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.statingAt,
+    required DateTime statingAt,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.endingAt,
-    @RfControl(
-      validators: [
-        RequiredValidator(),
-        NumberValidator(),
-      ],
-    )
-    required this.paymentForHour,
+    required DateTime endingAt,
     @RfControl(
       validators: [
         RequiredValidator(),
         NumberValidator(),
       ],
     )
-    required this.hoursRequired,
-  });
+    required String paymentForHour,
+    @RfControl(
+      validators: [
+        RequiredValidator(),
+        NumberValidator(),
+      ],
+    )
+    required String hoursRequired,
+  }) = _CompanyDetail;
 
-  final String industry;
-  final String title;
-  final String description;
-  final String occupation;
-  final String specialization;
-  final DateTime statingAt;
-  final DateTime endingAt;
-  final String paymentForHour;
-  final String hoursRequired;
+  factory CompanyDetail.fromJson(Map<String, dynamic> json) =>
+      _$CompanyDetailFromJson(json);
 }
 
 @RfGroup<Address>()
-class Address {
-  Address({
+@freezed
+class Address with _$Address {
+  factory Address({
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.address,
-  });
+    required String address,
+  }) = _Address;
 
-  final String address;
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
 }
 
 @RfGroup<IdentityData>()
-class IdentityData {
-  IdentityData({
+@freezed
+class IdentityData with _$IdentityData {
+  factory IdentityData({
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.name,
+    required String name,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.lastName,
+    required String lastName,
     @RfControl(
       validators: [
         RequiredValidator(),
         NumberValidator(),
       ],
     )
-    required this.documentNumber,
+    required String documentNumber,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.documentType,
+    required String documentType,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.documentIssueDate,
-  });
+    required DateTime documentIssueDate,
+  }) = _IdentityData;
 
-  final String name;
-  final String lastName;
-  final String documentNumber;
-  final String documentType;
-  final DateTime documentIssueDate;
+  factory IdentityData.fromJson(Map<String, dynamic> json) =>
+      _$IdentityDataFromJson(json);
 }
 
 @RfGroup<ProfileData>()
-class ProfileData {
-  ProfileData({
+@freezed
+class ProfileData with _$ProfileData {
+  factory ProfileData({
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.levelOfStudy,
+    required String levelOfStudy,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.occupation,
-  });
-
-  final String levelOfStudy;
-  final String occupation;
+    required String occupation,
+  }) = _ProfileData;
+  factory ProfileData.fromJson(Map<String, dynamic> json) =>
+      _$ProfileDataFromJson(json);
 }
 
 @RfGroup<WorkDayData>()
-class WorkDayData {
-  WorkDayData({
+@freezed
+class WorkDayData with _$WorkDayData {
+  factory WorkDayData({
     @RfControl(
       validators: [
         RequiredValidator(),
         RangeValidator(),
       ],
     )
-    required this.capacity,
+    required String capacity,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.availableDays,
-  });
+    required List<String> availableDays,
+  }) = _WorkDayData;
 
-  final String capacity;
-  final List<String> availableDays;
+  factory WorkDayData.fromJson(Map<String, dynamic> json) =>
+      _$WorkDayDataFromJson(json);
 }
 
 @RfGroup<PaymentMethod>()
-class PaymentMethod {
-  PaymentMethod({
+@freezed
+class PaymentMethod with _$PaymentMethod {
+  factory PaymentMethod({
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.bank,
+    required String bank,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.accountNumber,
+    required String accountNumber,
     @RfControl(
       validators: [
         RequiredValidator(),
       ],
     )
-    required this.accountType,
-  });
+    required String accountType,
+  }) = _PaymentMethod;
 
   factory PaymentMethod.empty() => PaymentMethod(
         bank: '',
@@ -251,22 +246,23 @@ class PaymentMethod {
         accountType: '',
       );
 
-  final String bank;
-  final String accountNumber;
-  final String accountType;
+  factory PaymentMethod.fromJson(Map<String, dynamic> json) =>
+      _$PaymentMethodFromJson(json);
 }
 
 @RfGroup<PhoneNumberData>()
-class PhoneNumberData {
-  PhoneNumberData({
+@freezed
+class PhoneNumberData with _$PhoneNumberData {
+  factory PhoneNumberData({
     @RfControl(
       validators: [
         RequiredPhoneValidator(),
         ValidPhoneValidator(),
       ],
     )
-    required this.phoneNumber,
-  });
+    required PhoneNumber phoneNumber,
+  }) = _PhoneNumberData;
 
-  final PhoneNumber phoneNumber;
+  factory PhoneNumberData.fromJson(Map<String, dynamic> json) =>
+      _$PhoneNumberDataFromJson(json);
 }
