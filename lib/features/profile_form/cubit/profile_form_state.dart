@@ -4,7 +4,7 @@ part of 'profile_form_cubit.dart';
 class ProfileFormState with _$ProfileFormState {
   const factory ProfileFormState({
     required bool isSubmitting,
-    ProfileForm? profileForm,
+    ProfileUiForm? profileForm,
   }) = _ProfileFormState;
 
   factory ProfileFormState.initial() => const ProfileFormState(

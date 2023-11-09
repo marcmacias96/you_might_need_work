@@ -56,7 +56,7 @@ class AddressDataForm extends StatelessWidget {
                                 state.profileForm!.addressForm.addressControl,
                           ),
                           const Gap(AppPadding.xl),
-                          ReactiveProfileFormConsumer(
+                          ReactiveProfileUiFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,

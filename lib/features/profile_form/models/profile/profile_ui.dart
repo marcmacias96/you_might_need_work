@@ -3,14 +3,14 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
 import 'package:you_might_need_work/utils/utils.dart';
 
-part 'profile.gform.dart';
-part 'profile.g.dart';
-part 'profile.freezed.dart';
+part 'profile_ui.gform.dart';
+part 'profile_ui.g.dart';
+part 'profile_ui.freezed.dart';
 
 @Rf()
 @freezed
-class Profile with _$Profile {
-  factory Profile({
+class ProfileUi with _$ProfileUi {
+  factory ProfileUi({
     CompanyData? companyData,
     CompanyDetail? companyDetail,
     Address? address,
@@ -19,12 +19,12 @@ class Profile with _$Profile {
     WorkDayData? workDayData,
     PaymentMethod? paymentMethod,
     PhoneNumberData? phoneNumber,
-  }) = _Profile;
+  }) = _ProfileUi;
 
-  factory Profile.empty() => Profile();
+  factory ProfileUi.empty() => ProfileUi();
 
-  factory Profile.fromJson(Map<String, dynamic> json) =>
-      _$ProfileFromJson(json);
+  factory ProfileUi.fromJson(Map<String, dynamic> json) =>
+      _$ProfileUiFromJson(json);
 }
 
 @RfGroup<CompanyData>()

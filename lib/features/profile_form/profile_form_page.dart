@@ -36,7 +36,6 @@ class ProfileFormPage extends HookWidget {
   Widget build(BuildContext context) {
     final pageController = usePageController();
     final actualStep = context.watch<PageViewPositionCubit>().state;
-  
 
     return BlocProvider(
       create: (context) => getIt<ProfileFormCubit>(),
@@ -48,7 +47,7 @@ class ProfileFormPage extends HookWidget {
           totalSteps: args.steps.length,
         ),
         back: () => _previousPage(pageController),
-        child: ProfileFormBuilder(
+        child: ProfileUiFormBuilder(
           builder: (context, formModel, _) {
             context.read<ProfileFormCubit>().updateModel(formModel);
 

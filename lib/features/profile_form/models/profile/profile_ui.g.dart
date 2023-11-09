@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile.dart';
+part of 'profile_ui.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
-    _$ProfileImpl(
+_$ProfileUiImpl _$$ProfileUiImplFromJson(Map<String, dynamic> json) =>
+    _$ProfileUiImpl(
       companyData: json['companyData'] == null
           ? null
           : CompanyData.fromJson(json['companyData'] as Map<String, dynamic>),
@@ -37,7 +37,7 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
               json['phoneNumber'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
+Map<String, dynamic> _$$ProfileUiImplToJson(_$ProfileUiImpl instance) =>
     <String, dynamic>{
       'companyData': instance.companyData,
       'companyDetail': instance.companyDetail,

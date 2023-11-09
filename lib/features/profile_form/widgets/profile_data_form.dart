@@ -90,7 +90,7 @@ class ProfileDataForm extends StatelessWidget {
                             formControl: profileDataForm.occupationControl,
                           ),
                           const Gap(AppPadding.xxl),
-                          ReactiveProfileFormConsumer(
+                          ReactiveProfileUiFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,

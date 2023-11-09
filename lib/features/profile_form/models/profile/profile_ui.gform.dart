@@ -3,14 +3,14 @@
 // ignore_for_file: type=lint
 // ignore_for_file:
 
-part of 'profile.dart';
+part of 'profile_ui.dart';
 
 // **************************************************************************
 // ReactiveFormsGenerator
 // **************************************************************************
 
-class ReactiveProfileFormConsumer extends StatelessWidget {
-  const ReactiveProfileFormConsumer({
+class ReactiveProfileUiFormConsumer extends StatelessWidget {
+  const ReactiveProfileUiFormConsumer({
     Key? key,
     required this.builder,
     this.child,
@@ -19,21 +19,21 @@ class ReactiveProfileFormConsumer extends StatelessWidget {
   final Widget? child;
 
   final Widget Function(
-      BuildContext context, ProfileForm formModel, Widget? child) builder;
+      BuildContext context, ProfileUiForm formModel, Widget? child) builder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveProfileForm.of(context);
+    final formModel = ReactiveProfileUiForm.of(context);
 
-    if (formModel is! ProfileForm) {
+    if (formModel is! ProfileUiForm) {
       throw FormControlParentNotFoundException(this);
     }
     return builder(context, formModel, child);
   }
 }
 
-class ProfileFormInheritedStreamer extends InheritedStreamer<dynamic> {
-  const ProfileFormInheritedStreamer({
+class ProfileUiFormInheritedStreamer extends InheritedStreamer<dynamic> {
+  const ProfileUiFormInheritedStreamer({
     Key? key,
     required this.form,
     required Stream<dynamic> stream,
@@ -44,11 +44,11 @@ class ProfileFormInheritedStreamer extends InheritedStreamer<dynamic> {
           key: key,
         );
 
-  final ProfileForm form;
+  final ProfileUiForm form;
 }
 
-class ReactiveProfileForm extends StatelessWidget {
-  const ReactiveProfileForm({
+class ReactiveProfileUiForm extends StatelessWidget {
+  const ReactiveProfileUiForm({
     Key? key,
     required this.form,
     required this.child,
@@ -57,30 +57,30 @@ class ReactiveProfileForm extends StatelessWidget {
 
   final Widget child;
 
-  final ProfileForm form;
+  final ProfileUiForm form;
 
   final WillPopCallback? onWillPop;
 
-  static ProfileForm? of(
+  static ProfileUiForm? of(
     BuildContext context, {
     bool listen = true,
   }) {
     if (listen) {
       return context
-          .dependOnInheritedWidgetOfExactType<ProfileFormInheritedStreamer>()
+          .dependOnInheritedWidgetOfExactType<ProfileUiFormInheritedStreamer>()
           ?.form;
     }
 
     final element = context.getElementForInheritedWidgetOfExactType<
-        ProfileFormInheritedStreamer>();
+        ProfileUiFormInheritedStreamer>();
     return element == null
         ? null
-        : (element.widget as ProfileFormInheritedStreamer).form;
+        : (element.widget as ProfileUiFormInheritedStreamer).form;
   }
 
   @override
   Widget build(BuildContext context) {
-    return ProfileFormInheritedStreamer(
+    return ProfileUiFormInheritedStreamer(
       form: form,
       stream: form.form.statusChanged,
       child: WillPopScope(
@@ -91,8 +91,8 @@ class ReactiveProfileForm extends StatelessWidget {
   }
 }
 
-class ProfileFormBuilder extends StatefulWidget {
-  const ProfileFormBuilder({
+class ProfileUiFormBuilder extends StatefulWidget {
+  const ProfileUiFormBuilder({
     Key? key,
     this.model,
     this.child,
@@ -101,27 +101,27 @@ class ProfileFormBuilder extends StatefulWidget {
     this.initState,
   }) : super(key: key);
 
-  final Profile? model;
+  final ProfileUi? model;
 
   final Widget? child;
 
   final WillPopCallback? onWillPop;
 
   final Widget Function(
-      BuildContext context, ProfileForm formModel, Widget? child) builder;
+      BuildContext context, ProfileUiForm formModel, Widget? child) builder;
 
-  final void Function(BuildContext context, ProfileForm formModel)? initState;
+  final void Function(BuildContext context, ProfileUiForm formModel)? initState;
 
   @override
-  _ProfileFormBuilderState createState() => _ProfileFormBuilderState();
+  _ProfileUiFormBuilderState createState() => _ProfileUiFormBuilderState();
 }
 
-class _ProfileFormBuilderState extends State<ProfileFormBuilder> {
-  late ProfileForm _formModel;
+class _ProfileUiFormBuilderState extends State<ProfileUiFormBuilder> {
+  late ProfileUiForm _formModel;
 
   @override
   void initState() {
-    _formModel = ProfileForm(ProfileForm.formElements(widget.model), null);
+    _formModel = ProfileUiForm(ProfileUiForm.formElements(widget.model), null);
 
     if (_formModel.form.disabled) {
       _formModel.form.markAsDisabled();
@@ -133,9 +133,10 @@ class _ProfileFormBuilderState extends State<ProfileFormBuilder> {
   }
 
   @override
-  void didUpdateWidget(covariant ProfileFormBuilder oldWidget) {
+  void didUpdateWidget(covariant ProfileUiFormBuilder oldWidget) {
     if (widget.model != oldWidget.model) {
-      _formModel = ProfileForm(ProfileForm.formElements(widget.model), null);
+      _formModel =
+          ProfileUiForm(ProfileUiForm.formElements(widget.model), null);
 
       if (_formModel.form.disabled) {
         _formModel.form.markAsDisabled();
@@ -155,7 +156,7 @@ class _ProfileFormBuilderState extends State<ProfileFormBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveProfileForm(
+    return ReactiveProfileUiForm(
       key: ObjectKey(_formModel),
       form: _formModel,
       onWillPop: widget.onWillPop,
@@ -170,8 +171,8 @@ class _ProfileFormBuilderState extends State<ProfileFormBuilder> {
   }
 }
 
-class ProfileForm implements FormModel<Profile> {
-  ProfileForm(
+class ProfileUiForm implements FormModel<ProfileUi> {
+  ProfileUiForm(
     this.form,
     this.path,
   );
@@ -1007,12 +1008,12 @@ class ProfileForm implements FormModel<Profile> {
   }
 
   @override
-  Profile get model {
+  ProfileUi get model {
     if (!currentForm.valid) {
       debugPrint(
-          '[${path ?? 'ProfileForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
+          '[${path ?? 'ProfileUiForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
     }
-    return Profile(
+    return ProfileUi(
         companyData: _companyDataValue,
         companyDetail: _companyDetailValue,
         address: _addressValue,
@@ -1025,7 +1026,7 @@ class ProfileForm implements FormModel<Profile> {
 
   @override
   void submit({
-    required void Function(Profile model) onValid,
+    required void Function(ProfileUi model) onValid,
     void Function()? onNotValid,
   }) {
     currentForm.markAllAsTouched();
@@ -1042,16 +1043,16 @@ class ProfileForm implements FormModel<Profile> {
 
   @override
   void updateValue(
-    Profile value, {
+    ProfileUi value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) =>
-      form.updateValue(ProfileForm.formElements(value).rawValue,
+      form.updateValue(ProfileUiForm.formElements(value).rawValue,
           updateParent: updateParent, emitEvent: emitEvent);
 
   @override
   void reset({
-    Profile? value,
+    ProfileUi? value,
     bool updateParent = true,
     bool emitEvent = true,
   }) =>
@@ -1063,22 +1064,22 @@ class ProfileForm implements FormModel<Profile> {
   String pathBuilder(String? pathItem) =>
       [path, pathItem].whereType<String>().join(".");
 
-  static FormGroup formElements(Profile? profile) => FormGroup({
+  static FormGroup formElements(ProfileUi? profileUi) => FormGroup({
         companyDataControlName:
-            CompanyDataForm.formElements(profile?.companyData),
+            CompanyDataForm.formElements(profileUi?.companyData),
         companyDetailControlName:
-            CompanyDetailForm.formElements(profile?.companyDetail),
-        addressControlName: AddressForm.formElements(profile?.address),
+            CompanyDetailForm.formElements(profileUi?.companyDetail),
+        addressControlName: AddressForm.formElements(profileUi?.address),
         identityDataControlName:
-            IdentityDataForm.formElements(profile?.identityData),
+            IdentityDataForm.formElements(profileUi?.identityData),
         profileDataControlName:
-            ProfileDataForm.formElements(profile?.profileData),
+            ProfileDataForm.formElements(profileUi?.profileData),
         workDayDataControlName:
-            WorkDayDataForm.formElements(profile?.workDayData),
+            WorkDayDataForm.formElements(profileUi?.workDayData),
         paymentMethodControlName:
-            PaymentMethodForm.formElements(profile?.paymentMethod),
+            PaymentMethodForm.formElements(profileUi?.paymentMethod),
         phoneNumberControlName:
-            PhoneNumberDataForm.formElements(profile?.phoneNumber)
+            PhoneNumberDataForm.formElements(profileUi?.phoneNumber)
       },
           validators: [],
           asyncValidators: [],
@@ -3519,8 +3520,8 @@ class PhoneNumberDataForm implements FormModel<PhoneNumberData> {
           disabled: false);
 }
 
-class ReactiveProfileFormArrayBuilder<T> extends StatelessWidget {
-  const ReactiveProfileFormArrayBuilder({
+class ReactiveProfileUiFormArrayBuilder<T> extends StatelessWidget {
+  const ReactiveProfileUiFormArrayBuilder({
     Key? key,
     this.control,
     this.formControl,
@@ -3532,18 +3533,19 @@ class ReactiveProfileFormArrayBuilder<T> extends StatelessWidget {
 
   final FormArray<T>? formControl;
 
-  final FormArray<T>? Function(ProfileForm formModel)? control;
+  final FormArray<T>? Function(ProfileUiForm formModel)? control;
 
   final Widget Function(
-          BuildContext context, List<Widget> itemList, ProfileForm formModel)?
+          BuildContext context, List<Widget> itemList, ProfileUiForm formModel)?
       builder;
 
   final Widget Function(
-      BuildContext context, int i, T? item, ProfileForm formModel) itemBuilder;
+          BuildContext context, int i, T? item, ProfileUiForm formModel)
+      itemBuilder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveProfileForm.of(context);
+    final formModel = ReactiveProfileUiForm.of(context);
 
     if (formModel == null) {
       throw FormControlParentNotFoundException(this);
@@ -3579,8 +3581,8 @@ class ReactiveProfileFormArrayBuilder<T> extends StatelessWidget {
   }
 }
 
-class ReactiveProfileFormFormGroupArrayBuilder<T> extends StatelessWidget {
-  const ReactiveProfileFormFormGroupArrayBuilder({
+class ReactiveProfileUiFormFormGroupArrayBuilder<T> extends StatelessWidget {
+  const ReactiveProfileUiFormFormGroupArrayBuilder({
     Key? key,
     this.extended,
     this.getExtended,
@@ -3593,18 +3595,19 @@ class ReactiveProfileFormFormGroupArrayBuilder<T> extends StatelessWidget {
   final ExtendedControl<List<Map<String, Object?>?>, List<T>>? extended;
 
   final ExtendedControl<List<Map<String, Object?>?>, List<T>> Function(
-      ProfileForm formModel)? getExtended;
+      ProfileUiForm formModel)? getExtended;
 
   final Widget Function(
-          BuildContext context, List<Widget> itemList, ProfileForm formModel)?
+          BuildContext context, List<Widget> itemList, ProfileUiForm formModel)?
       builder;
 
   final Widget Function(
-      BuildContext context, int i, T? item, ProfileForm formModel) itemBuilder;
+          BuildContext context, int i, T? item, ProfileUiForm formModel)
+      itemBuilder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveProfileForm.of(context);
+    final formModel = ReactiveProfileUiForm.of(context);
 
     if (formModel == null) {
       throw FormControlParentNotFoundException(this);

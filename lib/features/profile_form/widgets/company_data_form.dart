@@ -90,7 +90,7 @@ class CompanyDataForm extends StatelessWidget {
                                 .profileForm!.companyDataForm.feedbackControl,
                           ),
                           const SizedBox(height: AppPadding.xl),
-                          ReactiveProfileFormConsumer(
+                          ReactiveProfileUiFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,

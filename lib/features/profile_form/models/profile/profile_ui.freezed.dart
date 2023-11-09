@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'profile.dart';
+part of 'profile_ui.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Profile _$ProfileFromJson(Map<String, dynamic> json) {
-  return _Profile.fromJson(json);
+ProfileUi _$ProfileUiFromJson(Map<String, dynamic> json) {
+  return _ProfileUi.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Profile {
+mixin _$ProfileUi {
   CompanyData? get companyData => throw _privateConstructorUsedError;
   CompanyDetail? get companyDetail => throw _privateConstructorUsedError;
   Address? get address => throw _privateConstructorUsedError;
@@ -31,13 +31,14 @@ mixin _$Profile {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
+  $ProfileUiCopyWith<ProfileUi> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileCopyWith<$Res> {
-  factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
-      _$ProfileCopyWithImpl<$Res, Profile>;
+abstract class $ProfileUiCopyWith<$Res> {
+  factory $ProfileUiCopyWith(ProfileUi value, $Res Function(ProfileUi) then) =
+      _$ProfileUiCopyWithImpl<$Res, ProfileUi>;
   @useResult
   $Res call(
       {CompanyData? companyData,
@@ -60,9 +61,9 @@ abstract class $ProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
-    implements $ProfileCopyWith<$Res> {
-  _$ProfileCopyWithImpl(this._value, this._then);
+class _$ProfileUiCopyWithImpl<$Res, $Val extends ProfileUi>
+    implements $ProfileUiCopyWith<$Res> {
+  _$ProfileUiCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -215,10 +216,11 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
 }
 
 /// @nodoc
-abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
-  factory _$$ProfileImplCopyWith(
-          _$ProfileImpl value, $Res Function(_$ProfileImpl) then) =
-      __$$ProfileImplCopyWithImpl<$Res>;
+abstract class _$$ProfileUiImplCopyWith<$Res>
+    implements $ProfileUiCopyWith<$Res> {
+  factory _$$ProfileUiImplCopyWith(
+          _$ProfileUiImpl value, $Res Function(_$ProfileUiImpl) then) =
+      __$$ProfileUiImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -250,11 +252,11 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ProfileImplCopyWithImpl<$Res>
-    extends _$ProfileCopyWithImpl<$Res, _$ProfileImpl>
-    implements _$$ProfileImplCopyWith<$Res> {
-  __$$ProfileImplCopyWithImpl(
-      _$ProfileImpl _value, $Res Function(_$ProfileImpl) _then)
+class __$$ProfileUiImplCopyWithImpl<$Res>
+    extends _$ProfileUiCopyWithImpl<$Res, _$ProfileUiImpl>
+    implements _$$ProfileUiImplCopyWith<$Res> {
+  __$$ProfileUiImplCopyWithImpl(
+      _$ProfileUiImpl _value, $Res Function(_$ProfileUiImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -269,7 +271,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? paymentMethod = freezed,
     Object? phoneNumber = freezed,
   }) {
-    return _then(_$ProfileImpl(
+    return _then(_$ProfileUiImpl(
       companyData: freezed == companyData
           ? _value.companyData
           : companyData // ignore: cast_nullable_to_non_nullable
@@ -308,8 +310,8 @@ class __$$ProfileImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProfileImpl implements _Profile {
-  _$ProfileImpl(
+class _$ProfileUiImpl implements _ProfileUi {
+  _$ProfileUiImpl(
       {this.companyData,
       this.companyDetail,
       this.address,
@@ -319,8 +321,8 @@ class _$ProfileImpl implements _Profile {
       this.paymentMethod,
       this.phoneNumber});
 
-  factory _$ProfileImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProfileImplFromJson(json);
+  factory _$ProfileUiImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProfileUiImplFromJson(json);
 
   @override
   final CompanyData? companyData;
@@ -341,14 +343,14 @@ class _$ProfileImpl implements _Profile {
 
   @override
   String toString() {
-    return 'Profile(companyData: $companyData, companyDetail: $companyDetail, address: $address, identityData: $identityData, profileData: $profileData, workDayData: $workDayData, paymentMethod: $paymentMethod, phoneNumber: $phoneNumber)';
+    return 'ProfileUi(companyData: $companyData, companyDetail: $companyDetail, address: $address, identityData: $identityData, profileData: $profileData, workDayData: $workDayData, paymentMethod: $paymentMethod, phoneNumber: $phoneNumber)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProfileImpl &&
+            other is _$ProfileUiImpl &&
             (identical(other.companyData, companyData) ||
                 other.companyData == companyData) &&
             (identical(other.companyDetail, companyDetail) ||
@@ -382,19 +384,19 @@ class _$ProfileImpl implements _Profile {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
-      __$$ProfileImplCopyWithImpl<_$ProfileImpl>(this, _$identity);
+  _$$ProfileUiImplCopyWith<_$ProfileUiImpl> get copyWith =>
+      __$$ProfileUiImplCopyWithImpl<_$ProfileUiImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProfileImplToJson(
+    return _$$ProfileUiImplToJson(
       this,
     );
   }
 }
 
-abstract class _Profile implements Profile {
-  factory _Profile(
+abstract class _ProfileUi implements ProfileUi {
+  factory _ProfileUi(
       {final CompanyData? companyData,
       final CompanyDetail? companyDetail,
       final Address? address,
@@ -402,9 +404,10 @@ abstract class _Profile implements Profile {
       final ProfileData? profileData,
       final WorkDayData? workDayData,
       final PaymentMethod? paymentMethod,
-      final PhoneNumberData? phoneNumber}) = _$ProfileImpl;
+      final PhoneNumberData? phoneNumber}) = _$ProfileUiImpl;
 
-  factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
+  factory _ProfileUi.fromJson(Map<String, dynamic> json) =
+      _$ProfileUiImpl.fromJson;
 
   @override
   CompanyData? get companyData;
@@ -424,7 +427,7 @@ abstract class _Profile implements Profile {
   PhoneNumberData? get phoneNumber;
   @override
   @JsonKey(ignore: true)
-  _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
+  _$$ProfileUiImplCopyWith<_$ProfileUiImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

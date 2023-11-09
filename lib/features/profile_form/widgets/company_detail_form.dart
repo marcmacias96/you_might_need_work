@@ -138,7 +138,7 @@ class CompanyDetailForm extends StatelessWidget {
                             ],
                           ),
                           const Gap(AppPadding.xxl),
-                          ReactiveProfileFormConsumer(
+                          ReactiveProfileUiFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,

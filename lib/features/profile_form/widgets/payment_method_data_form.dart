@@ -75,7 +75,7 @@ class PaymentMethodDataForm extends StatelessWidget {
                             ],
                           ),
                           const Gap(AppPadding.xxxl),
-                          ReactiveProfileFormConsumer(
+                          ReactiveProfileUiFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,

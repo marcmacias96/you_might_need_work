@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProfileFormState {
   bool get isSubmitting => throw _privateConstructorUsedError;
-  ProfileForm? get profileForm => throw _privateConstructorUsedError;
+  ProfileUiForm? get profileForm => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileFormStateCopyWith<ProfileFormState> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $ProfileFormStateCopyWith<$Res> {
           ProfileFormState value, $Res Function(ProfileFormState) then) =
       _$ProfileFormStateCopyWithImpl<$Res, ProfileFormState>;
   @useResult
-  $Res call({bool isSubmitting, ProfileForm? profileForm});
+  $Res call({bool isSubmitting, ProfileUiForm? profileForm});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$ProfileFormStateCopyWithImpl<$Res, $Val extends ProfileFormState>
       profileForm: freezed == profileForm
           ? _value.profileForm
           : profileForm // ignore: cast_nullable_to_non_nullable
-              as ProfileForm?,
+              as ProfileUiForm?,
     ) as $Val);
   }
 }
@@ -70,7 +70,7 @@ abstract class _$$ProfileFormStateImplCopyWith<$Res>
       __$$ProfileFormStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isSubmitting, ProfileForm? profileForm});
+  $Res call({bool isSubmitting, ProfileUiForm? profileForm});
 }
 
 /// @nodoc
@@ -95,7 +95,7 @@ class __$$ProfileFormStateImplCopyWithImpl<$Res>
       profileForm: freezed == profileForm
           ? _value.profileForm
           : profileForm // ignore: cast_nullable_to_non_nullable
-              as ProfileForm?,
+              as ProfileUiForm?,
     ));
   }
 }
@@ -108,7 +108,7 @@ class _$ProfileFormStateImpl implements _ProfileFormState {
   @override
   final bool isSubmitting;
   @override
-  final ProfileForm? profileForm;
+  final ProfileUiForm? profileForm;
 
   @override
   String toString() {
@@ -141,12 +141,12 @@ class _$ProfileFormStateImpl implements _ProfileFormState {
 abstract class _ProfileFormState implements ProfileFormState {
   const factory _ProfileFormState(
       {required final bool isSubmitting,
-      final ProfileForm? profileForm}) = _$ProfileFormStateImpl;
+      final ProfileUiForm? profileForm}) = _$ProfileFormStateImpl;
 
   @override
   bool get isSubmitting;
   @override
-  ProfileForm? get profileForm;
+  ProfileUiForm? get profileForm;
   @override
   @JsonKey(ignore: true)
   _$$ProfileFormStateImplCopyWith<_$ProfileFormStateImpl> get copyWith =>

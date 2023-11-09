@@ -78,7 +78,7 @@ class WorkDayDataForm extends StatelessWidget {
                             profileForm: state.profileForm!,
                           ),
                           const Gap(AppPadding.xxl),
-                          ReactiveProfileFormConsumer(
+                          ReactiveProfileUiFormConsumer(
                             builder: (context, form, child) {
                               return AppElevatedButton(
                                 loading: false,
@@ -111,7 +111,7 @@ class DaysYouWork extends StatefulWidget {
     super.key,
   });
 
-  final ProfileForm profileForm;
+  final ProfileUiForm profileForm;
 
   @override
   State<DaysYouWork> createState() => _DaysYouWorkState();
