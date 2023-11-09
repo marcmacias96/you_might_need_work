@@ -18,9 +18,8 @@ import 'package:you_might_need_work/data/bank_account/bank_account.dart'
     as _i15;
 import 'package:you_might_need_work/data/bank_account/bank_account_repository.dart'
     as _i16;
+import 'package:you_might_need_work/data/config/config.dart' as _i5;
 import 'package:you_might_need_work/data/config/config_repository.dart' as _i6;
-import 'package:you_might_need_work/data/config/i_config_repository.dart'
-    as _i5;
 import 'package:you_might_need_work/data/core/api_client/api_client.dart'
     as _i3;
 import 'package:you_might_need_work/data/core/helpers/injectable_module.dart'
@@ -52,7 +51,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i3.ApiClient>(() => injectableModule.client);
     gh.lazySingleton<_i4.Dio>(() => injectableModule.httpClient);
     gh.lazySingleton<_i5.IConfigRepository>(
-        () => _i6.ConfigRepository(dio: gh<_i4.Dio>()));
+        () => _i6.ConfigRepository(apiClient: gh<_i3.ApiClient>()));
     gh.lazySingleton<_i7.IProfileRepository>(
         () => _i8.ProfileRepository(apiClient: gh<_i3.ApiClient>()));
     gh.factory<_i9.ProfileFormCubit>(() => _i9.ProfileFormCubit());
@@ -63,7 +62,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i11.ILocalRepository>(() =>
         _i12.LocalRepository(sharedPreferences: gh<_i10.SharedPreferences>()));
     gh.lazySingleton<_i13.IAuthRepository>(() => _i14.AuthRepository(
-          dio: gh<_i4.Dio>(),
+          apiClient: gh<_i3.ApiClient>(),
           localRepository: gh<_i11.ILocalRepository>(),
           profileRepository: gh<_i7.IProfileRepository>(),
         ));

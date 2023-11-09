@@ -212,40 +212,40 @@ abstract class _Bank implements Bank {
       throw _privateConstructorUsedError;
 }
 
-BankAccountResponse _$BankAccountResponseFromJson(Map<String, dynamic> json) {
-  return _BankAccountResponse.fromJson(json);
+BankResponse _$BankResponseFromJson(Map<String, dynamic> json) {
+  return _BankResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BankAccountResponse {
+mixin _$BankResponse {
   @JsonKey(name: 'code_transaction')
   String get codeTransaction => throw _privateConstructorUsedError;
   @JsonKey(name: 'data')
-  BankAccountsData get data => throw _privateConstructorUsedError;
+  BanksData get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BankAccountResponseCopyWith<BankAccountResponse> get copyWith =>
+  $BankResponseCopyWith<BankResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BankAccountResponseCopyWith<$Res> {
-  factory $BankAccountResponseCopyWith(
-          BankAccountResponse value, $Res Function(BankAccountResponse) then) =
-      _$BankAccountResponseCopyWithImpl<$Res, BankAccountResponse>;
+abstract class $BankResponseCopyWith<$Res> {
+  factory $BankResponseCopyWith(
+          BankResponse value, $Res Function(BankResponse) then) =
+      _$BankResponseCopyWithImpl<$Res, BankResponse>;
   @useResult
   $Res call(
       {@JsonKey(name: 'code_transaction') String codeTransaction,
-      @JsonKey(name: 'data') BankAccountsData data});
+      @JsonKey(name: 'data') BanksData data});
 
-  $BankAccountsDataCopyWith<$Res> get data;
+  $BanksDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
-class _$BankAccountResponseCopyWithImpl<$Res, $Val extends BankAccountResponse>
-    implements $BankAccountResponseCopyWith<$Res> {
-  _$BankAccountResponseCopyWithImpl(this._value, this._then);
+class _$BankResponseCopyWithImpl<$Res, $Val extends BankResponse>
+    implements $BankResponseCopyWith<$Res> {
+  _$BankResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -266,41 +266,41 @@ class _$BankAccountResponseCopyWithImpl<$Res, $Val extends BankAccountResponse>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as BankAccountsData,
+              as BanksData,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $BankAccountsDataCopyWith<$Res> get data {
-    return $BankAccountsDataCopyWith<$Res>(_value.data, (value) {
+  $BanksDataCopyWith<$Res> get data {
+    return $BanksDataCopyWith<$Res>(_value.data, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$BankAccountResponseImplCopyWith<$Res>
-    implements $BankAccountResponseCopyWith<$Res> {
-  factory _$$BankAccountResponseImplCopyWith(_$BankAccountResponseImpl value,
-          $Res Function(_$BankAccountResponseImpl) then) =
-      __$$BankAccountResponseImplCopyWithImpl<$Res>;
+abstract class _$$BankResponseImplCopyWith<$Res>
+    implements $BankResponseCopyWith<$Res> {
+  factory _$$BankResponseImplCopyWith(
+          _$BankResponseImpl value, $Res Function(_$BankResponseImpl) then) =
+      __$$BankResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'code_transaction') String codeTransaction,
-      @JsonKey(name: 'data') BankAccountsData data});
+      @JsonKey(name: 'data') BanksData data});
 
   @override
-  $BankAccountsDataCopyWith<$Res> get data;
+  $BanksDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
-class __$$BankAccountResponseImplCopyWithImpl<$Res>
-    extends _$BankAccountResponseCopyWithImpl<$Res, _$BankAccountResponseImpl>
-    implements _$$BankAccountResponseImplCopyWith<$Res> {
-  __$$BankAccountResponseImplCopyWithImpl(_$BankAccountResponseImpl _value,
-      $Res Function(_$BankAccountResponseImpl) _then)
+class __$$BankResponseImplCopyWithImpl<$Res>
+    extends _$BankResponseCopyWithImpl<$Res, _$BankResponseImpl>
+    implements _$$BankResponseImplCopyWith<$Res> {
+  __$$BankResponseImplCopyWithImpl(
+      _$BankResponseImpl _value, $Res Function(_$BankResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -309,7 +309,7 @@ class __$$BankAccountResponseImplCopyWithImpl<$Res>
     Object? codeTransaction = null,
     Object? data = null,
   }) {
-    return _then(_$BankAccountResponseImpl(
+    return _then(_$BankResponseImpl(
       codeTransaction: null == codeTransaction
           ? _value.codeTransaction
           : codeTransaction // ignore: cast_nullable_to_non_nullable
@@ -317,38 +317,38 @@ class __$$BankAccountResponseImplCopyWithImpl<$Res>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as BankAccountsData,
+              as BanksData,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BankAccountResponseImpl implements _BankAccountResponse {
-  _$BankAccountResponseImpl(
+class _$BankResponseImpl implements _BankResponse {
+  _$BankResponseImpl(
       {@JsonKey(name: 'code_transaction') required this.codeTransaction,
       @JsonKey(name: 'data') required this.data});
 
-  factory _$BankAccountResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BankAccountResponseImplFromJson(json);
+  factory _$BankResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BankResponseImplFromJson(json);
 
   @override
   @JsonKey(name: 'code_transaction')
   final String codeTransaction;
   @override
   @JsonKey(name: 'data')
-  final BankAccountsData data;
+  final BanksData data;
 
   @override
   String toString() {
-    return 'BankAccountResponse(codeTransaction: $codeTransaction, data: $data)';
+    return 'BankResponse(codeTransaction: $codeTransaction, data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BankAccountResponseImpl &&
+            other is _$BankResponseImpl &&
             (identical(other.codeTransaction, codeTransaction) ||
                 other.codeTransaction == codeTransaction) &&
             (identical(other.data, data) || other.data == data));
@@ -361,45 +361,44 @@ class _$BankAccountResponseImpl implements _BankAccountResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BankAccountResponseImplCopyWith<_$BankAccountResponseImpl> get copyWith =>
-      __$$BankAccountResponseImplCopyWithImpl<_$BankAccountResponseImpl>(
-          this, _$identity);
+  _$$BankResponseImplCopyWith<_$BankResponseImpl> get copyWith =>
+      __$$BankResponseImplCopyWithImpl<_$BankResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BankAccountResponseImplToJson(
+    return _$$BankResponseImplToJson(
       this,
     );
   }
 }
 
-abstract class _BankAccountResponse implements BankAccountResponse {
-  factory _BankAccountResponse(
+abstract class _BankResponse implements BankResponse {
+  factory _BankResponse(
       {@JsonKey(name: 'code_transaction') required final String codeTransaction,
       @JsonKey(name: 'data')
-      required final BankAccountsData data}) = _$BankAccountResponseImpl;
+      required final BanksData data}) = _$BankResponseImpl;
 
-  factory _BankAccountResponse.fromJson(Map<String, dynamic> json) =
-      _$BankAccountResponseImpl.fromJson;
+  factory _BankResponse.fromJson(Map<String, dynamic> json) =
+      _$BankResponseImpl.fromJson;
 
   @override
   @JsonKey(name: 'code_transaction')
   String get codeTransaction;
   @override
   @JsonKey(name: 'data')
-  BankAccountsData get data;
+  BanksData get data;
   @override
   @JsonKey(ignore: true)
-  _$$BankAccountResponseImplCopyWith<_$BankAccountResponseImpl> get copyWith =>
+  _$$BankResponseImplCopyWith<_$BankResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-BankAccountsData _$BankAccountsDataFromJson(Map<String, dynamic> json) {
-  return _BankAccountsData.fromJson(json);
+BanksData _$BanksDataFromJson(Map<String, dynamic> json) {
+  return _BanksData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BankAccountsData {
+mixin _$BanksData {
   @JsonKey(name: 'count')
   int get count => throw _privateConstructorUsedError;
   @JsonKey(name: 'next')
@@ -407,31 +406,30 @@ mixin _$BankAccountsData {
   @JsonKey(name: 'previous')
   dynamic get previous => throw _privateConstructorUsedError;
   @JsonKey(name: 'results')
-  List<BankAccountsData> get results => throw _privateConstructorUsedError;
+  List<Bank> get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BankAccountsDataCopyWith<BankAccountsData> get copyWith =>
+  $BanksDataCopyWith<BanksData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BankAccountsDataCopyWith<$Res> {
-  factory $BankAccountsDataCopyWith(
-          BankAccountsData value, $Res Function(BankAccountsData) then) =
-      _$BankAccountsDataCopyWithImpl<$Res, BankAccountsData>;
+abstract class $BanksDataCopyWith<$Res> {
+  factory $BanksDataCopyWith(BanksData value, $Res Function(BanksData) then) =
+      _$BanksDataCopyWithImpl<$Res, BanksData>;
   @useResult
   $Res call(
       {@JsonKey(name: 'count') int count,
       @JsonKey(name: 'next') dynamic next,
       @JsonKey(name: 'previous') dynamic previous,
-      @JsonKey(name: 'results') List<BankAccountsData> results});
+      @JsonKey(name: 'results') List<Bank> results});
 }
 
 /// @nodoc
-class _$BankAccountsDataCopyWithImpl<$Res, $Val extends BankAccountsData>
-    implements $BankAccountsDataCopyWith<$Res> {
-  _$BankAccountsDataCopyWithImpl(this._value, this._then);
+class _$BanksDataCopyWithImpl<$Res, $Val extends BanksData>
+    implements $BanksDataCopyWith<$Res> {
+  _$BanksDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -462,32 +460,32 @@ class _$BankAccountsDataCopyWithImpl<$Res, $Val extends BankAccountsData>
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<BankAccountsData>,
+              as List<Bank>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$BankAccountsDataImplCopyWith<$Res>
-    implements $BankAccountsDataCopyWith<$Res> {
-  factory _$$BankAccountsDataImplCopyWith(_$BankAccountsDataImpl value,
-          $Res Function(_$BankAccountsDataImpl) then) =
-      __$$BankAccountsDataImplCopyWithImpl<$Res>;
+abstract class _$$BanksDataImplCopyWith<$Res>
+    implements $BanksDataCopyWith<$Res> {
+  factory _$$BanksDataImplCopyWith(
+          _$BanksDataImpl value, $Res Function(_$BanksDataImpl) then) =
+      __$$BanksDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'count') int count,
       @JsonKey(name: 'next') dynamic next,
       @JsonKey(name: 'previous') dynamic previous,
-      @JsonKey(name: 'results') List<BankAccountsData> results});
+      @JsonKey(name: 'results') List<Bank> results});
 }
 
 /// @nodoc
-class __$$BankAccountsDataImplCopyWithImpl<$Res>
-    extends _$BankAccountsDataCopyWithImpl<$Res, _$BankAccountsDataImpl>
-    implements _$$BankAccountsDataImplCopyWith<$Res> {
-  __$$BankAccountsDataImplCopyWithImpl(_$BankAccountsDataImpl _value,
-      $Res Function(_$BankAccountsDataImpl) _then)
+class __$$BanksDataImplCopyWithImpl<$Res>
+    extends _$BanksDataCopyWithImpl<$Res, _$BanksDataImpl>
+    implements _$$BanksDataImplCopyWith<$Res> {
+  __$$BanksDataImplCopyWithImpl(
+      _$BanksDataImpl _value, $Res Function(_$BanksDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -498,7 +496,7 @@ class __$$BankAccountsDataImplCopyWithImpl<$Res>
     Object? previous = freezed,
     Object? results = null,
   }) {
-    return _then(_$BankAccountsDataImpl(
+    return _then(_$BanksDataImpl(
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -514,23 +512,23 @@ class __$$BankAccountsDataImplCopyWithImpl<$Res>
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<BankAccountsData>,
+              as List<Bank>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BankAccountsDataImpl implements _BankAccountsData {
-  const _$BankAccountsDataImpl(
+class _$BanksDataImpl implements _BanksData {
+  const _$BanksDataImpl(
       {@JsonKey(name: 'count') required this.count,
       @JsonKey(name: 'next') required this.next,
       @JsonKey(name: 'previous') required this.previous,
-      @JsonKey(name: 'results') required final List<BankAccountsData> results})
+      @JsonKey(name: 'results') required final List<Bank> results})
       : _results = results;
 
-  factory _$BankAccountsDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BankAccountsDataImplFromJson(json);
+  factory _$BanksDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BanksDataImplFromJson(json);
 
   @override
   @JsonKey(name: 'count')
@@ -541,10 +539,10 @@ class _$BankAccountsDataImpl implements _BankAccountsData {
   @override
   @JsonKey(name: 'previous')
   final dynamic previous;
-  final List<BankAccountsData> _results;
+  final List<Bank> _results;
   @override
   @JsonKey(name: 'results')
-  List<BankAccountsData> get results {
+  List<Bank> get results {
     if (_results is EqualUnmodifiableListView) return _results;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_results);
@@ -552,14 +550,14 @@ class _$BankAccountsDataImpl implements _BankAccountsData {
 
   @override
   String toString() {
-    return 'BankAccountsData(count: $count, next: $next, previous: $previous, results: $results)';
+    return 'BanksData(count: $count, next: $next, previous: $previous, results: $results)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BankAccountsDataImpl &&
+            other is _$BanksDataImpl &&
             (identical(other.count, count) || other.count == count) &&
             const DeepCollectionEquality().equals(other.next, next) &&
             const DeepCollectionEquality().equals(other.previous, previous) &&
@@ -578,28 +576,27 @@ class _$BankAccountsDataImpl implements _BankAccountsData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BankAccountsDataImplCopyWith<_$BankAccountsDataImpl> get copyWith =>
-      __$$BankAccountsDataImplCopyWithImpl<_$BankAccountsDataImpl>(
-          this, _$identity);
+  _$$BanksDataImplCopyWith<_$BanksDataImpl> get copyWith =>
+      __$$BanksDataImplCopyWithImpl<_$BanksDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BankAccountsDataImplToJson(
+    return _$$BanksDataImplToJson(
       this,
     );
   }
 }
 
-abstract class _BankAccountsData implements BankAccountsData {
-  const factory _BankAccountsData(
-      {@JsonKey(name: 'count') required final int count,
-      @JsonKey(name: 'next') required final dynamic next,
-      @JsonKey(name: 'previous') required final dynamic previous,
-      @JsonKey(name: 'results')
-      required final List<BankAccountsData> results}) = _$BankAccountsDataImpl;
+abstract class _BanksData implements BanksData {
+  const factory _BanksData(
+          {@JsonKey(name: 'count') required final int count,
+          @JsonKey(name: 'next') required final dynamic next,
+          @JsonKey(name: 'previous') required final dynamic previous,
+          @JsonKey(name: 'results') required final List<Bank> results}) =
+      _$BanksDataImpl;
 
-  factory _BankAccountsData.fromJson(Map<String, dynamic> json) =
-      _$BankAccountsDataImpl.fromJson;
+  factory _BanksData.fromJson(Map<String, dynamic> json) =
+      _$BanksDataImpl.fromJson;
 
   @override
   @JsonKey(name: 'count')
@@ -612,9 +609,9 @@ abstract class _BankAccountsData implements BankAccountsData {
   dynamic get previous;
   @override
   @JsonKey(name: 'results')
-  List<BankAccountsData> get results;
+  List<Bank> get results;
   @override
   @JsonKey(ignore: true)
-  _$$BankAccountsDataImplCopyWith<_$BankAccountsDataImpl> get copyWith =>
+  _$$BanksDataImplCopyWith<_$BanksDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,1 +1,1 @@
-export 'credentials.dart';
+export 'credentials/credentials.dart';

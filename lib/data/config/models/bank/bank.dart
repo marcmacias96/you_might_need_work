@@ -16,25 +16,25 @@ class Bank with _$Bank {
 }
 
 @freezed
-class BankAccountResponse with _$BankAccountResponse {
-  factory BankAccountResponse({
+class BankResponse with _$BankResponse {
+  factory BankResponse({
     @JsonKey(name: 'code_transaction') required String codeTransaction,
-    @JsonKey(name: 'data') required BankAccountsData data,
-  }) = _BankAccountResponse;
+    @JsonKey(name: 'data') required BanksData data,
+  }) = _BankResponse;
 
-  factory BankAccountResponse.fromJson(Map<String, dynamic> json) =>
-      _$BankAccountResponseFromJson(json);
+  factory BankResponse.fromJson(Map<String, dynamic> json) =>
+      _$BankResponseFromJson(json);
 }
 
 @freezed
-class BankAccountsData with _$BankAccountsData {
-  const factory BankAccountsData({
+class BanksData with _$BanksData {
+  const factory BanksData({
     @JsonKey(name: 'count') required int count,
     @JsonKey(name: 'next') required dynamic next,
     @JsonKey(name: 'previous') required dynamic previous,
-    @JsonKey(name: 'results') required List<BankAccountsData> results,
-  }) = _BankAccountsData;
+    @JsonKey(name: 'results') required List<Bank> results,
+  }) = _BanksData;
 
-  factory BankAccountsData.fromJson(Map<String, dynamic> json) =>
-      _$BankAccountsDataFromJson(json);
+  factory BanksData.fromJson(Map<String, dynamic> json) =>
+      _$BanksDataFromJson(json);
 }
