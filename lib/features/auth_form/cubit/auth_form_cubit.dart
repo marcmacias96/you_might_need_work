@@ -30,9 +30,12 @@ part 'auth_form_cubit.freezed.dart';
 /// authFormCubit.signInWithEmailAndPasswordPressed(credentials);
 /// ```
 ///
-/// In the example above, you can use `getIt<AuthFormCubit>()` to obtain an instance
-/// of [AuthFormCubit], which is responsible for managing user authentication and
-/// registration forms. The Cubit provides methods for registering and signing in
+/// In the example above, you can use `getIt<AuthFormCubit>()` 
+/// to obtain an instance
+/// of [AuthFormCubit], which is responsible for managing user 
+/// authentication and
+/// registration forms. The Cubit provides methods for registering 
+/// and signing in
 /// users using email and password credentials.
 @injectable
 class AuthFormCubit extends Cubit<AuthFormState> {
@@ -62,10 +65,13 @@ class AuthFormCubit extends Cubit<AuthFormState> {
     );
   }
 
-  /// Perform an action on the authentication repository with email and password credentials.
+  /// Perform an action on the authentication repository with email 
+  /// and password credentials.
   ///
-  /// This method performs a common action on the authentication repository with the
-  /// provided [forwardedCall] function and [credentials]. It manages the state during
+  /// This method performs a common action on the authentication 
+  /// repository with the
+  /// provided [forwardedCall] function and [credentials]. 
+  /// It manages the state during
   /// the process and updates the result in the [AuthFormState].
   Future<void> _performActionOnAuthRepositoryWithEmailAndPassword(
     Future<Either<CoreFailure, AuthToken>> Function({

@@ -114,3 +114,35 @@ Json? _$JsonConverterToJson<Json, Value>(
   Json? Function(Value value) toJson,
 ) =>
     value == null ? null : toJson(value);
+
+_$ProfileResponseImpl _$$ProfileResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProfileResponseImpl(
+      codeTransaction: json['code_transaction'] as String,
+      data: ProfileData.fromJson(json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$ProfileResponseImplToJson(
+        _$ProfileResponseImpl instance) =>
+    <String, dynamic>{
+      'code_transaction': instance.codeTransaction,
+      'data': instance.data,
+    };
+
+_$ProfileDataImpl _$$ProfileDataImplFromJson(Map<String, dynamic> json) =>
+    _$ProfileDataImpl(
+      count: json['count'] as int,
+      next: json['next'],
+      previous: json['previous'],
+      results: (json['results'] as List<dynamic>)
+          .map((e) => Profile.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ProfileDataImplToJson(_$ProfileDataImpl instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'next': instance.next,
+      'previous': instance.previous,
+      'results': instance.results,
+    };

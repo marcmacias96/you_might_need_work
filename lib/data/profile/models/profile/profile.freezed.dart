@@ -985,3 +985,409 @@ abstract class _Profile implements Profile {
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ProfileResponse _$ProfileResponseFromJson(Map<String, dynamic> json) {
+  return _ProfileResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProfileResponse {
+  @JsonKey(name: 'code_transaction')
+  String get codeTransaction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
+  ProfileData get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProfileResponseCopyWith<ProfileResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProfileResponseCopyWith<$Res> {
+  factory $ProfileResponseCopyWith(
+          ProfileResponse value, $Res Function(ProfileResponse) then) =
+      _$ProfileResponseCopyWithImpl<$Res, ProfileResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code_transaction') String codeTransaction,
+      @JsonKey(name: 'data') ProfileData data});
+
+  $ProfileDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$ProfileResponseCopyWithImpl<$Res, $Val extends ProfileResponse>
+    implements $ProfileResponseCopyWith<$Res> {
+  _$ProfileResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codeTransaction = null,
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      codeTransaction: null == codeTransaction
+          ? _value.codeTransaction
+          : codeTransaction // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ProfileData,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileDataCopyWith<$Res> get data {
+    return $ProfileDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ProfileResponseImplCopyWith<$Res>
+    implements $ProfileResponseCopyWith<$Res> {
+  factory _$$ProfileResponseImplCopyWith(_$ProfileResponseImpl value,
+          $Res Function(_$ProfileResponseImpl) then) =
+      __$$ProfileResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code_transaction') String codeTransaction,
+      @JsonKey(name: 'data') ProfileData data});
+
+  @override
+  $ProfileDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$ProfileResponseImplCopyWithImpl<$Res>
+    extends _$ProfileResponseCopyWithImpl<$Res, _$ProfileResponseImpl>
+    implements _$$ProfileResponseImplCopyWith<$Res> {
+  __$$ProfileResponseImplCopyWithImpl(
+      _$ProfileResponseImpl _value, $Res Function(_$ProfileResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codeTransaction = null,
+    Object? data = null,
+  }) {
+    return _then(_$ProfileResponseImpl(
+      codeTransaction: null == codeTransaction
+          ? _value.codeTransaction
+          : codeTransaction // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ProfileData,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProfileResponseImpl implements _ProfileResponse {
+  _$ProfileResponseImpl(
+      {@JsonKey(name: 'code_transaction') required this.codeTransaction,
+      @JsonKey(name: 'data') required this.data});
+
+  factory _$ProfileResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProfileResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'code_transaction')
+  final String codeTransaction;
+  @override
+  @JsonKey(name: 'data')
+  final ProfileData data;
+
+  @override
+  String toString() {
+    return 'ProfileResponse(codeTransaction: $codeTransaction, data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProfileResponseImpl &&
+            (identical(other.codeTransaction, codeTransaction) ||
+                other.codeTransaction == codeTransaction) &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, codeTransaction, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProfileResponseImplCopyWith<_$ProfileResponseImpl> get copyWith =>
+      __$$ProfileResponseImplCopyWithImpl<_$ProfileResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProfileResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProfileResponse implements ProfileResponse {
+  factory _ProfileResponse(
+      {@JsonKey(name: 'code_transaction') required final String codeTransaction,
+      @JsonKey(name: 'data')
+      required final ProfileData data}) = _$ProfileResponseImpl;
+
+  factory _ProfileResponse.fromJson(Map<String, dynamic> json) =
+      _$ProfileResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'code_transaction')
+  String get codeTransaction;
+  @override
+  @JsonKey(name: 'data')
+  ProfileData get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProfileResponseImplCopyWith<_$ProfileResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProfileData _$ProfileDataFromJson(Map<String, dynamic> json) {
+  return _ProfileData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProfileData {
+  @JsonKey(name: 'count')
+  int get count => throw _privateConstructorUsedError;
+  @JsonKey(name: 'next')
+  dynamic get next => throw _privateConstructorUsedError;
+  @JsonKey(name: 'previous')
+  dynamic get previous => throw _privateConstructorUsedError;
+  @JsonKey(name: 'results')
+  List<Profile> get results => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProfileDataCopyWith<ProfileData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProfileDataCopyWith<$Res> {
+  factory $ProfileDataCopyWith(
+          ProfileData value, $Res Function(ProfileData) then) =
+      _$ProfileDataCopyWithImpl<$Res, ProfileData>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'count') int count,
+      @JsonKey(name: 'next') dynamic next,
+      @JsonKey(name: 'previous') dynamic previous,
+      @JsonKey(name: 'results') List<Profile> results});
+}
+
+/// @nodoc
+class _$ProfileDataCopyWithImpl<$Res, $Val extends ProfileData>
+    implements $ProfileDataCopyWith<$Res> {
+  _$ProfileDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = null,
+    Object? next = freezed,
+    Object? previous = freezed,
+    Object? results = null,
+  }) {
+    return _then(_value.copyWith(
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      next: freezed == next
+          ? _value.next
+          : next // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      previous: freezed == previous
+          ? _value.previous
+          : previous // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      results: null == results
+          ? _value.results
+          : results // ignore: cast_nullable_to_non_nullable
+              as List<Profile>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProfileDataImplCopyWith<$Res>
+    implements $ProfileDataCopyWith<$Res> {
+  factory _$$ProfileDataImplCopyWith(
+          _$ProfileDataImpl value, $Res Function(_$ProfileDataImpl) then) =
+      __$$ProfileDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'count') int count,
+      @JsonKey(name: 'next') dynamic next,
+      @JsonKey(name: 'previous') dynamic previous,
+      @JsonKey(name: 'results') List<Profile> results});
+}
+
+/// @nodoc
+class __$$ProfileDataImplCopyWithImpl<$Res>
+    extends _$ProfileDataCopyWithImpl<$Res, _$ProfileDataImpl>
+    implements _$$ProfileDataImplCopyWith<$Res> {
+  __$$ProfileDataImplCopyWithImpl(
+      _$ProfileDataImpl _value, $Res Function(_$ProfileDataImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = null,
+    Object? next = freezed,
+    Object? previous = freezed,
+    Object? results = null,
+  }) {
+    return _then(_$ProfileDataImpl(
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      next: freezed == next
+          ? _value.next
+          : next // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      previous: freezed == previous
+          ? _value.previous
+          : previous // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      results: null == results
+          ? _value._results
+          : results // ignore: cast_nullable_to_non_nullable
+              as List<Profile>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProfileDataImpl implements _ProfileData {
+  _$ProfileDataImpl(
+      {@JsonKey(name: 'count') required this.count,
+      @JsonKey(name: 'next') required this.next,
+      @JsonKey(name: 'previous') required this.previous,
+      @JsonKey(name: 'results') required final List<Profile> results})
+      : _results = results;
+
+  factory _$ProfileDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProfileDataImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'count')
+  final int count;
+  @override
+  @JsonKey(name: 'next')
+  final dynamic next;
+  @override
+  @JsonKey(name: 'previous')
+  final dynamic previous;
+  final List<Profile> _results;
+  @override
+  @JsonKey(name: 'results')
+  List<Profile> get results {
+    if (_results is EqualUnmodifiableListView) return _results;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_results);
+  }
+
+  @override
+  String toString() {
+    return 'ProfileData(count: $count, next: $next, previous: $previous, results: $results)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProfileDataImpl &&
+            (identical(other.count, count) || other.count == count) &&
+            const DeepCollectionEquality().equals(other.next, next) &&
+            const DeepCollectionEquality().equals(other.previous, previous) &&
+            const DeepCollectionEquality().equals(other._results, _results));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      count,
+      const DeepCollectionEquality().hash(next),
+      const DeepCollectionEquality().hash(previous),
+      const DeepCollectionEquality().hash(_results));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProfileDataImplCopyWith<_$ProfileDataImpl> get copyWith =>
+      __$$ProfileDataImplCopyWithImpl<_$ProfileDataImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProfileDataImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProfileData implements ProfileData {
+  factory _ProfileData(
+          {@JsonKey(name: 'count') required final int count,
+          @JsonKey(name: 'next') required final dynamic next,
+          @JsonKey(name: 'previous') required final dynamic previous,
+          @JsonKey(name: 'results') required final List<Profile> results}) =
+      _$ProfileDataImpl;
+
+  factory _ProfileData.fromJson(Map<String, dynamic> json) =
+      _$ProfileDataImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'count')
+  int get count;
+  @override
+  @JsonKey(name: 'next')
+  dynamic get next;
+  @override
+  @JsonKey(name: 'previous')
+  dynamic get previous;
+  @override
+  @JsonKey(name: 'results')
+  List<Profile> get results;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProfileDataImplCopyWith<_$ProfileDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
