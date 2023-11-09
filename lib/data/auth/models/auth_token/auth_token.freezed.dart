@@ -166,3 +166,185 @@ abstract class _AuthToken implements AuthToken {
   _$$AuthTokenImplCopyWith<_$AuthTokenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+AuthTokenResponse _$AuthTokenResponseFromJson(Map<String, dynamic> json) {
+  return _AuthTokenResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AuthTokenResponse {
+  @JsonKey(name: 'code_transaction')
+  String get codeTransaction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
+  AuthToken get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AuthTokenResponseCopyWith<AuthTokenResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AuthTokenResponseCopyWith<$Res> {
+  factory $AuthTokenResponseCopyWith(
+          AuthTokenResponse value, $Res Function(AuthTokenResponse) then) =
+      _$AuthTokenResponseCopyWithImpl<$Res, AuthTokenResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code_transaction') String codeTransaction,
+      @JsonKey(name: 'data') AuthToken data});
+
+  $AuthTokenCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$AuthTokenResponseCopyWithImpl<$Res, $Val extends AuthTokenResponse>
+    implements $AuthTokenResponseCopyWith<$Res> {
+  _$AuthTokenResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codeTransaction = null,
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      codeTransaction: null == codeTransaction
+          ? _value.codeTransaction
+          : codeTransaction // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as AuthToken,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthTokenCopyWith<$Res> get data {
+    return $AuthTokenCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$AuthTokenResponseImplCopyWith<$Res>
+    implements $AuthTokenResponseCopyWith<$Res> {
+  factory _$$AuthTokenResponseImplCopyWith(_$AuthTokenResponseImpl value,
+          $Res Function(_$AuthTokenResponseImpl) then) =
+      __$$AuthTokenResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code_transaction') String codeTransaction,
+      @JsonKey(name: 'data') AuthToken data});
+
+  @override
+  $AuthTokenCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$AuthTokenResponseImplCopyWithImpl<$Res>
+    extends _$AuthTokenResponseCopyWithImpl<$Res, _$AuthTokenResponseImpl>
+    implements _$$AuthTokenResponseImplCopyWith<$Res> {
+  __$$AuthTokenResponseImplCopyWithImpl(_$AuthTokenResponseImpl _value,
+      $Res Function(_$AuthTokenResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codeTransaction = null,
+    Object? data = null,
+  }) {
+    return _then(_$AuthTokenResponseImpl(
+      codeTransaction: null == codeTransaction
+          ? _value.codeTransaction
+          : codeTransaction // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as AuthToken,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AuthTokenResponseImpl implements _AuthTokenResponse {
+  _$AuthTokenResponseImpl(
+      {@JsonKey(name: 'code_transaction') required this.codeTransaction,
+      @JsonKey(name: 'data') required this.data});
+
+  factory _$AuthTokenResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AuthTokenResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'code_transaction')
+  final String codeTransaction;
+  @override
+  @JsonKey(name: 'data')
+  final AuthToken data;
+
+  @override
+  String toString() {
+    return 'AuthTokenResponse(codeTransaction: $codeTransaction, data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthTokenResponseImpl &&
+            (identical(other.codeTransaction, codeTransaction) ||
+                other.codeTransaction == codeTransaction) &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, codeTransaction, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthTokenResponseImplCopyWith<_$AuthTokenResponseImpl> get copyWith =>
+      __$$AuthTokenResponseImplCopyWithImpl<_$AuthTokenResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AuthTokenResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AuthTokenResponse implements AuthTokenResponse {
+  factory _AuthTokenResponse(
+      {@JsonKey(name: 'code_transaction') required final String codeTransaction,
+      @JsonKey(name: 'data')
+      required final AuthToken data}) = _$AuthTokenResponseImpl;
+
+  factory _AuthTokenResponse.fromJson(Map<String, dynamic> json) =
+      _$AuthTokenResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'code_transaction')
+  String get codeTransaction;
+  @override
+  @JsonKey(name: 'data')
+  AuthToken get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$AuthTokenResponseImplCopyWith<_$AuthTokenResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

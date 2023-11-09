@@ -12,9 +12,9 @@ part 'auth_form_cubit.freezed.dart';
 
 /// A Cubit for handling user authentication and registration forms.
 ///
-/// This Cubit is responsible for managing the state related to 
+/// This Cubit is responsible for managing the state related to
 /// user authentication
-/// and registration forms. It provides methods for registering 
+/// and registration forms. It provides methods for registering
 /// and signing in users
 /// with email and password credentials.
 ///
@@ -30,11 +30,11 @@ part 'auth_form_cubit.freezed.dart';
 /// authFormCubit.signInWithEmailAndPasswordPressed(credentials);
 /// ```
 ///
-/// In the example above, you can use `getIt<AuthFormCubit>()` 
+/// In the example above, you can use `getIt<AuthFormCubit>()`
 /// to obtain an instance
-/// of [AuthFormCubit], which is responsible for managing user 
+/// of [AuthFormCubit], which is responsible for managing user
 /// authentication and
-/// registration forms. The Cubit provides methods for registering 
+/// registration forms. The Cubit provides methods for registering
 /// and signing in
 /// users using email and password credentials.
 @injectable
@@ -49,7 +49,7 @@ class AuthFormCubit extends Cubit<AuthFormState> {
   /// [credentials]. It calls the corresponding method in the [_authRepository].
   void registerWithEmailAndPasswordPressed(Credentials credentials) {
     _performActionOnAuthRepositoryWithEmailAndPassword(
-      _authRepository.registerWithEmailAndPassword,
+        _authRepository.registerWithEmailAndPassword,
       credentials: credentials,
     );
   }
@@ -65,18 +65,17 @@ class AuthFormCubit extends Cubit<AuthFormState> {
     );
   }
 
-  /// Perform an action on the authentication repository with email 
+  /// Perform an action on the authentication repository with email
   /// and password credentials.
   ///
-  /// This method performs a common action on the authentication 
+  /// This method performs a common action on the authentication
   /// repository with the
-  /// provided [forwardedCall] function and [credentials]. 
+  /// provided [forwardedCall] function and [credentials].
   /// It manages the state during
   /// the process and updates the result in the [AuthFormState].
   Future<void> _performActionOnAuthRepositoryWithEmailAndPassword(
     Future<Either<CoreFailure, AuthToken>> Function({
-      required String emailAddress,
-      required String password,
+      required Credentials credentials,
     }) forwardedCall, {
     required Credentials credentials,
   }) async {
@@ -87,10 +86,7 @@ class AuthFormCubit extends Cubit<AuthFormState> {
       ),
     );
 
-    final failureOrSuccess = await forwardedCall(
-      emailAddress: credentials.email,
-      password: credentials.password,
-    );
+    final failureOrSuccess = await forwardedCall(credentials: credentials);
 
     emit(
       state.copyWith(

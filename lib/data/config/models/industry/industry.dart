@@ -32,7 +32,7 @@ class IndustriesData with _$IndustriesData {
     @JsonKey(name: 'count') required int count,
     @JsonKey(name: 'next') required dynamic next,
     @JsonKey(name: 'previous') required dynamic previous,
-    @JsonKey(name: 'results') required List<IndustriesData> results,
+    @JsonKey(name: 'results') required List<Industry> results,
   }) = _IndustriesData;
 
   factory IndustriesData.fromJson(Map<String, dynamic> json) =>

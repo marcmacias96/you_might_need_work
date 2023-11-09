@@ -36,7 +36,7 @@ _$IndustriesDataImpl _$$IndustriesDataImplFromJson(Map<String, dynamic> json) =>
       next: json['next'],
       previous: json['previous'],
       results: (json['results'] as List<dynamic>)
-          .map((e) => IndustriesData.fromJson(e as Map<String, dynamic>))
+          .map((e) => Industry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

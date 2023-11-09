@@ -21,33 +21,29 @@ Map<String, dynamic> _$$BankImplToJson(_$BankImpl instance) =>
       'bic_code': instance.bicCode,
     };
 
-_$BankAccountResponseImpl _$$BankAccountResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BankAccountResponseImpl(
+_$BankResponseImpl _$$BankResponseImplFromJson(Map<String, dynamic> json) =>
+    _$BankResponseImpl(
       codeTransaction: json['code_transaction'] as String,
-      data: BankAccountsData.fromJson(json['data'] as Map<String, dynamic>),
+      data: BanksData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$BankAccountResponseImplToJson(
-        _$BankAccountResponseImpl instance) =>
+Map<String, dynamic> _$$BankResponseImplToJson(_$BankResponseImpl instance) =>
     <String, dynamic>{
       'code_transaction': instance.codeTransaction,
       'data': instance.data,
     };
 
-_$BankAccountsDataImpl _$$BankAccountsDataImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BankAccountsDataImpl(
+_$BanksDataImpl _$$BanksDataImplFromJson(Map<String, dynamic> json) =>
+    _$BanksDataImpl(
       count: json['count'] as int,
       next: json['next'],
       previous: json['previous'],
       results: (json['results'] as List<dynamic>)
-          .map((e) => BankAccountsData.fromJson(e as Map<String, dynamic>))
+          .map((e) => Bank.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$BankAccountsDataImplToJson(
-        _$BankAccountsDataImpl instance) =>
+Map<String, dynamic> _$$BanksDataImplToJson(_$BanksDataImpl instance) =>
     <String, dynamic>{
       'count': instance.count,
       'next': instance.next,

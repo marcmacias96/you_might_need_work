@@ -17,3 +17,17 @@ Map<String, dynamic> _$$AuthTokenImplToJson(_$AuthTokenImpl instance) =>
       'refresh': instance.refresh,
       'access': instance.access,
     };
+
+_$AuthTokenResponseImpl _$$AuthTokenResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AuthTokenResponseImpl(
+      codeTransaction: json['code_transaction'] as String,
+      data: AuthToken.fromJson(json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$AuthTokenResponseImplToJson(
+        _$AuthTokenResponseImpl instance) =>
+    <String, dynamic>{
+      'code_transaction': instance.codeTransaction,
+      'data': instance.data,
+    };

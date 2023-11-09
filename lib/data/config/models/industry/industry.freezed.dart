@@ -344,7 +344,7 @@ mixin _$IndustriesData {
   @JsonKey(name: 'previous')
   dynamic get previous => throw _privateConstructorUsedError;
   @JsonKey(name: 'results')
-  List<IndustriesData> get results => throw _privateConstructorUsedError;
+  List<Industry> get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -362,7 +362,7 @@ abstract class $IndustriesDataCopyWith<$Res> {
       {@JsonKey(name: 'count') int count,
       @JsonKey(name: 'next') dynamic next,
       @JsonKey(name: 'previous') dynamic previous,
-      @JsonKey(name: 'results') List<IndustriesData> results});
+      @JsonKey(name: 'results') List<Industry> results});
 }
 
 /// @nodoc
@@ -399,7 +399,7 @@ class _$IndustriesDataCopyWithImpl<$Res, $Val extends IndustriesData>
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<IndustriesData>,
+              as List<Industry>,
     ) as $Val);
   }
 }
@@ -416,7 +416,7 @@ abstract class _$$IndustriesDataImplCopyWith<$Res>
       {@JsonKey(name: 'count') int count,
       @JsonKey(name: 'next') dynamic next,
       @JsonKey(name: 'previous') dynamic previous,
-      @JsonKey(name: 'results') List<IndustriesData> results});
+      @JsonKey(name: 'results') List<Industry> results});
 }
 
 /// @nodoc
@@ -451,7 +451,7 @@ class __$$IndustriesDataImplCopyWithImpl<$Res>
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<IndustriesData>,
+              as List<Industry>,
     ));
   }
 }
@@ -463,7 +463,7 @@ class _$IndustriesDataImpl implements _IndustriesData {
       {@JsonKey(name: 'count') required this.count,
       @JsonKey(name: 'next') required this.next,
       @JsonKey(name: 'previous') required this.previous,
-      @JsonKey(name: 'results') required final List<IndustriesData> results})
+      @JsonKey(name: 'results') required final List<Industry> results})
       : _results = results;
 
   factory _$IndustriesDataImpl.fromJson(Map<String, dynamic> json) =>
@@ -478,10 +478,10 @@ class _$IndustriesDataImpl implements _IndustriesData {
   @override
   @JsonKey(name: 'previous')
   final dynamic previous;
-  final List<IndustriesData> _results;
+  final List<Industry> _results;
   @override
   @JsonKey(name: 'results')
-  List<IndustriesData> get results {
+  List<Industry> get results {
     if (_results is EqualUnmodifiableListView) return _results;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_results);
@@ -529,11 +529,11 @@ class _$IndustriesDataImpl implements _IndustriesData {
 
 abstract class _IndustriesData implements IndustriesData {
   const factory _IndustriesData(
-      {@JsonKey(name: 'count') required final int count,
-      @JsonKey(name: 'next') required final dynamic next,
-      @JsonKey(name: 'previous') required final dynamic previous,
-      @JsonKey(name: 'results')
-      required final List<IndustriesData> results}) = _$IndustriesDataImpl;
+          {@JsonKey(name: 'count') required final int count,
+          @JsonKey(name: 'next') required final dynamic next,
+          @JsonKey(name: 'previous') required final dynamic previous,
+          @JsonKey(name: 'results') required final List<Industry> results}) =
+      _$IndustriesDataImpl;
 
   factory _IndustriesData.fromJson(Map<String, dynamic> json) =
       _$IndustriesDataImpl.fromJson;
@@ -549,7 +549,7 @@ abstract class _IndustriesData implements IndustriesData {
   dynamic get previous;
   @override
   @JsonKey(name: 'results')
-  List<IndustriesData> get results;
+  List<Industry> get results;
   @override
   @JsonKey(ignore: true)
   _$$IndustriesDataImplCopyWith<_$IndustriesDataImpl> get copyWith =>
