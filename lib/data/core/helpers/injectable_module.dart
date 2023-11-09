@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:you_might_need_work/data/core/api_client/api_client.dart';
 import 'package:you_might_need_work/data/core/core.dart';
 import 'package:you_might_need_work/data/local/i_local_repository.dart';
 import 'package:you_might_need_work/features/auth/cubit/cubit.dart';
@@ -107,4 +108,8 @@ abstract class InjectableModule {
   @preResolve
   Future<SharedPreferences> get sharedPreferences =>
       SharedPreferences.getInstance();
+
+  @lazySingleton
+  ApiClient get client =>
+      ApiClient(getIt<Dio>());
 }

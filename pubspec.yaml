@@ -36,6 +36,8 @@ dependencies:
   reactive_forms: ^16.1.1
   reactive_forms_annotations: ^4.2.0
   reactive_phone_form_field: ^2.0.1
+  retrofit: ^4.0.3
+  retrofit_generator: ^8.0.3
   shared_preferences: ^2.2.2
 
 dev_dependencies:

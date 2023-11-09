@@ -1,21 +1,21 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:you_might_need_work/data/bank_account/i_bank_account_repository.dart';
-import 'package:you_might_need_work/data/bank_account/models/bank_account.dart';
-import 'package:you_might_need_work/data/core/helpers/endpoints.dart';
-import 'package:you_might_need_work/data/core/models/core_failure/core_failure.dart';
+import 'package:you_might_need_work/data/bank_account/bank_account.dart';
+import 'package:you_might_need_work/data/bank_account/models/models.dart';
+import 'package:you_might_need_work/data/core/api_client/api_client.dart';
+import 'package:you_might_need_work/data/core/models/models.dart';
 import 'package:you_might_need_work/data/local/local.dart';
 
 @LazySingleton(as: IBankAccountRepository)
 class BankAccountRepository implements IBankAccountRepository {
   BankAccountRepository({
-    required Dio dio,
+    required ApiClient apiClient,
     required ILocalRepository localRepository,
-  })  : _dio = dio,
+  })  : _apiClient = apiClient,
         _localRepository = localRepository;
 
-  final Dio _dio;
+  final ApiClient _apiClient;
   final ILocalRepository _localRepository;
   @override
   Future<Either<CoreFailure, Unit>> createBankAccount(
@@ -23,9 +23,8 @@ class BankAccountRepository implements IBankAccountRepository {
   ) async {
     try {
       final userId = _localRepository.getUserId();
-      await _dio.post<dynamic>(
-        Endpoints.createBankAccount,
-        data: bankAccount.copyWith(user: userId!).toJson(),
+      await _apiClient.createBankAccount(
+        bankAccount: bankAccount.copyWith(user: userId!).toJson(),
       );
       return right(unit);
     } on DioException catch (_) {
@@ -38,15 +37,9 @@ class BankAccountRepository implements IBankAccountRepository {
   @override
   Future<Either<CoreFailure, List<BankAccount>>> getBankAccounts() async {
     try {
-      final response = await _dio.get<dynamic>(
-        Endpoints.getBankAccounts,
-      );
-      if (response.data == null) {
-        return left(const CoreFailure.unexpected());
-      }
-      final bankAccounts = (((response.data as Map<String, dynamic>)['data']
-              as Map<String, dynamic>)['results'] as List<dynamic>)
-          .toList() as List<BankAccount>;
+      final response = await _apiClient.getBankAccounts();
+    
+      final bankAccounts =response.data.results;
       return right(bankAccounts);
     } on DioException catch (_) {
       return left(const CoreFailure.serverError());
@@ -60,9 +53,8 @@ class BankAccountRepository implements IBankAccountRepository {
     BankAccount bankAccount,
   ) async {
     try {
-      await _dio.post<dynamic>(
-        Endpoints.updateBankAccount,
-        data: bankAccount.toJson(),
+      await _apiClient.updateBankAccount(
+        bankAccount: bankAccount.toJson(),
       );
       return right(unit);
     } on DioException catch (_) {

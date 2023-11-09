@@ -3,23 +3,25 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:you_might_need_work/data/auth/auth.dart';
 import 'package:you_might_need_work/data/auth/models/models.dart';
-import 'package:you_might_need_work/data/core/core.dart';
+import 'package:you_might_need_work/data/core/api_client/api_client.dart';
+import 'package:you_might_need_work/data/core/api_client/enums/code_transaction.dart';
 import 'package:you_might_need_work/data/core/models/models.dart';
 import 'package:you_might_need_work/data/local/local.dart';
 import 'package:you_might_need_work/data/profile/models/models.dart';
 import 'package:you_might_need_work/data/profile/profile.dart';
+import 'package:you_might_need_work/features/auth_form/models/models.dart';
 
 @LazySingleton(as: IAuthRepository)
 class AuthRepository implements IAuthRepository {
   AuthRepository({
-    required Dio dio,
+    required ApiClient apiClient,
     required ILocalRepository localRepository,
     required IProfileRepository profileRepository,
-  })  : _dio = dio,
+  })  : _apiClient = apiClient,
         _localRepository = localRepository,
         _profileRepository = profileRepository;
 
-  final Dio _dio;
+  final ApiClient _apiClient;
   final ILocalRepository _localRepository;
   final IProfileRepository _profileRepository;
 
@@ -52,15 +54,14 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<Either<CoreFailure, AuthToken>> registerWithEmailAndPassword({
-    required String emailAddress,
-    required String password,
+    required Credentials credentials,
   }) async {
     try {
-      final response = await _dio.get<dynamic>(Endpoints.signUp);
-      final data = (response.data as Map<String, dynamic>)['data'];
-      final authToken = AuthToken.fromJson(data as Map<String, dynamic>);
-      await _localRepository.cacheAuthData(authToken);
-      return right(authToken);
+      final response = await _apiClient.signUp(
+        credential: credentials.toJson(),
+      );
+      await _localRepository.cacheAuthData(response.data);
+      return right(response.data);
     } on DioException catch (_) {
       return left(const CoreFailure.serverError());
     } catch (_) {
@@ -70,27 +71,23 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<Either<CoreFailure, AuthToken>> signInWithEmailPassword({
-    required String emailAddress,
-    required String password,
+    required Credentials credentials,
   }) async {
     try {
-      final response = await _dio.post<dynamic>(
-        Endpoints.signIn,
-        data: {
-          'username': emailAddress,
-          'password': password,
-        },
+      final response = await _apiClient.signIn(
+        credential: credentials.toJson(),
       );
-      final data = (response.data as Map<String, dynamic>)['data'];
-      final authToken = AuthToken.fromJson(data as Map<String, dynamic>);
-      await _localRepository.cacheAuthData(authToken);
-
-      return right(authToken);
+      await _localRepository.cacheAuthData(response.data);
+      return right(response.data);
     } on DioException catch (e) {
-      if ((e.response?.data as Map<String, dynamic>?)?['code_transaction'] ==
-          'ERROR_AUTH') {
-        return left(const CoreFailure.invalidEmailAndPasswordCombination());
+      if (e.response != null) {
+        final response =
+            FailureResponse.fromJson(e.response!.data as Map<String, dynamic>);
+        if (response.codeTransaction == CodeTransaction.errorAuth.value) {
+          return left(const CoreFailure.invalidEmailAndPasswordCombination());
+        }
       }
+
       return left(const CoreFailure.serverError());
     } catch (_) {
       return left(const CoreFailure.unexpected());
@@ -102,16 +99,12 @@ class AuthRepository implements IAuthRepository {
     String refreshToken,
   ) async {
     try {
-      final response = await _dio.post<AuthToken>(
-        Endpoints.refresh,
-        data: {
+      final response = await _apiClient.refreshToken(
+        refresh: {
           'refresh': refreshToken,
         },
       );
-      if (response.data == null) {
-        return left(const CoreFailure.unexpected());
-      }
-      await _localRepository.cacheAuthData(response.data!);
+      await _localRepository.cacheAuthData(response.data);
       return right(unit);
     } on DioException catch (_) {
       return left(const CoreFailure.serverError());

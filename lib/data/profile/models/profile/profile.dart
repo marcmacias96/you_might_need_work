@@ -66,3 +66,33 @@ class Profile with _$Profile {
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
 }
+
+@freezed
+class ProfileResponse with _$ProfileResponse {
+  factory ProfileResponse({
+        @JsonKey(name: 'code_transaction')
+        required String codeTransaction,
+        @JsonKey(name: 'data')
+        required ProfileData data,
+    }) = _ProfileResponse;
+	
+  factory ProfileResponse.fromJson(Map<String, dynamic> json) =>
+			_$ProfileResponseFromJson(json);
+}
+
+@freezed
+class ProfileData with _$ProfileData {
+  factory ProfileData({
+        @JsonKey(name: 'count')
+        required int count,
+        @JsonKey(name: 'next')
+        required dynamic next,
+        @JsonKey(name: 'previous')
+        required dynamic previous,
+        @JsonKey(name: 'results')
+        required List<Profile> results,
+    }) = _ProfileData;
+	
+  factory ProfileData.fromJson(Map<String, dynamic> json) =>
+			_$ProfileDataFromJson(json);
+}

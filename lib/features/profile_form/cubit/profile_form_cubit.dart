@@ -21,9 +21,12 @@ part 'profile_form_cubit.freezed.dart';
 /// profileFormCubit.updateModel(profileForm);
 /// ```
 ///
-/// In the example above, you can use `getIt<ProfileFormCubit>()` to obtain an instance
-/// of [ProfileFormCubit], which is responsible for managing user profile form data.
-/// The Cubit provides a method for updating the user's profile information using a
+/// In the example above, you can use `getIt<ProfileFormCubit>()` 
+/// to obtain an instance
+/// of [ProfileFormCubit], which is responsible for managing user 
+/// profile form data.
+/// The Cubit provides a method for updating the user's 
+/// profile information using a
 /// [ProfileForm] instance.
 @injectable
 class ProfileFormCubit extends Cubit<ProfileFormState> {
