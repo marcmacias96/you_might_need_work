@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:you_might_need_work/data/auth/auth.dart';
 import 'package:you_might_need_work/data/auth/models/models.dart';
 import 'package:you_might_need_work/data/core/api_client/api_client.dart';
+import 'package:you_might_need_work/data/core/api_client/enums/code_transaction.dart';
 import 'package:you_might_need_work/data/core/models/models.dart';
 import 'package:you_might_need_work/data/local/local.dart';
 import 'package:you_might_need_work/data/profile/models/models.dart';
@@ -79,10 +80,14 @@ class AuthRepository implements IAuthRepository {
       await _localRepository.cacheAuthData(response.data);
       return right(response.data);
     } on DioException catch (e) {
-      if ((e.response?.data as Map<String, dynamic>?)?['code_transaction'] ==
-          'ERROR_AUTH') {
-        return left(const CoreFailure.invalidEmailAndPasswordCombination());
+      if (e.response != null) {
+        final response =
+            FailureResponse.fromJson(e.response!.data as Map<String, dynamic>);
+        if (response.codeTransaction == CodeTransaction.errorAuth.value) {
+          return left(const CoreFailure.invalidEmailAndPasswordCombination());
+        }
       }
+
       return left(const CoreFailure.serverError());
     } catch (_) {
       return left(const CoreFailure.unexpected());
