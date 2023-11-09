@@ -5,7 +5,7 @@ class RegistrationProviderConverter
     implements JsonConverter<RegistrationProvider?, dynamic> {
   const RegistrationProviderConverter();
 
- @override
+  @override
   RegistrationProvider? fromJson(dynamic value) {
     final enumValue = (value as Map<String, dynamic>?)?['value'] as String?;
     if (enumValue == null) {
@@ -15,5 +15,5 @@ class RegistrationProviderConverter
   }
 
   @override
-  String toJson(RegistrationProvider? instance) => instance!.value;
+  String? toJson(RegistrationProvider? instance) => instance?.value;
 }

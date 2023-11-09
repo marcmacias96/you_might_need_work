@@ -15,7 +15,7 @@ abstract class ApiClient {
   @GET(Endpoints.getUser)
   Future<ProfileResponse> getProfile();
 
-  @POST(Endpoints.updateUser)
+  @PUT(Endpoints.updateUser)
   Future<void> updateProfile({
     @Body() required Map<String, dynamic> profile,
   });

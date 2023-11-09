@@ -310,7 +310,7 @@ class __$$ProfileUiImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProfileUiImpl implements _ProfileUi {
+class _$ProfileUiImpl extends _ProfileUi {
   _$ProfileUiImpl(
       {this.companyData,
       this.companyDetail,
@@ -319,7 +319,8 @@ class _$ProfileUiImpl implements _ProfileUi {
       this.profileData,
       this.workDayData,
       this.paymentMethod,
-      this.phoneNumber});
+      this.phoneNumber})
+      : super._();
 
   factory _$ProfileUiImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileUiImplFromJson(json);
@@ -395,7 +396,7 @@ class _$ProfileUiImpl implements _ProfileUi {
   }
 }
 
-abstract class _ProfileUi implements ProfileUi {
+abstract class _ProfileUi extends ProfileUi {
   factory _ProfileUi(
       {final CompanyData? companyData,
       final CompanyDetail? companyDetail,
@@ -405,6 +406,7 @@ abstract class _ProfileUi implements ProfileUi {
       final WorkDayData? workDayData,
       final PaymentMethod? paymentMethod,
       final PhoneNumberData? phoneNumber}) = _$ProfileUiImpl;
+  _ProfileUi._() : super._();
 
   factory _ProfileUi.fromJson(Map<String, dynamic> json) =
       _$ProfileUiImpl.fromJson;

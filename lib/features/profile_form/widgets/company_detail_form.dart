@@ -71,7 +71,7 @@ class CompanyDetailForm extends StatelessWidget {
                           ),
                           const Gap(AppPadding.large),
                           AppFormInput(
-                            labelText: localization.ocupation,
+                            labelText: localization.occupation,
                             hintText: localization.selectTheOccupationYouNeed,
                             formControl: state.profileForm!.companyDetailForm
                                 .occupationControl,

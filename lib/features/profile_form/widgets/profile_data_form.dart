@@ -85,8 +85,8 @@ class ProfileDataForm extends StatelessWidget {
                           ),
                           const Gap(AppPadding.xl),
                           AppFormInput(
-                            labelText: localization.ocupation,
-                            hintText: localization.enterYourOcupation,
+                            labelText: localization.occupation,
+                            hintText: localization.enterYourOccupation,
                             formControl: profileDataForm.occupationControl,
                           ),
                           const Gap(AppPadding.xxl),

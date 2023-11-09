@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
+import 'package:you_might_need_work/features/auth/cubit/cubit.dart';
 import 'package:you_might_need_work/features/profile_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/profile_form/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/models/models.dart';
@@ -36,9 +37,9 @@ class ProfileFormPage extends HookWidget {
   Widget build(BuildContext context) {
     final pageController = usePageController();
     final actualStep = context.watch<PageViewPositionCubit>().state;
-
+    final profile = (context.read<AuthCubit>().state as Authenticated).profile;
     return BlocProvider(
-      create: (context) => getIt<ProfileFormCubit>(),
+      create: (context) => getIt<ProfileFormCubit>()..init(profile: profile),
       child: InheritedPageViewForm(
         next: () => _nextPage(
           context,
@@ -50,28 +51,36 @@ class ProfileFormPage extends HookWidget {
         child: ProfileUiFormBuilder(
           builder: (context, formModel, _) {
             context.read<ProfileFormCubit>().updateModel(formModel);
-
+            final isLoading = context.watch<ProfileFormCubit>().state.isLoading;
+            // final isFailure =
+            //     context.watch<ProfileFormCubit>().state.failure != null;
             return Scaffold(
               body: SafeArea(
                 child: Column(
-                  children: [
-                    StepperIndicator(
-                      actualStep: actualStep,
-                      totalSteps: args.steps.length,
-                    ),
-                    Expanded(
-                      child: PageView(
-                        controller: pageController,
-                        physics: const NeverScrollableScrollPhysics(),
-                        onPageChanged: (pos) => context
-                            .read<PageViewPositionCubit>()
-                            .positionUpdated(pos),
-                        children: [
-                          for (final section in args.steps) section.widget,
+                  mainAxisAlignment: isLoading
+                      ? MainAxisAlignment.center
+                      : MainAxisAlignment.start,
+                  children: isLoading
+                      ? [const Center(child: CircularProgressIndicator())]
+                      : [
+                          StepperIndicator(
+                            actualStep: actualStep,
+                            totalSteps: args.steps.length,
+                          ),
+                          Expanded(
+                            child: PageView(
+                              controller: pageController,
+                              physics: const NeverScrollableScrollPhysics(),
+                              onPageChanged: (pos) => context
+                                  .read<PageViewPositionCubit>()
+                                  .positionUpdated(pos),
+                              children: [
+                                for (final section in args.steps)
+                                  section.widget,
+                              ],
+                            ),
+                          ),
                         ],
-                      ),
-                    ),
-                  ],
                 ),
               ),
             );

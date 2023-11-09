@@ -79,7 +79,8 @@ class _OtpFormPageState extends State<OtpFormPage> {
                                   ),
                                 )
                             : null
-                        : () => context.pushNamed(UserTypeFormPage.routeName),
+                        : () => context
+                            .pushReplacementNamed(UserTypeFormPage.routeName),
                     text: localization.next,
                   );
                 },
@@ -183,7 +184,7 @@ class _OtpFormPageState extends State<OtpFormPage> {
                             children: [
                               TextSpan(
                                 text:
-                                    '${AppLocalizations.of(context).resedCodeIn} ',
+                                    '${AppLocalizations.of(context).resendCodeIn} ',
                                 style: theme.textTheme.bodyMedium!.copyWith(
                                   color: AppColors.grayGray2,
                                 ),

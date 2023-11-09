@@ -54,8 +54,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i6.ConfigRepository(apiClient: gh<_i3.ApiClient>()));
     gh.lazySingleton<_i7.IProfileRepository>(
         () => _i8.ProfileRepository(apiClient: gh<_i3.ApiClient>()));
-    gh.factory<_i9.ProfileFormCubit>(
-        () => _i9.ProfileFormCubit(gh<_i7.ProfileRepository>()));
+    gh.factory<_i9.ProfileFormCubit>(() => _i9.ProfileFormCubit(
+          gh<_i7.IProfileRepository>(),
+          gh<_i5.IConfigRepository>(),
+        ));
     await gh.factoryAsync<_i10.SharedPreferences>(
       () => injectableModule.sharedPreferences,
       preResolve: true,

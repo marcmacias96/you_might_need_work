@@ -18,7 +18,7 @@
     "uploadYourProfilePhoto": "Upload your profile photo",
     "profile" : "Profile",
     "levelOfStudy" : "Level of study",
-    "ocupation": "Ocupation",
+    "occupation": "Occupation",
     "industry" : "Industry",
     "address" : "Address",
     "step" : "Step",
@@ -32,7 +32,7 @@
     "location" : "Location",
     "paymentForHour" : "Payment for hour",
     "hoursRequired" : "Hours required",
-    "hi" : "Hola",
+    "hi" : "Hi",
     "theFieldCannotBeEmpty": "The field cannot be empty",
     "enterYourDetails": "Enter your details below",
     "selectOne": "Select one",
@@ -53,14 +53,14 @@
 
     "@_FIRST_ONBOARDING_PAGE____________________________________________________________________________________": {},
     "firstOnboardingTitle": "Schedule Your Jobs",
-    "fisrtOnboardingDescription": "It is a long established fact that a reader will be distracted by the readable content of a page when looking.",
+    "firstOnboardingDescription": "It is a long established fact that a reader will be distracted by the readable content of a page when looking.",
 
     "@_SECOND_ONBOARDING_PAGE____________________________________________________________________________________": {},
     "secondOnboardingTitle": "Manage Your Job",
     "secondOnboardingDescription": "It is a long established fact that a reader will be distracted by the readable content of a page when looking.",
 
 
-    "@_SIGNIN_PAGE____________________________________________________________________________________": {},
+    "@_SIGNING_PAGE____________________________________________________________________________________": {},
     "dontHaveAnyAccount": "Don’t Have Any Account?",
     "termsAndConditions": "Terms and Conditions",
     "email": "Email",
@@ -81,7 +81,7 @@
     "enterYourPhoneNumberDescription": "Enter your phone number, we will send you an authentication code",
     "confirmYourPhoneNumberDescription": "Please enter the code we sent to your phone (406) 555-0120",
     "phoneNumberIsRequired": "Phone Number is required",    
-    "resedCodeIn": "Resend code in",
+    "resendCodeIn": "Resend code in",
 
     "@_PROFILE_USER_FORM_PAGE____________________________________________________________________________________": {},
     "selectUserTitle": "What type of user are you?",
@@ -92,7 +92,7 @@
     "enterDocumentNumber": "Enter your document number",
     "enterYourLastName": "Enter your last name",
     "enterYourName": "Enter your name",
-    "enterYourOcupation": "Enter your ocupation",
+    "enterYourOccupation": "Enter your occupation",
     "yourWorkDay": "Your work day",
     "enterYourDetailsWork": "Enter the details of your work day",
     "defaultCapacity": "Default capacity (total hours)",

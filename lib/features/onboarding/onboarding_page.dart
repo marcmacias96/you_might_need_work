@@ -135,7 +135,7 @@ class Onboarding extends StatelessWidget {
                     ),
                     child: Text(
                       args!.onboardingType == OnboardingType.firstOnboarding
-                          ? localization.fisrtOnboardingDescription
+                          ? localization.firstOnboardingDescription
                           : localization.secondOnboardingDescription,
                       style: theme.textTheme.bodyLarge!.copyWith(
                         color: AppColors.white,

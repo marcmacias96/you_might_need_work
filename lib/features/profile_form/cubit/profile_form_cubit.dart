@@ -1,6 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:you_might_need_work/data/config/config.dart';
+import 'package:you_might_need_work/data/config/models/models.dart';
+import 'package:you_might_need_work/data/core/models/models.dart';
+import 'package:you_might_need_work/data/profile/enums/enums.dart';
 import 'package:you_might_need_work/data/profile/models/models.dart';
 import 'package:you_might_need_work/data/profile/profile.dart';
 import 'package:you_might_need_work/features/profile_form/models/models.dart';
@@ -32,9 +37,56 @@ part 'profile_form_cubit.freezed.dart';
 /// [ProfileUiForm] instance.
 @injectable
 class ProfileFormCubit extends Cubit<ProfileFormState> {
-  ProfileFormCubit(this._profileRepository) : super(ProfileFormState.initial());
+  ProfileFormCubit(this._profileRepository, this._configRepository)
+      : super(ProfileFormState.initial());
 
-  final ProfileRepository _profileRepository;
+  final IProfileRepository _profileRepository;
+
+  final IConfigRepository _configRepository;
+
+  Future<void> init({required Profile profile}) async {
+    emit(
+      state.copyWith(
+        profile: profile,
+        isLoading: true,
+      ),
+    );
+    final failureOrBanks = await _configRepository.getBanks();
+    final failureOrIndustries = await _configRepository.getIndustries();
+    failureOrBanks.fold(
+      (failure) => emit(state.copyWith(failure: failure)),
+      (banks) => emit(state.copyWith(banks: banks)),
+    );
+    failureOrIndustries.fold(
+      (failure) => emit(state.copyWith(failure: failure)),
+      (industries) => emit(state.copyWith(industries: industries)),
+    );
+    emit(
+      state.copyWith(
+        isLoading: false,
+      ),
+    );
+  }
+
+  void resetServerResponse() {
+    emit(
+      state.copyWith(
+        failure: null,
+        failureOrUpdateProfile: null,
+      ),
+    );
+  }
+
+  Future<void> updatePhoneNumber(PhoneNumberData phoneNumberData) async {
+    emit(
+      state.copyWith(
+        profile: state.profile!.copyWith(
+          phone: '${phoneNumberData.phoneNumber.countryCode}'
+              '${phoneNumberData.phoneNumber.nsn}',
+        ),
+      ),
+    );
+  }
 
   /// Update the user's profile information with a [ProfileUiForm] instance.
   ///
@@ -46,9 +98,21 @@ class ProfileFormCubit extends Cubit<ProfileFormState> {
     emit(state.copyWith(profileForm: profileForm));
   }
 
-  Future<void> saveWorkerIdentityData(Profile profile) async {
-    emit(state.copyWith(isSubmitting: true));
-    await _profileRepository.updateProfile(profile);
-    emit(state.copyWith(isSubmitting: false));
+  Future<void> saveWorkerIdentityData(IdentityData identityData) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        profile: state.profile!.copyWith(
+          firstName: '',
+          lastName: '',
+          documentIssueDate: DateTime.now(),
+          documentNumber: '',
+          documentType: DocumentType.driverLicense,
+        ),
+      ),
+    );
+    final failureOrUpdateProfile =
+        await _profileRepository.updateProfile(state.profile!);
+    emit(state.copyWith(failureOrUpdateProfile: failureOrUpdateProfile));
   }
 }

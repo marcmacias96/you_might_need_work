@@ -20,11 +20,17 @@ class ProfileUi with _$ProfileUi {
     PaymentMethod? paymentMethod,
     PhoneNumberData? phoneNumber,
   }) = _ProfileUi;
+  factory ProfileUi.fromJson(Map<String, dynamic> json) =>
+      _$ProfileUiFromJson(json);
 
   factory ProfileUi.empty() => ProfileUi();
 
-  factory ProfileUi.fromJson(Map<String, dynamic> json) =>
-      _$ProfileUiFromJson(json);
+  const ProfileUi._();
+
+  // Profile toDomain() {
+  //   return
+  //  // return Profile(firstName: firstName, lastName: lastName, documentType: documentType, documentNumber: documentNumber, rawPassword: rawPassword, phone: phone, playerId: playerId, userType: userType, displayName: displayName, occupationTitle: occupationTitle, address: address, onboarding: onboarding, isPhoneValidated: isPhoneValidated);
+  // }
 }
 
 @RfGroup<CompanyData>()

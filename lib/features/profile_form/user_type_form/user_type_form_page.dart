@@ -64,7 +64,7 @@ class UserTypeFormPage extends StatelessWidget {
                         foregroundColor: AppColors.primary1,
                       ),
                       onPressed: () {
-                        context.pushNamed(
+                        context.goNamed(
                           ProfileFormPage.routeName,
                           extra: const ProfileFormArgs(
                             steps: CompanyForm.values,
@@ -115,7 +115,7 @@ class UserTypeFormPage extends StatelessWidget {
                         foregroundColor: AppColors.primary1,
                       ),
                       onPressed: () {
-                        context.pushNamed(
+                        context.goNamed(
                           ProfileFormPage.routeName,
                           extra: const ProfileFormArgs(
                             steps: WorkerForm.values,

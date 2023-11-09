@@ -14,5 +14,5 @@ class DocumentTypeConverter implements JsonConverter<DocumentType?, dynamic> {
   }
 
   @override
-  String toJson(DocumentType? instance) => instance!.type;
+  String? toJson(DocumentType? instance) => instance?.type;
 }

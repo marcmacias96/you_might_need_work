@@ -17,7 +17,7 @@ class IdentityDataForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final localization = AppLocalizations.of(context);
-
+    final bloc = context.read<ProfileFormCubit>();
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -26,7 +26,13 @@ class IdentityDataForm extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: BlocBuilder<ProfileFormCubit, ProfileFormState>(
+              child: BlocConsumer<ProfileFormCubit, ProfileFormState>(
+                listener: (context, state) {
+                  state.failureOrUpdateProfile!.fold((l) => null, (r) {
+                    bloc.resetServerResponse();
+                    InheritedPageViewForm.of(context).next();
+                  });
+                },
                 builder: (context, state) {
                   final identityForm = state.profileForm!.identityDataForm;
                   return Padding(
@@ -102,12 +108,13 @@ class IdentityDataForm extends StatelessWidget {
                           const Gap(AppPadding.xxl),
                           ReactiveProfileUiFormConsumer(
                             builder: (context, form, child) {
+                              final identityForm = form.identityDataForm;
                               return AppElevatedButton(
                                 loading: false,
-                                onPressed: form
-                                        .identityDataForm.currentForm.valid
-                                    ? () =>
-                                        InheritedPageViewForm.of(context).next()
+                                onPressed: identityForm.currentForm.valid
+                                    ? () => bloc.saveWorkerIdentityData(
+                                          identityForm.model,
+                                        )
                                     : null,
                                 text: localization.next,
                               );

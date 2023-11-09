@@ -15,5 +15,5 @@ class EducationLevelConverter
   }
 
   @override
-  String toJson(EducationLevel? instance) => instance!.value;
+  String? toJson(EducationLevel? instance) => instance?.value;
 }

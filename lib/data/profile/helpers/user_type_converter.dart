@@ -14,5 +14,5 @@ class UserTypeConverter implements JsonConverter<UserType?, dynamic> {
   }
 
   @override
-  String toJson(UserType? instance) => instance!.type;
+  String? toJson(UserType? instance) => instance?.type;
 }
