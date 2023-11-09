@@ -34,7 +34,7 @@ class BankAccountsData with _$BankAccountsData {
     @JsonKey(name: 'count') required int count,
     @JsonKey(name: 'next') required dynamic next,
     @JsonKey(name: 'previous') required dynamic previous,
-    @JsonKey(name: 'results') required List<BankAccountsData> results,
+    @JsonKey(name: 'results') required List<BankAccount> results,
   }) = _BankAccountsData;
 
   factory BankAccountsData.fromJson(Map<String, dynamic> json) =>
