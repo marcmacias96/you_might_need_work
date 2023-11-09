@@ -36,7 +36,7 @@ class BankAccountRepository implements IBankAccountRepository {
   }
 
   @override
-  Future<Either<CoreFailure, List<BankAccount>>> getBanksAccounts() async {
+  Future<Either<CoreFailure, List<BankAccount>>> getBankAccounts() async {
     try {
       final response = await _dio.get<dynamic>(
         Endpoints.getBanksAccounts,
