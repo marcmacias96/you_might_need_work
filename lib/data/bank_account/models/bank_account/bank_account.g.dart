@@ -45,7 +45,7 @@ _$BankAccountsDataImpl _$$BankAccountsDataImplFromJson(
       next: json['next'],
       previous: json['previous'],
       results: (json['results'] as List<dynamic>)
-          .map((e) => BankAccountsData.fromJson(e as Map<String, dynamic>))
+          .map((e) => BankAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

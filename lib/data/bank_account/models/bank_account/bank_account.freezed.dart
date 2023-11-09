@@ -443,7 +443,7 @@ mixin _$BankAccountsData {
   @JsonKey(name: 'previous')
   dynamic get previous => throw _privateConstructorUsedError;
   @JsonKey(name: 'results')
-  List<BankAccountsData> get results => throw _privateConstructorUsedError;
+  List<BankAccount> get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -461,7 +461,7 @@ abstract class $BankAccountsDataCopyWith<$Res> {
       {@JsonKey(name: 'count') int count,
       @JsonKey(name: 'next') dynamic next,
       @JsonKey(name: 'previous') dynamic previous,
-      @JsonKey(name: 'results') List<BankAccountsData> results});
+      @JsonKey(name: 'results') List<BankAccount> results});
 }
 
 /// @nodoc
@@ -498,7 +498,7 @@ class _$BankAccountsDataCopyWithImpl<$Res, $Val extends BankAccountsData>
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<BankAccountsData>,
+              as List<BankAccount>,
     ) as $Val);
   }
 }
@@ -515,7 +515,7 @@ abstract class _$$BankAccountsDataImplCopyWith<$Res>
       {@JsonKey(name: 'count') int count,
       @JsonKey(name: 'next') dynamic next,
       @JsonKey(name: 'previous') dynamic previous,
-      @JsonKey(name: 'results') List<BankAccountsData> results});
+      @JsonKey(name: 'results') List<BankAccount> results});
 }
 
 /// @nodoc
@@ -550,7 +550,7 @@ class __$$BankAccountsDataImplCopyWithImpl<$Res>
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<BankAccountsData>,
+              as List<BankAccount>,
     ));
   }
 }
@@ -562,7 +562,7 @@ class _$BankAccountsDataImpl implements _BankAccountsData {
       {@JsonKey(name: 'count') required this.count,
       @JsonKey(name: 'next') required this.next,
       @JsonKey(name: 'previous') required this.previous,
-      @JsonKey(name: 'results') required final List<BankAccountsData> results})
+      @JsonKey(name: 'results') required final List<BankAccount> results})
       : _results = results;
 
   factory _$BankAccountsDataImpl.fromJson(Map<String, dynamic> json) =>
@@ -577,10 +577,10 @@ class _$BankAccountsDataImpl implements _BankAccountsData {
   @override
   @JsonKey(name: 'previous')
   final dynamic previous;
-  final List<BankAccountsData> _results;
+  final List<BankAccount> _results;
   @override
   @JsonKey(name: 'results')
-  List<BankAccountsData> get results {
+  List<BankAccount> get results {
     if (_results is EqualUnmodifiableListView) return _results;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_results);
@@ -628,11 +628,11 @@ class _$BankAccountsDataImpl implements _BankAccountsData {
 
 abstract class _BankAccountsData implements BankAccountsData {
   const factory _BankAccountsData(
-      {@JsonKey(name: 'count') required final int count,
-      @JsonKey(name: 'next') required final dynamic next,
-      @JsonKey(name: 'previous') required final dynamic previous,
-      @JsonKey(name: 'results')
-      required final List<BankAccountsData> results}) = _$BankAccountsDataImpl;
+          {@JsonKey(name: 'count') required final int count,
+          @JsonKey(name: 'next') required final dynamic next,
+          @JsonKey(name: 'previous') required final dynamic previous,
+          @JsonKey(name: 'results') required final List<BankAccount> results}) =
+      _$BankAccountsDataImpl;
 
   factory _BankAccountsData.fromJson(Map<String, dynamic> json) =
       _$BankAccountsDataImpl.fromJson;
@@ -648,7 +648,7 @@ abstract class _BankAccountsData implements BankAccountsData {
   dynamic get previous;
   @override
   @JsonKey(name: 'results')
-  List<BankAccountsData> get results;
+  List<BankAccount> get results;
   @override
   @JsonKey(ignore: true)
   _$$BankAccountsDataImplCopyWith<_$BankAccountsDataImpl> get copyWith =>
