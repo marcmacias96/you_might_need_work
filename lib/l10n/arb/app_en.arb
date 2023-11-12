@@ -5,7 +5,6 @@
     "appTitle": "You Might Need Work",
     "skip": "Skip",
     "back": "Back",
-    "next": "Next",
     "next": "Continue",
     "hello": "Hello",
     "company": "Company",
@@ -42,6 +41,11 @@
     "selectDate":"Select a date",
     "mustBeNumbers":"Must be numbers",
 
+    "@_CORE_ERRORS_________________________________________________________________________________": {},
+    "serverError": "Oops! Technical problems on the server. We are working on it.\nPlease try again later.",
+    "invalidEmailOrPassword":"Incorrect e-mail address or password",
+    "unexpected": "Oops! Something unexpected happened.\nTry again later",
+    
     "@_WEEKDAYS____________________________________________________________________________________": {},
     "monday": "Monday",
     "tuesday": "Tuesday",

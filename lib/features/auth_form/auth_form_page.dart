@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +10,7 @@ import 'package:you_might_need_work/features/auth_form/cubit/cubit.dart';
 import 'package:you_might_need_work/features/auth_form/models/models.dart';
 import 'package:you_might_need_work/injection.dart';
 import 'package:you_might_need_work/theme/theme.dart';
+import 'package:you_might_need_work/utils/utils.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
 enum AuthFormType { signUp, login }
@@ -55,13 +54,25 @@ class _AuthFormPageState extends State<AuthFormPage> {
           body: BlocConsumer<AuthFormCubit, AuthFormState>(
             listener: (context, state) {
               state.authFailureOrSuccess?.fold(
-                (l) {},
+                (failure) {
+                  showSnackBar(
+                    context,
+                    failure.maybeWhen(
+                      orElse: () => localization.unexpected,
+                      invalidEmailAndPasswordCombination: () =>
+                          localization.invalidEmailOrPassword,
+                      serverError: () => localization.serverError,
+                    ),
+                    type: SnackBarType.error,
+                  );
+                },
                 (r) {
                   context.pushReplacement(AuthPage.routePath);
                 },
               );
             },
             builder: (context, state) {
+              final isLogin = widget.args.type == AuthFormType.login;
               return CustomScrollView(
                 slivers: [
                   SliverAppBar.medium(
@@ -72,9 +83,7 @@ class _AuthFormPageState extends State<AuthFormPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.args.type == AuthFormType.login
-                              ? localization.signIn
-                              : localization.signUp,
+                          isLogin ? localization.signIn : localization.signUp,
                           textAlign: TextAlign.center,
                           style: theme.textTheme.titleLarge,
                         ),
@@ -155,72 +164,40 @@ class _AuthFormPageState extends State<AuthFormPage> {
                                 ),
                                 const SizedBox(height: AppPadding.xxxl),
                                 GestureDetector(
-                                  onTap: widget.args.type == AuthFormType.login
-                                      ? () {
-                                          context.pushNamed(
-                                            AuthFormPage.routeName,
-                                            extra: const AuthFormArgs(
-                                              type: AuthFormType.signUp,
-                                            ),
-                                          );
-                                        }
-                                      : () {
-                                          context.pushNamed(
-                                            AuthFormPage.routeName,
-                                            extra: const AuthFormArgs(
-                                              type: AuthFormType.login,
-                                            ),
-                                          );
-                                        },
-                                  child: widget.args.type == AuthFormType.login
-                                      ? Text.rich(
-                                          TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: localization
-                                                    .dontHaveAnyAccount,
-                                                style: theme
-                                                    .textTheme.bodyMedium!
-                                                    .copyWith(
-                                                  color: AppColors.grayGray2,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text:
-                                                    ' ${AppLocalizations.of(context).signUp}',
-                                                style: theme
-                                                    .textTheme.bodyMedium!
-                                                    .copyWith(
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      : Text.rich(
-                                          TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: localization
-                                                    .youHaveAnAccount,
-                                                style: theme
-                                                    .textTheme.bodyMedium!
-                                                    .copyWith(
-                                                  color: AppColors.grayGray2,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text:
-                                                    ' ${AppLocalizations.of(context).signIn}',
-                                                style: theme
-                                                    .textTheme.bodyMedium!
-                                                    .copyWith(
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
+                                  onTap: () {
+                                    context.pushNamed(
+                                      AuthFormPage.routeName,
+                                      extra: AuthFormArgs(
+                                        type: isLogin
+                                            ? AuthFormType.login
+                                            : AuthFormType.signUp,
+                                      ),
+                                    );
+                                  },
+                                  child: Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: isLogin
+                                              ? localization.dontHaveAnyAccount
+                                              : localization.youHaveAnAccount,
+                                          style: theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                            color: AppColors.grayGray2,
                                           ),
                                         ),
+                                        TextSpan(
+                                          text: isLogin
+                                              ? ' ${localization.signUp}'
+                                              : ' ${localization.signIn}',
+                                          style: theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -242,6 +219,7 @@ class _AuthFormPageState extends State<AuthFormPage> {
     BuildContext context, {
     required Credentials credentials,
   }) {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (widget.args.type == AuthFormType.login) {
       context
           .read<AuthFormCubit>()

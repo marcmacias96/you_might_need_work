@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:reactive_phone_form_field/reactive_phone_form_field.dart';
-import 'package:you_might_need_work/utils/utils.dart';
+import 'package:you_might_need_work/utils/validators/validators.dart';
 
 part 'profile.gform.dart';
 part 'profile.g.dart';
