@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:you_might_need_work/data/profile/enums/enums.dart';
 import 'package:you_might_need_work/features/auth/cubit/cubit.dart';
 import 'package:you_might_need_work/features/home/home.dart';
-import 'package:you_might_need_work/features/onboarding/onboarding.dart';
 import 'package:you_might_need_work/features/profile_form/enums/enums.dart';
 import 'package:you_might_need_work/features/profile_form/otp_form/otp_form.dart';
 import 'package:you_might_need_work/features/profile_form/profile_form.dart';
@@ -80,7 +79,8 @@ class _AppState extends State<App> {
         }
       },
       unauthenticated: (_) {
-        _router.goNamed(OnboardingPage.routeName);
+        return _router.goNamed(HomePage.routeName);
+        // _router.goNamed(OnboardingPage.routeName);
       },
     );
   }
