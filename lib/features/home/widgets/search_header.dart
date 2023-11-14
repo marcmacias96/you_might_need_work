@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:you_might_need_work/assets/assets.dart';
@@ -11,6 +12,8 @@ class SearchHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
+
     return SliverToBoxAdapter(
       child: Padding(
         padding: AppPadding.insetAllLarge,
@@ -21,7 +24,7 @@ class SearchHeader extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: 'Hi,\n',
+                    text: localization.greetings,
                     style: theme.textTheme.displaySmall,
                   ),
                   TextSpan(
@@ -40,7 +43,7 @@ class SearchHeader extends StatelessWidget {
                   flex: 6,
                   child: AppFormInput(
                     formControl: FormControl<String>(),
-                    hintText: 'Search',
+                    hintText: localization.homeSearchHint,
                     prefixIcon: Images.search,
                   ),
                 ),

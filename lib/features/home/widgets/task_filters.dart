@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
@@ -13,6 +14,7 @@ class TaskFilters extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final format = DateFormat.yMEd();
+    final localization = AppLocalizations.of(context);
 
     return SliverToBoxAdapter(
       child: Padding(
@@ -24,7 +26,7 @@ class TaskFilters extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Today',
+                  localization.dateTitle,
                   style: theme.textTheme.titleMedium,
                 ),
                 Row(
@@ -50,21 +52,23 @@ class TaskFilters extends StatelessWidget {
                 Column(
                   children: [
                     TaskFilterButton(
+                      listLength: 10,
                       height: 180,
                       backgroundColor: AppColors.primary2,
                       textColor: Colors.black,
                       svgAsset: Images.ongoing,
-                      title: 'Ongoing',
+                      title: localization.ongoing,
                       alignment: Alignment.topLeft,
                       onTap: () {},
                     ),
                     const Gap(AppPadding.large),
                     TaskFilterButton(
+                      listLength: 2,
                       height: 130,
                       backgroundColor: AppColors.secondary2,
                       textColor: Colors.black,
                       svgAsset: Images.completed,
-                      title: 'Completed',
+                      title: localization.completed,
                       alignment: Alignment.topRight,
                       onTap: () {},
                     ),
@@ -73,13 +77,14 @@ class TaskFilters extends StatelessWidget {
                 Column(
                   children: [
                     TaskFilterButton(
-                      height: 120,
+                      listLength: 1,
                       backgroundColor: AppColors.secondary1,
                       textColor: Colors.black,
                       svgAsset: Images.pending,
-                      title: 'Pending',
+                      title: localization.pending,
                       alignment: Alignment.topRight,
                       onTap: () {},
+                      height: 130,
                     ),
                     const Gap(AppPadding.large),
                     TaskFilterButton(
@@ -87,9 +92,10 @@ class TaskFilters extends StatelessWidget {
                       backgroundColor: AppColors.secondary3,
                       textColor: Colors.black,
                       svgAsset: Images.completed,
-                      title: 'Completed',
+                      title: localization.cancel,
                       alignment: Alignment.topLeft,
                       onTap: () {},
+                      listLength: 180,
                     ),
                   ],
                 ),
@@ -104,6 +110,7 @@ class TaskFilters extends StatelessWidget {
 
 class TaskFilterButton extends StatelessWidget {
   const TaskFilterButton({
+    required this.listLength,
     required this.title,
     required this.backgroundColor,
     required this.textColor,
@@ -121,10 +128,13 @@ class TaskFilterButton extends StatelessWidget {
   final String svgAsset;
   final AlignmentGeometry alignment;
   final double height;
+  final int listLength;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context);
+
     return FilledButton(
       style: FilledButton.styleFrom(
         backgroundColor: backgroundColor.withOpacity(0.8),
@@ -165,7 +175,7 @@ class TaskFilterButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '10 Tasks',
+                      localization.numOfTasks(listLength),
                       style: theme.textTheme.labelMedium!.copyWith(
                         color: textColor,
                       ),

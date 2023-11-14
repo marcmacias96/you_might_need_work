@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:you_might_need_work/assets/assets.dart';
+import 'package:you_might_need_work/l10n/l10n.dart';
 import 'package:you_might_need_work/theme/theme.dart';
 import 'package:you_might_need_work/widgets/widgets.dart';
 
@@ -52,13 +53,15 @@ class JobsListTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final localization = AppLocalizations.of(context);
+     
     return SliverToBoxAdapter(
       child: Padding(
         padding: AppPadding.insetAllLarge,
         child: Row(
           children: [
             Text(
-              'All tasks',
+              localization.taskFilterTitle,
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ],
