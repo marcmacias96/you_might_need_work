@@ -31,9 +31,18 @@ class JobsList extends StatelessWidget {
                 'Paul Perez',
                 style: theme.textTheme.headlineSmall,
               ),
-              subtitle: Text(
-                format.format(DateTime.now()),
-                style: theme.textTheme.labelMedium,
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    format.format(DateTime.now()),
+                    style: theme.textTheme.labelMedium,
+                  ),
+                  const Gap(AppPadding.medium),
+                  const AnimatedLinearProgressIndicator(
+                    value: 0.7,
+                  ),
+                ],
               ),
               trailing: InkWell(
                 onTap: () {},
@@ -53,8 +62,8 @@ class JobsListTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final localization = AppLocalizations.of(context);
-     
+    final localization = AppLocalizations.of(context);
+
     return SliverToBoxAdapter(
       child: Padding(
         padding: AppPadding.insetAllLarge,

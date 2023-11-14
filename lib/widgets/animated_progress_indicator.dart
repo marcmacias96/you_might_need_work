@@ -96,6 +96,7 @@ class _AnimatedLinearProgressIndicatorState
       animation: _controller,
       builder: (_, __) {
         return LinearProgressIndicator(
+          backgroundColor: AppColors.grayGray1.withOpacity(0.3),
           value: _value.value,
           color: AppColors.primary2,
           minHeight: 8,
