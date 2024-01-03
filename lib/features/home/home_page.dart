@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:you_might_need_work/features/auth/cubit/cubit.dart';
+import 'package:gap/gap.dart';
+import 'package:you_might_need_work/features/home/widgets/widgets.dart';
+import 'package:you_might_need_work/theme/theme.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,16 +10,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                context.read<AuthCubit>().signOut();
-              },
-              child: Text(AppLocalizations.of(context).signOut),
+    return const Scaffold(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SearchHeader(),
+            TaskFilters(),
+            JobsListTitle(),
+            JobsList(),
+            SliverToBoxAdapter(
+              child: Gap(AppPadding.large),
             ),
           ],
         ),

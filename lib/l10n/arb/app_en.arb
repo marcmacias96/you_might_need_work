@@ -117,5 +117,21 @@
     "feedback2" : "Make sure my business is on track",
     "feedback3" : "Better estimate future projects",
     "feedback4" : "Provide evidence of my work",
-    "feedback5" : "Something else..."
+    "feedback5" : "Something else...",
+
+    "@_HOME_PAGE____________________________________________________________________________________": {},
+    "greetings": "Hi,\n",
+    "homeSearchHint": "Search",
+    "dateTitle": "Today",
+    "ongoing": "Ongoing",
+    "pending": "Pending",
+    "completed": "Completed",
+    "cancel": "Cancel",
+    "numOfTasks": "{num} Tasks",
+    "@numOfTasks": {
+        "placeholders": {
+            "num": {}
+          }
+    },
+    "taskFilterTitle": "AllTasks"
 }
