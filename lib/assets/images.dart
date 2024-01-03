@@ -1,0 +1,31 @@
+mixin Images {
+  static const String appleLogo = 'assets/images/apple.png';
+  static const String googleLogo = 'assets/images/google.png';
+  static const String avatar = 'assets/images/avatar.png';
+  static const String calendar = 'assets/icons/calendar.svg';
+  static const String camera = 'assets/icons/camera.svg';
+  static const String cancel = 'assets/icons/cancel.svg'; 
+  static const String clockPlus = 'assets/icons/clockPlus.svg'; 
+  static const String company = 'assets/icons/company.svg'; 
+  static const String completed = 'assets/icons/completed.svg'; 
+  static const String email = 'assets/icons/email.svg'; 
+  static const String eye = 'assets/icons/eye.svg'; 
+  static const String filter = 'assets/icons/filter.svg'; 
+  static const String home = 'assets/icons/home.svg'; 
+  static const String locationPin = 'assets/icons/locationPin.svg'; 
+  static const String lock = 'assets/icons/lock.svg'; 
+  static const String message = 'assets/icons/message.svg'; 
+  static const String mic = 'assets/icons/mic.svg'; 
+  static const String moreBlack = 'assets/icons/moreBlack.svg'; 
+  static const String ongoing = 'assets/icons/ongoing.svg'; 
+  static const String pause = 'assets/icons/pause.svg';
+  static const String pending = 'assets/icons/pending.svg';
+  static const String profile = 'assets/icons/profile.svg';
+  static const String search = 'assets/icons/search.svg';
+  static const String tool = 'assets/icons/tool.svg';
+  static const String unitedStatesFlag = 'assets/icons/unitedStatesFlag.svg';
+  static const String wallet = 'assets/icons/wallet.svg';
+  static const String whiteArrow = 'assets/icons/whiteArrow.svg';
+  static const String womanWithBoard = 'assets/icons/womanWithBoard.svg';
+  static const String womanWithCalendar = 'assets/icons/womanWithCalendar.svg';
+}

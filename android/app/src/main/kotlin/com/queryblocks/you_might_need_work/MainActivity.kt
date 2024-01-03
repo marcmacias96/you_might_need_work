@@ -1,4 +1,4 @@
-package com.example.you_might_need_work
+package com.queryblocks.youMightNeedWork
 
 import io.flutter.embedding.android.FlutterActivity
 
